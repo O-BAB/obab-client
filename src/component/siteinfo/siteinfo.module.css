@@ -1,0 +1,77 @@
+.siteinfo_con {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 9%;
+}
+
+.siteinfo_element_left {
+    flex: 7.5;
+}
+
+.siteinfo_element_right {
+    flex: 2.5;
+}
+
+.siteinfo_container {
+    position: relative;
+    display: inline-block;
+}
+
+.siteinfo_content {
+    display: flex;
+    align-items: center;
+}
+
+.siteinfo_img {
+    max-width: 95%;
+    height: auto;
+    position: relative; /* 이미지 컨테이너에 상대적인 위치 설정 */
+}
+
+.siteinfo_img_front {
+    position: absolute;
+    width: 95%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.3); 
+    top: 0; 
+    left: 0; 
+    z-index: 1; 
+}
+
+.siteinfo_text {
+    position: absolute; 
+    width: 90%;
+    z-index: 2; 
+    color: #fff;
+    padding: 20px;
+    bottom: 0;
+    left: 0; 
+    box-sizing: border-box; 
+    font-weight: bolder;
+}
+
+.siteinfo_text a{
+    color: #fff;
+    text-decoration: none;    
+}
+
+.siteinfo_span span{
+    padding: 1%;
+}
+
+.divider {
+    border-top: 2px solid #ccc; 
+}
+
+.image_container {
+    width: 90%;
+}
+
+.image {
+    width: 100%; 
+}
+
+.content {
+    width: 100%;
+    float: left;
+}

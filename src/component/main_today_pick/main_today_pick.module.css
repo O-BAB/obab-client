@@ -1,0 +1,31 @@
+.today_pick_con{
+    margin: 9% 9%;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: flex; /* Flexbox를 사용하여 요소들을 정렬합니다. */
+    flex-direction: row; /* 요소들을 세로로 배치합니다. */
+}
+
+.element {
+    margin: 0px 1% 0px 0px;
+    display: flex; /* Flexbox를 사용하여 요소들을 정렬합니다. */
+    flex: 2;
+    flex-direction: column; /* 요소들을 세로로 배치합니다. */
+}
+
+.name {
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.item {
+    font-size: 14px;
+}
+
+.divider {
+    margin-top: 5%;
+    border-top: 1px solid #ccc;
+    width: 100%;
+}

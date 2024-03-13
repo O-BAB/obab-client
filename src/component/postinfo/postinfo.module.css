@@ -1,0 +1,118 @@
+.post_con{
+    margin-top: 2%;
+    padding: 0px 16%;
+}
+
+.post_title{
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.post_content{
+    font-weight: bolder;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post_needs_ingredients{
+    font-size: 20px;
+    font-weight: bolder;
+    margin-top: 3%;
+}
+
+.post_content p{
+    margin: 0px 3%;
+}
+
+.post_thumbnail_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.post_thumbnail{
+    width: 60%;
+}
+
+.post_need_con {
+    padding: 10px; 
+}
+
+.post_needs_list_element{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: left;
+}
+
+.post_needs_list_element li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #707070;
+    list-style-type: none;
+    font-size: 16px;
+    padding: 1% 0.5%;
+    margin: 2%;
+    border-bottom: 1px solid #ccc;
+    width: 45%;
+}
+
+.divider {
+    margin-top: 5%;
+    border-top: 2px solid #ccc;
+    width: 100%;
+}
+
+.post_item{
+    display: flex;
+    flex-direction: row;
+    margin: 5% 0px;
+}
+
+.post_img{
+    width: 30%;
+    height: auto;
+}
+
+/* Cooking */
+.Cooking_con{
+    margin-top: 20%;
+}
+
+.container {
+    display: flex; /* Flexbox를 사용하여 요소들을 정렬합니다. */
+    flex-direction: row; /* 요소들을 세로로 배치합니다. */
+}
+
+.element {
+    margin: 0px 2% 0px 0px;
+    display: flex; /* Flexbox를 사용하여 요소들을 정렬합니다. */
+    flex-direction: column; /* 요소들을 세로로 배치합니다. */
+    flex: 3.3;
+}
+
+.Cooking_img{
+    width: 100%;
+}
+
+.name {
+    margin: 3% 0px 0px 0px;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.date {
+    margin: 3% 0px;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.content {
+    font-size: 14px;
+}
+
