@@ -20,7 +20,11 @@ const Main = () => {
     setSelectedCategory(category);
   };
 
-  console.log('Selected Category:', selectedCategory); // 이 부분을 추가하여 selectedCategory 값을 콘솔에 출력합니다.
+    /**
+     * 이 부분은 개발이 끝나면 제거 할 것!
+     * console.log는 가급적이면 사용자가 보이지 않게 한다.
+     */
+  // console.log('Selected Category:', selectedCategory); // 이 부분을 추가하여 selectedCategory 값을 콘솔에 출력합니다.
 
   return (
     <>
