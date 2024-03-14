@@ -1,5 +1,5 @@
-import Navbar from 'component/navbar/navbar';
-import Footer from 'component/footer/footer';
+import Navbar from 'component/common/navbar/Navbar';
+import Footer from 'component/common/footer/Footer';
 import PostInfo from 'component/postinfo/postinfo'
 
 

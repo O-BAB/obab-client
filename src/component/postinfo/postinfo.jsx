@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './postinfo.module.css';
+import styles from '../../css/postinfo/postinfo.module.css';
 
 function PostInfo() {
     return (

@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import Navbar from 'component/navbar/navbar';
+import Navbar from 'component/common/navbar/Navbar';
 import SiteInfo from 'component/siteinfo/siteinfo';
-import TodayPick from 'component/main_today_pick/main_today_pick';
-import SoupUpdate from 'component/main_soup_update/soup_update';
-import CookingTip from 'component/main_cookingtip/cookingtip';
-import MostRead from 'component/main_mostread/mostread';
-import Cooking from 'component/main_cooking/cooking';
-import Recipe from 'component/main_recipe/recipe';
-import ConvenienceRecipe from 'component/main_convenience_recipe/convenience_recipe';
-import TopButton from 'component/top_button/TopButton';
-import Footer from 'component/footer/footer';
-import CategoryList from 'component/category/category';
+import TopButton from 'component/common/top/button/TopButton';
+import SoupUpdate from "../../component/main/soup/update/SoupUpdate";
+import Cookingtip from "../../component/main/cookingtip/Cookingtip";
+import Mostread from "../../component/main/mostread/Mostread";
+import Cooking from "../../component/main/cooking/Cooking";
+import Recipe from "../../component/main/recipe/Recipe";
+import TodayPick from "../../component/main/today/pick/TodayPick";
+import ConvenienceRecipe from "../../component/main/convenience/recipe/ConvenienceRecipe";
+import Category from "../../component/category/Category";
+import Footer from "../../component/common/footer/Footer";
 
 
 const Main = () => {
@@ -34,15 +34,15 @@ const Main = () => {
           <SiteInfo/>
           <TodayPick/>
           <SoupUpdate/>
-          <CookingTip/>
-          <MostRead/>
+          <Cookingtip/>
+          <Mostread/>
           <Cooking/>
           <Recipe/>
           <ConvenienceRecipe/>
           <TopButton/>
         </>
       ) : (
-        <CategoryList category_title={selectedCategory}/>
+        <Category category_title={selectedCategory}/>
       )}
       <Footer/>
     </>

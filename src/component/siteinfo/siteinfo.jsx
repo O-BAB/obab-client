@@ -1,5 +1,5 @@
 /* SiteInfo.jsx */
-import styles from './siteinfo.module.css';
+import styles from '../../css/siteinfo/siteinfo.module.css';
 import React from 'react';
 
 const SiteInfo = () => {
