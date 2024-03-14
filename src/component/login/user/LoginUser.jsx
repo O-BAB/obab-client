@@ -1,4 +1,4 @@
-import styles from "../login_user/login_user.module.css";
+import styles from "./LoginUser.module.css";
 import React from "react";
 
 const LoginUser = (props) => {
