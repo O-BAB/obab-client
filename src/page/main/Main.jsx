@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Navbar from 'component/common/navbar/Navbar';
-import SiteInfo from 'component/siteinfo/siteinfo';
+import Siteinfo from 'component/siteinfo/Siteinfo';
 import TopButton from 'component/common/top/button/TopButton';
 import SoupUpdate from "../../component/main/soup/update/SoupUpdate";
 import Cookingtip from "../../component/main/cookingtip/Cookingtip";
@@ -31,7 +31,7 @@ const Main = () => {
       <Navbar onCategorySelect={handleCategorySelect}/>
       {selectedCategory === null ? (
         <>
-          <SiteInfo/>
+          <Siteinfo/>
           <TodayPick/>
           <SoupUpdate/>
           <Cookingtip/>

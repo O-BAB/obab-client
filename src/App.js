@@ -2,8 +2,8 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Main from 'page/main/main';
-import Posting from 'page/posting/posting';
+import Main from 'page/main/Main';
+import Posting from 'page/posting/Posting';
 
 function App() {
     return (

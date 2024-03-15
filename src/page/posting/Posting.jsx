@@ -1,6 +1,6 @@
 import Navbar from 'component/common/navbar/Navbar';
 import Footer from 'component/common/footer/Footer';
-import PostInfo from 'component/postinfo/postinfo'
+import Postinfo from 'component/postinfo/Postinfo'
 
 
 const Post = () => {
@@ -8,7 +8,7 @@ const Post = () => {
   return (
     <>
       <Navbar />
-      <PostInfo />
+      <Postinfo />
       <Footer />
     </>
   );

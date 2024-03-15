@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../css/postinfo/postinfo.module.css';
 
-function PostInfo() {
+function Postinfo() {
     return (
         <div className={styles.post_con}>
             <div className={styles.post_need_con}>
@@ -76,4 +76,4 @@ function PostInfo() {
     );
 }
 
-export default PostInfo;
+export default Postinfo;
