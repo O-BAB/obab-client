@@ -1,4 +1,4 @@
-/* Siteinfo.jsx */
+/* SiteInfo.jsx */
 import styles from '../../css/siteinfo/siteinfo.module.css';
 import React from 'react';
 
