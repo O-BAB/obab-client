@@ -28,7 +28,7 @@ const Cooking = () => {
                     <div className={styles.content}>Korean cuisine is known for its delicious and unique flavors. If you…</div>
                 </div>
             </div>
-            <div class={styles.divider}></div>
+            <div className={styles.divider}></div>
         </div>
 
     );
