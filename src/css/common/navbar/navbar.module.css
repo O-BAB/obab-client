@@ -1,4 +1,5 @@
 .navbar {
+    width: 100%;
     background-color: white;
     padding: 0px 9%;
 }
@@ -16,6 +17,7 @@
 }
 
 .mainlog {
+    width: 20%;
     font-weight: 700;
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
@@ -27,6 +29,7 @@
     text-decoration: solid;
 }
 .menu {
+    width: 55%;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -49,4 +52,17 @@
 
 .item a:hover {
     color: blue;
+}
+
+.navbarRight {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: right;
+    align-items: flex-end;
+}
+
+.navbarRightItem {
+    padding: 0 5% 0 5%;
 }
