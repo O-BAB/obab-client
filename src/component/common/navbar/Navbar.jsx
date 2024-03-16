@@ -1,46 +1,42 @@
 import React from 'react';
 import styles from '../../../css/common/navbar/navbar.module.css';
+import Logo from "./item/Logo";
+import CATEGORIES from "./data/CATEGORIES";
+import MenuBarList from "./item/MenuBarList";
+import commonContainer from "../../../hooks/commonContainer";
 
-function Navbar({ onCategorySelect }) {
-    const CATEGORIES = [
-        { subCategoryId: 1, name: "Korean Cuisine" },
-        { subCategoryId: 2, name: "Food recipe" },
-        { subCategoryId: 3, name: "Cooking Tips" },
-        { subCategoryId: 4, name: "Recipe" },
-        { subCategoryId: 5, name: "Soup Recipe" },
-    ];
+function Navbar() {
+// function Navbar({ onCategorySelect }) {
 
-    const handleCategoryClick = (category) => {
-        onCategorySelect(category.name);
-    };
+//     const handleCategoryClick = (category) => {
+//         onCategorySelect(category.name);
+//     };
+    /**
+     * 위에 함수는 Origin Component 용으로 사용 된 것으로, 굳이 중복되는 부분을 사용할 필요 없다.
+     * 자세한 사항은 React Design Pattern 을 검색하고 학습 습득하는 것을 확인 하면 좋다.
+     * 이 중 Custom Hook Pattern 으로 구조를 나눠 사용한다.
+     */
+    const {handleCategorySelect} = commonContainer()
 
     return (
         <nav className={styles.navbar}>
             <div className={styles.navelement}>
                 <div className={styles.navcontainer}>
-                    <div className={styles.mainlog}>
-                        {/*<a href="/public">oneul-ui bab</a>*/}
-                        <a href="/">oneul-ui bab</a>
-                    </div>
+                    <Logo />
                     <div className={styles.categorycontainer}>
                         <ul className={styles.menu}>
-                            {CATEGORIES.map(category => (
-                                <li key={category.subCategoryId} className={styles.item}>
-                                    {/*<a href="/public" onClick={(event) => {*/}
-                                    <a href="/" onClick={(event) => {
-                                        event.preventDefault();
-                                        handleCategoryClick(category);
-                                    }}>{category.name}</a>
-                                </li>
+                            {/* key={index} 넣어줘야 console에 빨간색 에러 방지 */}
+                            {CATEGORIES.map((category, index) => (
+                                <MenuBarList key={index} category={category} />
                             ))}
                         </ul>
                     </div>
-                    <div>
+                    <div className={`cursor-pointer hover:text-blue-600`}>
                         로그인 버튼
                     </div>
                 </div>
             </div>
-        </nav >
+        </nav>
     );
 }
 

@@ -1,24 +1,29 @@
 import React from 'react';
 import styles from '../../css/category/category.module.css';
+import CATEGORIES from "../common/navbar/data/CATEGORIES";
+import {useRecoilValue} from "recoil";
+import {categoriesState} from "../../recoil/commomState";
 
+// const Category = (props) => {
+const Category = () => {
+    // let name = props;
+    const categories = useRecoilValue(categoriesState)
 
-const Category = (props) => {
-    let name = props;
-
-    const CATEGORIES = [
-        { subCategoryId: 1, name: "Korean Cuisine" },
-        { subCategoryId: 2, name: "Food recipe" },
-        { subCategoryId: 3, name: "Cooking Tips" },
-        { subCategoryId: 4, name: "Recipe" },
-        { subCategoryId: 5, name: "Soup Recipe" },
-    ];
+    // const CATEGORIES = [
+    //     { subCategoryId: 1, name: "Korean Cuisine" },
+    //     { subCategoryId: 2, name: "Food recipe" },
+    //     { subCategoryId: 3, name: "Cooking Tips" },
+    //     { subCategoryId: 4, name: "Recipe" },
+    //     { subCategoryId: 5, name: "Soup Recipe" },
+    // ];
 
     return (
         <div className={styles.siteinfo_con}>
             <div className={styles.soupupdate_element_left}>
                 <div className={styles.flexrow}>
                     <div className={styles.title}>
-                        {name.category_title}
+                        {categories}
+                        {/*{name.category_title}*/}
                     </div>
                 </div>
                 <div className={styles.soupupdate_img_box}>
@@ -30,7 +35,7 @@ const Category = (props) => {
                             How to Make Korean Army Stew: A Step-by-Step Recipe
                         </p>
                     </div>
-                    <div class={styles.divider}></div>
+                    <div className={styles.divider}></div>
                     <div className={styles.dateandcomments}>
                         <p className={styles.date}>
                             March 5, 2024
@@ -52,8 +57,10 @@ const Category = (props) => {
                     <div className={styles.content}>
                         <h3>카테고리</h3>
                         <ul className={styles.categories}>
-                            {CATEGORIES.map(category => (
-                                <li key={category.id} className={styles.item}>
+                            {/*{CATEGORIES.map(category => (*/}
+                            {CATEGORIES.map((category, index) => (
+                                // <li key={category.id} className={styles.item}>
+                                <li key={index} className={styles.item}>
                                     <a href="./">{category.name}</a>
                                 </li>
                             ))}

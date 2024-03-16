@@ -11,14 +11,27 @@ import TodayPick from "../../component/main/today/pick/TodayPick";
 import ConvenienceRecipe from "../../component/main/convenience/recipe/ConvenienceRecipe";
 import Category from "../../component/category/Category";
 import Footer from "../../component/common/footer/Footer";
+import {useRecoilValue} from "recoil";
+import {categoriesState} from "../../recoil/commomState";
 
 
 const Main = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  /**
+   * CommonContainer 로 옮김
+   */
+  // const [selectedCategory, setSelectedCategory] = useState(null);
+  //
+  // const handleCategorySelect = (category) => {
+  //   setSelectedCategory(category);
+  // };
+  /**
+   * 아래는 recoil로 상태 관리로 전역 변수로 선언
+   */
+  const selectedCategory = useRecoilValue(categoriesState)
+  /**
+   * 아래는 handleCategorySelect를 commonContainer.js로 빼고, react hook에서 불려온다.
+   */
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
 
   /**
    * 이 부분은 개발이 끝나면 제거 할 것!
@@ -28,8 +41,10 @@ const Main = () => {
 
   return (
     <>
-      <Navbar onCategorySelect={handleCategorySelect}/>
-      {selectedCategory === null ? (
+      {/*<Navbar onCategorySelect={handleCategorySelect}/>*/}
+      <Navbar />
+      {/*{selectedCategory === null ? (*/}
+      {!!!selectedCategory ? (
         <>
           <Siteinfo/>
           <TodayPick/>
@@ -42,7 +57,8 @@ const Main = () => {
           <TopButton/>
         </>
       ) : (
-        <Category category_title={selectedCategory}/>
+        <Category />
+        // <Category category_title={selectedCategory}/>
       )}
       <Footer/>
     </>
