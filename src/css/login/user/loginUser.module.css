@@ -1,0 +1,19 @@
+.loginContainer {
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginFormContainer {
+  border: 1px;
+  background-color:#cccccc;
+  min-height: 30vh;
+  min-width: 35%;
+}
+
+.loginTitle {
+  font-size: 1.5em;
+}

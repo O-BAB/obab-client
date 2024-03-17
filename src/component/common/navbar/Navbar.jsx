@@ -33,7 +33,7 @@ function Navbar() {
             <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `}>
               마이페이지
             </div>
-            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `}>
+            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {window.location.href='./login'}}>
               로그인 버튼
             </div>
           </div>
