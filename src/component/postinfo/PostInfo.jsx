@@ -19,7 +19,7 @@ function PostInfo() {
             <li>
               <div className={`flex flex-row justify-items-center items-center`}>
                 <div className={`flex-col justify-center`}>{`간장`}</div>
-                <InfoCircle className={`flex-col justify-center p-0.5`} onClick={() => {
+                <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
                   alert('간장 클릭')
                 }}/>
               </div>
@@ -28,7 +28,7 @@ function PostInfo() {
             <li>
               <div className={`flex flex-row justify-items-center items-center`}>
                 <div className={`flex-col justify-center`}>{`고추장`}</div>
-                <InfoCircle className={`flex-col justify-center p-0.5`} onClick={() => {
+                <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
                   alert('고추장 클릭')
                 }}/>
               </div>
@@ -37,7 +37,7 @@ function PostInfo() {
             <li>
               <div className={`flex flex-row justify-items-center items-center`}>
                 <div className={`flex-col justify-center`}>{`소금`}</div>
-                <InfoCircle className={`flex-col justify-center p-0.5`} onClick={() => {
+                <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
                   alert('소금 클릭')
                 }}/>
               </div>
@@ -46,7 +46,7 @@ function PostInfo() {
             <li>
               <div className={`flex flex-row justify-items-center items-center`}>
                 <div className={`flex-col justify-center`}>{`설탕`}</div>
-                <InfoCircle className={`flex-col justify-center p-0.5`} onClick={() => {
+                <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
                   alert('설탕 클릭')
                 }}/>
               </div>
@@ -55,7 +55,7 @@ function PostInfo() {
             <li>
               <div className={`flex flex-row justify-items-center items-center`}>
                 <div className={`flex-col justify-center`}>{`굴소스`}</div>
-                <InfoCircle className={`flex-col justify-center p-0.5`} onClick={() => {
+                <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
                   alert('굴소스 클릭')
                 }}/>
               </div>
