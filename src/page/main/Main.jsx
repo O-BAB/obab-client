@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Navbar from 'component/common/navbar/Navbar';
 import SiteInfo from 'component/siteinfo/SiteInfo';
 import TopButton from 'component/common/top/button/TopButton';
@@ -42,7 +42,7 @@ const Main = () => {
   return (
     <>
       {/*<Navbar onCategorySelect={handleCategorySelect}/>*/}
-      <Navbar />
+      <Navbar/>
       {/*{selectedCategory === null ? (*/}
       {!!!selectedCategory ? (
         <>
@@ -57,7 +57,10 @@ const Main = () => {
           <TopButton/>
         </>
       ) : (
-        <Category />
+        <>
+          <Category/>
+          <TopButton/>
+        </>
         // <Category category_title={selectedCategory}/>
       )}
       <Footer/>

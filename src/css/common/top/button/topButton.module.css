@@ -5,10 +5,16 @@
     width: 4.5rem;
     height: 4.5rem;
   }
-  
+
+/* 차후 지울 것 - 이전 방식 */
   .topButtonImage {
     width: 100%;
     cursor: pointer;
+  }
+
+  /* icons로 바꿨을 경우 말함 */
+  .topButtonIcons {
+    font-size: 1.5em;
   }
   
   @media screen and (max-width: 1300px) {
