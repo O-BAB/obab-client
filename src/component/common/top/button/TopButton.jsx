@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../../../css/common/top/button/topButton.module.css';
+import {ChevronDoubleUp} from "react-bootstrap-icons";
 
 const TopButton = () => {
   const moveToTop = () => {
@@ -11,12 +12,16 @@ const TopButton = () => {
 
   return (
     <div className={styles.topButton}>
-      <img
-        className={styles.topButtonImage}
-        src='/images/info/topButton.png'
-        alt='default'
-        onClick={moveToTop}
+      <ChevronDoubleUp
+        onClick={() => moveToTop()}
+        className={`${styles.topButtonIcons} cursor-pointer`}
       />
+      {/*<img*/}
+      {/*  className={styles.topButtonImage}*/}
+      {/*  src='/images/info/topButton.png'*/}
+      {/*  alt='default'*/}
+      {/*  onClick={moveToTop}*/}
+      {/*/>*/}
     </div>
   );
 };
