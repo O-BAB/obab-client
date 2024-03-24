@@ -1,0 +1,23 @@
+/* mypage 전체 화면 컴포넌트 설정 */
+.myPageComponent {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/* mypage 왼쪽 컴포넌트 */
+.myPageLeftComponent {
+  width: 20%;
+  background-color: red;
+  min-height: 89vh;
+}
+
+
+
+/* mypage 오른쪽 컴포넌트 */
+.myPageRightComponent {
+  width: 80%;
+  background-color: blue;
+  min-height:89vh;
+}
