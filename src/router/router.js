@@ -4,7 +4,8 @@ import Main from "../page/main/Main";
 import Posting from "../page/posting/Posting";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
-import MyPage from "../page/my/page/MyPage";
+import MyPageLayout from "../layout/my/page/MyPageLayout";
+import InterestedBoardPage from "../page/my/page/interested/board/InterestedBoardPage";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/mypage',
-    element: <MyPage />,
-    errorElement: <ErrorPage />
+    element: <MyPageLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: 'interested/board',
+        element: <InterestedBoardPage/>,
+        errorElement: <ErrorPage />
+      }
+    ]
   }
 ])
 
