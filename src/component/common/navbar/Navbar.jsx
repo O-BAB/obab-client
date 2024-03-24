@@ -3,10 +3,10 @@ import styles from '../../../css/common/navbar/navbar.module.css';
 import Logo from "./item/Logo";
 import CATEGORIES from "./data/CATEGORIES";
 import MenuBarList from "./item/MenuBarList";
-import commonContainer from "../../../hooks/commonContainer";
+import CommonContainer from "../../../hooks/CommonContainer";
 
 function Navbar() {
-  const {onClickMovingMenu} = commonContainer();
+  const {onClickMovingMenu} = CommonContainer();
 // function Navbar({ onCategorySelect }) {
 
 //     const handleCategoryClick = (category) => {
