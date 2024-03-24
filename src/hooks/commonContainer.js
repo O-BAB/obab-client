@@ -6,6 +6,10 @@ const CommonContainer = () => {
   // const [selectedCategory, setSelectedCategory] = useState(null);
   const setSelectedCategory = useSetRecoilState(categoriesState)
 
+  /**
+   * (1) Header 메뉴에서 각 카테고리 클릭 시 메뉴 변경
+   * @param category : 카테고리 목록 정보의 대해 불려옴
+   */
   const handleCategorySelect = (category) => {
     setSelectedCategory(category.name);
   };
