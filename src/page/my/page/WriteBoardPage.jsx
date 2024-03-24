@@ -1,10 +1,9 @@
 import React from 'react';
+import WriteBoardComponent from "../../../component/my/page/write/board/WriteBoardComponent";
 
 const WriteBoardPage = () => {
   return (
-    <div>
-      {`작성 글`}
-    </div>
+    <WriteBoardComponent/>
   );
 }
 

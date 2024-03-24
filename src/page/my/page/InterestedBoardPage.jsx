@@ -1,10 +1,9 @@
 import React from 'react';
+import InterestedBoardComponent from "../../../component/my/page/interested/board/InterestedBoardComponent";
 
 const InterestedBoardPage = () => {
   return (
-    <div>
-      {`관심 글 `}
-    </div>
+    <InterestedBoardComponent/>
   );
 }
 
