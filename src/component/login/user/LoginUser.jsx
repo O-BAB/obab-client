@@ -58,9 +58,10 @@ const LoginUser = () => {
             jwt 인증 받고나서 다음페이지로 넘어가, 유저정보 저장이 안되는 문제가 가끔 발생 */}
         <div className={`flex flex-row justify-between items-center place-content-center`}>
           <button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>구글</button>
-          <button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>페이스북</button>
+          {/*<button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>페이스북</button>*/}
           <button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>카카오톡</button>
-          <button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>트위터</button>
+          <button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>네이버</button>
+          {/*<button className={`flex-col w-20 mb-4 mt-4 py-3 bg-amber-50 mx-10 px-6`}>트위터</button>*/}
         </div>
 
 
