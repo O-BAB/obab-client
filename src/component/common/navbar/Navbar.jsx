@@ -3,8 +3,10 @@ import styles from '../../../css/common/navbar/navbar.module.css';
 import Logo from "./item/Logo";
 import CATEGORIES from "./data/CATEGORIES";
 import MenuBarList from "./item/MenuBarList";
+import commonContainer from "../../../hooks/commonContainer";
 
 function Navbar() {
+  const {onClickMovingMenu} = commonContainer();
 // function Navbar({ onCategorySelect }) {
 
 //     const handleCategoryClick = (category) => {
@@ -30,10 +32,10 @@ function Navbar() {
           </ul>
           {/*<div className={`flex flex-row flex-wrap justify-end`}>*/}
           <div className={`${styles.navbarRight} px-5`}>
-            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `}>
+            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {onClickMovingMenu('/mypage')}}>
               마이페이지
             </div>
-            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {window.location.href='./login'}}>
+            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {onClickMovingMenu('/login')}}>
               로그인 버튼
             </div>
           </div>

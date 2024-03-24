@@ -4,6 +4,7 @@ import Main from "../page/main/Main";
 import Posting from "../page/posting/Posting";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
+import MyPage from "../page/my/page/MyPage";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
     element: <Posting />,
     errorElement: <ErrorPage />
   },
+  {
+    path: '/mypage',
+    element: <MyPage />,
+    errorElement: <ErrorPage />
+  }
 ])
 
 
