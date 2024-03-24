@@ -1,10 +1,9 @@
 import React from 'react';
+import WriteCommentComponent from "../../../component/my/page/write/comment/WriteCommentComponent";
 
 const WriteCommentPage = () => {
   return (
-    <div>
-      {`작성 댓글`}
-    </div>
+    <WriteCommentComponent/>
   );
 }
 
