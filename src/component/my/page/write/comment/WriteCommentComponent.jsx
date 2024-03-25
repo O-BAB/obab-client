@@ -9,7 +9,8 @@ const WriteBoardComponent = () => {
       <div className={``}>
         {
           arr.map(() =>
-            <div className={`flex flex-col flex-wrap border-4 border-b-black`}>
+            // <div className={`flex flex-col flex-wrap border-black border-2 mx-12`}>
+            <div className={`flex flex-col flex-wrap mx-12`}>
               <div className={`flex flex-wrap flex-row items-center justify-items-center py-2`}>
                 <div className={`flex flex-col px-10 text-xl text-orange-600`}>곰돌이곰곰</div>
                 <div className={`flex flex-col px-10 text-lg text-gray-400`}>111.111.xxx.111</div>

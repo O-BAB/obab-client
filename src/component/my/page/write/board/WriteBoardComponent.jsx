@@ -8,9 +8,9 @@ const WriteBoardComponent = () => {
       <div className={`${styles?.writeBoardContents} flex flex-wrap`}>
         {
           arr.map(() =>
-            <div className={`flex flex-col h-80 w-1/4 border-4 m-6 p-2`}>
-              <img src={``} alt={`이미지`} className={`h-28 border-4`}/>
-              <div className={`text-left text-2xl py-1`}>{`Easy and Quick Recipes with
+            <div className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
+              <img src={``} alt={`이미지`} className={`h-52 border-4`}/>
+              <div className={`text-left text-xl py-1`}>{`Easy and Quick Recipes with
 Ingredients From Your Fridge`}</div>
               <div className={`text-left py-1 text-sm text-gray-400`}>{`March 5, 2024`}</div>
               <div className={`text-left py-1 text-gray-500`}>{`OBAB is a Korean food and recipe blog that
