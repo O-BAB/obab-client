@@ -3,11 +3,13 @@ import styles from '../../../css/category/category.module.css';
 import CATEGORIES from "../../common/navbar/data/CATEGORIES";
 import {useRecoilValue} from "recoil";
 import {categoriesState} from "../../../recoil/commomState";
+import CommonContainer from "../../../hooks/CommonContainer";
 
 // const Category = (props) => {
 const Category = () => {
     // let name = props;
     const categories = useRecoilValue(categoriesState)
+    const {onClickMovingMenu, handleCategorySelect} = CommonContainer()
 
     // const CATEGORIES = [
     //     { subCategoryId: 1, name: "Korean Cuisine" },
@@ -61,7 +63,11 @@ const Category = () => {
                             {CATEGORIES.map((category, index) => (
                                 // <li key={category.id} className={styles.item}>
                                 <li key={index} className={styles.item}>
-                                    <a href="..">{category.name}</a>
+                                    <button onClick={() => {
+
+                                      handleCategorySelect(category);
+                                      onClickMovingMenu(category?.link)
+                                    }}>{category.name}</button>
                                 </li>
                             ))}
                         </ul>
