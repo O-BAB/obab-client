@@ -1,20 +1,29 @@
 import React from 'react';
 import styles from "../../../../../css/my/page/interestedBoard.module.css";
+import data from './data'
 
 const InterestedBoardComponent = () => {
-  let arr = ['', '', '', '', '', '']
+  // let arr = ['', '', '', '', '', '']
   return (
     <div className={`${styles?.myPageRouterComponent} py-5 px-5`}>
       <div className={`${styles?.interestedBoardContents} flex flex-wrap`}>
         {
-          arr.map(() =>
-            <div className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
-              <img src={`/images/siteinfo/noodle.webp`} alt={`이미지`} className={`h-52 border-4`}/>
-              <div className={`text-left text-xl py-1`}>{`Easy and Quick Recipes with
-Ingredients From Your Fridge`}</div>
-              <div className={`text-left py-1 text-sm text-gray-400`}>{`March 5, 2024`}</div>
-              <div className={`text-left py-1 text-gray-500`}>{`OBAB is a Korean food and recipe blog that
-offers a unique…`}</div>
+//           arr.map(() =>
+//             <div className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
+//               <img src={`/images/siteinfo/noodle.webp`} alt={`이미지`} className={`h-52 border-4`}/>
+//               <div className={`text-left text-xl py-1`}>{`Easy and Quick Recipes with
+// Ingredients From Your Fridge`}</div>
+//               <div className={`text-left py-1 text-sm text-gray-400`}>{`March 5, 2024`}</div>
+//               <div className={`text-left py-1 text-gray-500`}>{`OBAB is a Korean food and recipe blog that
+// offers a unique…`}</div>
+//             </div>
+//           )
+          data?.map((d, index) =>
+            <div key={index} className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
+              <img src={d?.imgPath} alt={`이미지`} className={`h-52 border-4`}/>
+              <div className={`text-left text-xl py-1`}>{d?.title}</div>
+              <div className={`text-left py-1 text-sm text-gray-400`}>{d?.date}</div>
+              <div className={`text-left py-1 text-gray-500`}>{d?.caption}</div>
             </div>
           )
         }
