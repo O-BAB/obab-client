@@ -9,7 +9,7 @@ import Cooking from "../../component/main/cooking/Cooking";
 import Recipe from "../../component/main/recipe/Recipe";
 import TodayPick from "../../component/main/today/pick/TodayPick";
 import ConvenienceRecipe from "../../component/main/convenience/recipe/ConvenienceRecipe";
-import Category from "../../component/category/Category";
+import Category from "../../component/category/item/Category";
 import Footer from "../../component/common/footer/Footer";
 import {useRecoilValue} from "recoil";
 import {categoriesState} from "../../recoil/commomState";
@@ -41,10 +41,10 @@ const Main = () => {
 
   return (
     <>
-      {/*<Navbar onCategorySelect={handleCategorySelect}/>*/}
-      <Navbar/>
-      {/*{selectedCategory === null ? (*/}
-      {!!!selectedCategory ? (
+      {/*/!*<Navbar onCategorySelect={handleCategorySelect}/>*!/*/}
+      {/*<Navbar/>*/}
+      {/*/!*{selectedCategory === null ? (*!/*/}
+      {/*{!!!selectedCategory ? (*/}
         <>
           <SiteInfo/>
           <TodayPick/>
@@ -54,16 +54,16 @@ const Main = () => {
           <Cooking/>
           <Recipe/>
           <ConvenienceRecipe/>
-          <TopButton/>
+          {/*<TopButton/>*/}
         </>
-      ) : (
-        <>
-          <Category/>
-          <TopButton/>
-        </>
-        // <Category category_title={selectedCategory}/>
-      )}
-      <Footer/>
+      {/*) : (*/}
+      {/*  <>*/}
+      {/*    <Category/>*/}
+      {/*    <TopButton/>*/}
+      {/*  </>*/}
+      {/*  // <Category category_title={selectedCategory}/>*/}
+      {/*)}*/}
+      {/*<Footer/>*/}
     </>
   );
 };

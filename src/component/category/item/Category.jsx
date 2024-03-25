@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../../css/category/category.module.css';
-import CATEGORIES from "../common/navbar/data/CATEGORIES";
+import styles from '../../../css/category/category.module.css';
+import CATEGORIES from "../../common/navbar/data/CATEGORIES";
 import {useRecoilValue} from "recoil";
-import {categoriesState} from "../../recoil/commomState";
+import {categoriesState} from "../../../recoil/commomState";
 
 // const Category = (props) => {
 const Category = () => {
@@ -27,7 +27,7 @@ const Category = () => {
                     </div>
                 </div>
                 <div className={styles.soupupdate_img_box}>
-                    <img className={styles.soupupdate_img} src="./images/siteinfo/siteinfo.webp" alt="Site Info" />
+                    <img className={styles.soupupdate_img} src="/images/siteinfo/siteinfo.webp" alt="Site Info" />
                 </div>
                 <div className={styles.recipeContainer}>
                     <div className={styles.recipeContent}>
@@ -61,23 +61,23 @@ const Category = () => {
                             {CATEGORIES.map((category, index) => (
                                 // <li key={category.id} className={styles.item}>
                                 <li key={index} className={styles.item}>
-                                    <a href="./">{category.name}</a>
+                                    <a href="..">{category.name}</a>
                                 </li>
                             ))}
                         </ul>
                     </div>
                     <div className={styles.content}>
                         <div className={styles.image_container}>
-                            <img className={styles.image} src="./images/siteinfo/siteinfoside.webp" alt="Site Info Side" />
+                            <img className={styles.image} src="/images/siteinfo/siteinfoside.webp" alt="Site Info Side" />
                         </div>
                     </div>
                     <div className={styles.content}>
                         <h3>new post</h3>
-                        <li><a href='/'>카테고리 1</a></li>
-                        <li><a href='/'>카테고리 2</a></li>
-                        <li><a href='/'>카테고리 3</a></li>
-                        <li><a href='/'>카테고리 4</a></li>
-                        <li><a href='/'>카테고리 5</a></li>
+                        <li><a href='/public'>카테고리 1</a></li>
+                        <li><a href='/public'>카테고리 2</a></li>
+                        <li><a href='/public'>카테고리 3</a></li>
+                        <li><a href='/public'>카테고리 4</a></li>
+                        <li><a href='/public'>카테고리 5</a></li>
                     </div>
                 </div>
             </div>

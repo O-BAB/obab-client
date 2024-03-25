@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.leftCover}>
-        <img className={styles.footerImg} src='images/logo/footer.png' alt='footer logo' />
+        <img className={styles.footerImg} src='/images/logo/footer.png' alt='footer logo' />
         <div className={styles.contactInfo}>
           <div className={styles.title}>Contact</div>
           <div className={styles.mail}>OBAB@gmail.com</div>
