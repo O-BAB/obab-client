@@ -29,3 +29,9 @@ export const categoriesState = atom({
   default: null
   // default: []
 });
+
+
+export const innerWidthState = atom({
+  key: 'innerWidth',
+  default: window.innerWidth
+})

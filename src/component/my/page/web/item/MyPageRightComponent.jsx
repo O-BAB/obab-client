@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "../../../../css/my/page/myPage.module.css";
+import styles from "../../../../../css/my/page/web/myPage.web.module.css";
 import {Outlet} from "react-router-dom";
-import MyPageContainer from "../../../../hooks/MyPageContainer";
+import MyPageContainer from "../../../../../hooks/MyPageContainer";
 
 const MyPageRightComponent = () => {
   const {onClickMyPageMenuBar} = MyPageContainer();

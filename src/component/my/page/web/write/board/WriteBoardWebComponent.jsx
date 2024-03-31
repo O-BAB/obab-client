@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "../../../../../css/my/page/writeBoard.module.css";
+import styles from "../../../../../../css/my/page/web/writeBoard.web.module.css";
 
-const WriteBoardComponent = () => {
+const WriteBoardWebComponent = () => {
   let arr = ['', '', '', '', '', '']
   return (
     <div className={`${styles?.myPageRouterComponent} py-5 px-5`}>
@@ -25,4 +25,4 @@ offers a unique…`}</div>
   );
 }
 
-export default WriteBoardComponent;
+export default WriteBoardWebComponent;

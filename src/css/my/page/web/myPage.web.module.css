@@ -1,0 +1,48 @@
+/* mypage 전체 화면 컴포넌트 설정 */
+.myPageComponent {
+  display: flex;
+  flex-direction: row;
+  max-width: 1440px;
+  margin: 0 auto
+}
+
+
+/* mypage 왼쪽 컴포넌트 */
+.myPageLeftComponent {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  min-height: 89vh;
+}
+
+
+/* mypage 왼쪽 컴포넌트 이미지 스타일링 */
+.myPageLeftProfileImageComponent {
+  margin: 0 auto;
+  width:70%;
+  overflow:hidden;
+  height:20vh;
+  align-items: center;
+  justify-items: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+
+/* mypage 이미지 */
+.myPageLeftProfileImage {
+  border-image-width: 1px;
+  width:100%;
+  height:100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+/* mypage 오른쪽 컴포넌트 */
+.myPageRightComponent {
+  width: 80%;
+  min-height:89vh;
+}

@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "../../../../../css/my/page/interestedBoard.module.css";
+import styles from "../../../../../../css/my/page/web/interestedBoard.web.module.css";
 import data from './data'
 
-const InterestedBoardComponent = () => {
+const InterestedBoardWebComponent = () => {
   // let arr = ['', '', '', '', '', '']
   return (
     <div className={`${styles?.myPageRouterComponent} py-5 px-5`}>
@@ -34,4 +34,4 @@ const InterestedBoardComponent = () => {
   );
 }
 
-export default InterestedBoardComponent;
+export default InterestedBoardWebComponent;

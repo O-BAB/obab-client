@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "../../../../../css/my/page/writeComment.module.css";
+import styles from "../../../../../../css/my/page/web/writeComment.web.module.css";
 import {CardList} from "react-bootstrap-icons";
 
-const WriteBoardComponent = () => {
+const WriteCommentWebComponent = () => {
   let arr = ['', '', '', '', '', '']
   return (
     <div className={`${styles?.myPageRouterComponent} py-5 px-5`}>
@@ -32,4 +32,4 @@ const WriteBoardComponent = () => {
   );
 }
 
-export default WriteBoardComponent;
+export default WriteCommentWebComponent

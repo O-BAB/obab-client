@@ -1,34 +1,35 @@
 /* mypage 전체 화면 컴포넌트 설정 */
 .myPageComponent {
-  display: flex;
-  flex-direction: row;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*flex-wrap: wrap;*/
+  max-width: 100%;
+  margin: 0 auto
 }
 
 
-/* mypage 왼쪽 컴포넌트 */
-.myPageLeftComponent {
+/* mypage 윗쪽 컴포넌트 */
+.myPageUpComponent {
   display: flex;
-  flex-direction: column;
-  width: 20%;
-  min-height: 89vh;
+  flex-direction: row;
+  width:100%;
+  min-height: 10vh;
 }
 
 
 /* mypage 왼쪽 컴포넌트 이미지 스타일링 */
-.myPageLeftProfileImageComponent {
+.myPageUpProfileImageComponent {
   margin: 0 auto;
-  width:70%;
-  overflow:hidden;
-  height:20vh;
+  width:100%;
+  /*overflow:hidden;*/
+  height:10vh;
   align-items: center;
   justify-items: center;
-  margin-top: 5%;
-  margin-bottom: 5%;
 }
 
 
 /* mypage 이미지 */
-.myPageLeftProfileImage {
+.myPageUpProfileImage {
   border-image-width: 1px;
   width:100%;
   height:100%;
@@ -40,7 +41,7 @@
 
 
 /* mypage 오른쪽 컴포넌트 */
-.myPageRightComponent {
-  width: 80%;
-  min-height:89vh;
+.myPageDownComponent {
+  width: 100%;
+  min-height:50vh;
 }

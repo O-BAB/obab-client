@@ -1,20 +1,29 @@
-import React from 'react';
-import styles from "../../../css/my/page/myPage.module.css";
-import MyPageLeftComponent from "./item/MyPageLeftComponent";
-import MyPageRightComponent from "./item/MyPageRightComponent";
+import React, {useEffect} from 'react';
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {innerWidthState} from "../../../recoil/commomState";
+import MyPageWebComponent from "./web/MyPageWebComponent";
+import MyPageMobileComponent from "./mobile/MyPageMobileComponent";
 
 const MyPageComponent = () => {
+  const innerWidth = useRecoilValue(innerWidthState)
+  const setInnerWidth = useSetRecoilState(innerWidthState)
+  // 반응형 웹 적용
+  useEffect(() => {
+    const resizeListener = () => {
+      setInnerWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", resizeListener);
+  }, [innerWidth]);
   return (
-    <div className={`${styles?.myPageComponent}`}>
-
-      {/* web 기준 - left : 프로필 소개 */}
-      <MyPageLeftComponent/>
-
-      {/* web 기준 - right : 마이페이지 라우터 컴포넌트 부분 */}
-      <MyPageRightComponent/>
-
+    <div>
+      {
+        innerWidth < 500 ?
+          <MyPageMobileComponent/>
+          :
+          <MyPageWebComponent/>
+      }
     </div>
-  );
+  )
 }
 
 export default MyPageComponent;

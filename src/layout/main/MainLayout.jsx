@@ -3,6 +3,7 @@ import Navbar from "../../component/common/navbar/Navbar";
 import Footer from "../../component/common/footer/Footer";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import TopButton from "../../component/common/top/button/TopButton";
+import styles from '../../css/main/main.module.css'
 
 const MainLayout = () => {
   const {pathname} = useLocation()
@@ -18,7 +19,9 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar/>
-      <Outlet/>
+      <div className={`${styles?.mainContents}`}>
+        <Outlet/>
+      </div>
       <TopButton/>
       <Footer/>
     </div>
