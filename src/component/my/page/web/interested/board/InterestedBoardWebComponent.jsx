@@ -21,9 +21,9 @@ const InterestedBoardWebComponent = () => {
           data?.map((d, index) =>
             <div key={index} className={`flex flex-col h-96 w-60 border-4 mx-5 my-5`}>
               <img src={d?.imgPath} alt={`이미지`} className={`h-52 border-4`}/>
-              <div className={`text-left text-xl py-1`}>{d?.title}</div>
-              <div className={`text-left py-1 text-sm text-gray-400`}>{d?.date}</div>
-              <div className={`text-left py-1 text-gray-500`}>{d?.caption}</div>
+              <div className={`text-left text-xl py-1 ${styles?.commonEllipsis}`}>{d?.title}</div>
+              <div className={`text-left py-1 text-sm text-gray-400 ${styles?.commonEllipsis}`}>{d?.date}</div>
+              <div className={`text-left py-1 text-gray-500 ${styles?.commonEllipsis}`}>{d?.caption}</div>
             </div>
           )
         }
