@@ -1,5 +1,5 @@
 /* SiteInfo.jsx */
-import styles from '../../css/siteinfo/siteinfo.module.css';
+import styles from '../../../css/siteinfo/siteinfo.module.css';
 import React from 'react';
 
 const SiteInfo = () => {
@@ -11,10 +11,10 @@ const SiteInfo = () => {
                         <img className={styles.siteinfo_img} src="./images/siteinfo/siteinfo.webp" alt="Site Info" />
                         <div className={styles.siteinfo_img_front}></div>
                         <div className={styles.siteinfo_text}>
-                            <h2><a href="/">OBAB</a></h2>
+                            <h2><a href="/public">OBAB</a></h2>
                             <div class={styles.divider}></div>
                             <div class={styles.siteinfo_span}>
-                                <span>March 5, 2024</span><span>|</span><span>No comments</span><span>|</span><span><a href="/">Food recipe</a></span>
+                                <span>March 5, 2024</span><span>|</span><span>No comments</span><span>|</span><span><a href="/public">Food recipe</a></span>
                             </div>
                             <p>Oneul-ui bab is a recipe blog that aims to help individuals create delicious meals using the ingredients they have in…</p>
                         </div>

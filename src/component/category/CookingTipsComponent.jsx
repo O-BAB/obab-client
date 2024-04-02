@@ -1,9 +1,9 @@
 import React from 'react';
-import Category from "./item/Category";
+import WebCategoryComponent from "./item/WebCategoryComponent";
 
 const CookingTipsComponent = () => {
   return (
-    <Category/>
+    <WebCategoryComponent/>
   );
 }
 

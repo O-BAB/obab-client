@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBrowserRouter} from "react-router-dom";
-import Main from "../page/main/Main";
+import MainPage from "../page/main/MainPage";
 import Posting from "../page/posting/Posting";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'main',
-        element: <Main/>,
+        element: <MainPage/>,
         errorElement: <ErrorPage />
       },
       {

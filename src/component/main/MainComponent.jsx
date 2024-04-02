@@ -1,5 +1,5 @@
 import React from 'react';
-import SiteInfo from "../siteinfo/SiteInfo";
+import SiteInfo from "./siteinfo/SiteInfo";
 import TodayPick from "./today/pick/TodayPick";
 import SoupUpdate from "./soup/update/SoupUpdate";
 import Cookingtip from "./cookingtip/Cookingtip";

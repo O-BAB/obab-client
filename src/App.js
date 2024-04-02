@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       {/*<Router>*/}
       {/*    <Routes>*/}
-      {/*        <Route path="/" element={<Main />} />*/}
+      {/*        <Route path="/" element={<MainPage />} />*/}
       {/*        <Route path="/category/Posting/detail" element={<Posting />} />*/}
       {/*    </Routes>*/}
       {/*</Router>*/}
