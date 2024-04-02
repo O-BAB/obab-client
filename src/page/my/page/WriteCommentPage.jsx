@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
-import WriteCommentComponent from "../../../component/my/page/web/write/comment/WriteCommentWebComponent";
+import WriteCommentWebComponent from "../../../component/my/page/web/write/comment/WriteCommentWebComponent";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {innerWidthState} from "../../../recoil/commomState";
-import WriteBoardMobileComponent from "../../../component/my/page/mobile/write/board/WriteBoardMobileComponent";
-import WriteBoardWebComponent from "../../../component/my/page/web/write/board/WriteBoardWebComponent";
 import WriteCommentMobileComponent from "../../../component/my/page/mobile/write/comment/WriteCommentMobileComponent";
-import WriteCommentWebComponent from "../../../component/my/page/web/write/comment/WriteCommentWebComponent";
 
 const WriteCommentPage = () => {
   const innerWidth = useRecoilValue(innerWidthState)
@@ -20,7 +17,7 @@ const WriteCommentPage = () => {
   return (
     <div>
       {
-        innerWidth < 500 ?
+        innerWidth < 860 ?
           <WriteCommentMobileComponent/>
           :
           <WriteCommentWebComponent/>

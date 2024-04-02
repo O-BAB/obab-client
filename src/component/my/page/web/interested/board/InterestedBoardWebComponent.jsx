@@ -5,7 +5,7 @@ import data from './data'
 const InterestedBoardWebComponent = () => {
   // let arr = ['', '', '', '', '', '']
   return (
-    <div className={`${styles?.myPageRouterComponent} py-5 px-5`}>
+    <div className={`${styles?.myPageRouterComponent}`}>
       <div className={`${styles?.interestedBoardContents} flex flex-wrap`}>
         {
 //           arr.map(() =>
@@ -19,7 +19,7 @@ const InterestedBoardWebComponent = () => {
 //             </div>
 //           )
           data?.map((d, index) =>
-            <div key={index} className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
+            <div key={index} className={`flex flex-col h-96 w-60 border-4 mx-5 my-5`}>
               <img src={d?.imgPath} alt={`이미지`} className={`h-52 border-4`}/>
               <div className={`text-left text-xl py-1`}>{d?.title}</div>
               <div className={`text-left py-1 text-sm text-gray-400`}>{d?.date}</div>

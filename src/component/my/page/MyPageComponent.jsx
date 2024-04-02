@@ -17,7 +17,7 @@ const MyPageComponent = () => {
   return (
     <div>
       {
-        innerWidth < 500 ?
+        innerWidth < 860 ?
           <MyPageMobileComponent/>
           :
           <MyPageWebComponent/>
