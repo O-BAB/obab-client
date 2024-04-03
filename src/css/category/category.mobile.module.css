@@ -1,0 +1,19 @@
+.siteinfo_con {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    width: 100%;
+    padding: 0px 1%;
+}
+
+.soupupdate_element_left {
+    padding: 5% 3%;
+    /*flex: 6;*/
+    /*border-bottom: 1px solid #ccc;*/
+}
+
+.siteinfo_element_right {
+    /*flex: 3;*/
+    margin-top: 12%;
+    border-top: 1px solid #ccc;
+    padding-top: 10%;
+}
