@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Navbar from "../../component/common/navbar/Navbar";
+import NavbarComponent from "../../component/common/navbar/NavbarComponent";
 import Footer from "../../component/common/footer/Footer";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import TopButton from "../../component/common/top/button/TopButton";
@@ -18,7 +18,7 @@ const MainLayout = () => {
 
   return (
     <div>
-      <Navbar/>
+      <NavbarComponent/>
       <div className={`${styles?.mainContents}`}>
         <Outlet/>
       </div>

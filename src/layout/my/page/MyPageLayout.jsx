@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from "../../../component/common/navbar/Navbar";
+import NavbarComponent from "../../../component/common/navbar/NavbarComponent";
 import MyPageComponent from "../../../component/my/page/MyPageComponent";
 
 const MyPageLayout = () => {
   return (
     <div>
-      <Navbar/>
+      <NavbarComponent/>
       <MyPageComponent/>
     </div>
   );
