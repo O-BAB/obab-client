@@ -58,7 +58,9 @@
 
 .image {
     width: 100%;
-    height: 500px;
+    /*height: 500px;*/
+    /*height: 20vh;*/
+    background-size: cover;
 }
 
 .content {
