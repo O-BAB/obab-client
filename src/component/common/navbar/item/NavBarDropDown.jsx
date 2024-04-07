@@ -41,7 +41,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/korean/cuisine"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -56,7 +56,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/food/recipe"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -69,7 +69,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/cooking/tips"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -84,7 +84,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/recipe"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -97,7 +97,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/soup/recipe"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -112,7 +112,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/mypage"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
@@ -125,7 +125,7 @@ const NavBarDropDown = () => {
             <Menu.Item>
               {({active}) => (
                 <a
-                  href="#"
+                  href="/login"
                   className={(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
