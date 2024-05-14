@@ -4,10 +4,13 @@ import CategoryContainer from "../../../hooks/CategoryContainer";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const LeftCategoryListComponent = () => {
-  const {displayCategoryTitle} = CategoryContainer();
+  const {displayCategoryTitle, displayReceiptList} = CategoryContainer();
   const {pathname} = useLocation()
   const categories = displayCategoryTitle(pathname)
   const navigate = useNavigate()
+
+  const test = displayReceiptList(1, 10, categories);
+  console.log(test);
 
   return (
     <div className={`cursor-pointer`} onClick={() => {
