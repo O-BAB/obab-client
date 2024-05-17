@@ -26,6 +26,17 @@ const LeftCategoryListComponent = () => {
 
   console.log(categoriesList)
 
+  const handlerDateFormatter = (date) => {
+    const d = new Date(date).toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    console.log(d)
+    return d;
+  }
+
 
   return (
     <div className={`cursor-pointer`} onClick={() => {
@@ -55,12 +66,14 @@ const LeftCategoryListComponent = () => {
               <div className={styles.dateandcomments}>
                 <p className={styles.date}>
                   {/*날짜부분 : data 값이 들어오지 않음*/}
-                  March 5, 2024
+                  {/*March 5, 2024*/}
+                  {handlerDateFormatter(data?.created_at)}
                 </p>
                 <p className={styles.separator}>•</p>
                 <p className={styles.category}>
                   {/*이부분 어디에 들어가는지 확인 필요*/}
-                  123
+                  {/*123*/}
+                  {data?.like_count}
                 </p>
               </div>
               <div className={styles.description}>
