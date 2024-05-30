@@ -53,7 +53,7 @@ const LeftCategoryListComponent = () => {
             <div className={styles.soupupdate_img_box}>
               {/*이미지 출력 부분*/}
               {/*<img className={styles.soupupdate_img} src="/images/siteinfo/siteinfo.webp" alt="Site Info"/>*/}
-              <img className={styles.soupupdate_img} src={data?.thumnail_url} alt="Site Info"/>
+              <img className={styles.soupupdate_img} src={data?.thumnailUrl} alt="Site Info"/>
             </div>
             <div className={styles.recipeContainer}>
               <div className={styles.recipeContent}>
@@ -67,13 +67,13 @@ const LeftCategoryListComponent = () => {
                 <p className={styles.date}>
                   {/*날짜부분 : data 값이 들어오지 않음*/}
                   {/*March 5, 2024*/}
-                  {handlerDateFormatter(data?.created_at)}
+                  {handlerDateFormatter(data?.createdAt)}
                 </p>
                 <p className={styles.separator}>•</p>
                 <p className={styles.category}>
                   {/*이부분 어디에 들어가는지 확인 필요*/}
                   {/*123*/}
-                  {data?.like_count}
+                  {data?.bookmarkCount}
                 </p>
               </div>
               <div className={styles.description}>
