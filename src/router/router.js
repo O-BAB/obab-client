@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBrowserRouter} from "react-router-dom";
 import MainPage from "../page/main/MainPage";
-import Posting from "../page/posting/Posting";
+import CategoryViewPage from "../page/category/CategoryViewPage";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
 import MyPageLayout from "../layout/my/page/MyPageLayout";
@@ -19,12 +19,12 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout/>,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: 'main',
         element: <MainPage/>,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage/>
       },
       {
         path: 'korean/cuisine',
@@ -56,32 +56,32 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login/>,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage/>
   },
   {
-    path: '/category/Posting/detail',
-    element: <Posting />,
-    errorElement: <ErrorPage />
+    path: '/category/view/:id',
+    element: <CategoryViewPage/>,
+    errorElement: <ErrorPage/>
   },
   {
     path: '/mypage',
-    element: <MyPageLayout />,
-    errorElement: <ErrorPage />,
+    element: <MyPageLayout/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: 'interested/board',
         element: <InterestedBoardPage/>,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage/>
       },
       {
         path: 'write/board',
         element: <WriteBoardPage/>,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage/>
       },
       {
         path: 'write/comment',
         element: <WriteCommentPage/>,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage/>
       }
     ]
   }
