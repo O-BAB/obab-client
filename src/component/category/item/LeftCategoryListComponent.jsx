@@ -4,7 +4,7 @@ import CategoryContainer from "../../../hooks/CategoryContainer";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const LeftCategoryListComponent = () => {
-  const {displayCategoryTitle, displayReceiptList} = CategoryContainer();
+  const {displayCategoryTitle, displayRecipesList} = CategoryContainer();
   const {pathname} = useLocation()
   const categories = displayCategoryTitle(pathname)
   /**
@@ -15,7 +15,7 @@ const LeftCategoryListComponent = () => {
   useEffect(() => {
     // 아래는 1~10 페이지로 먼저 하드코딩으로 테스트
     // 페이지 네이션은 다음 스탭으로 이룰 예정
-    const list = displayReceiptList(1, 10, categories);
+    const list = displayRecipesList(1, 10, categories);
     list
       .then((res) => {
         setCategoriesList(res.data);
@@ -40,7 +40,7 @@ const LeftCategoryListComponent = () => {
 
   return (
     <div className={`cursor-pointer`} onClick={() => {
-      navigate('/category/Posting/detail')
+      navigate('/category/view/2')
     }}>
       <div className={styles.flexrow}>
         <div className={styles.title}>
