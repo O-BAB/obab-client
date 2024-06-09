@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box, Grid } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Button, Container, Grid, TextField, Typography} from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import ChatIcon from '@mui/icons-material/Chat';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import UserContainer from "../../../hooks/UserContainer";
 
 const LoginUser = () => {
-  const [inputs, setInputs] = useState({ id: "", password: "" });
+  const [inputs, setInputs] = useState({id: "", password: ""});
+  const {handleLoginUser} = UserContainer();
 
   const toggleUserInfoOnchange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setInputs({
       ...inputs,
       [name]: value
@@ -18,18 +20,20 @@ const LoginUser = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{mt: 8}}>
         <Typography variant="h4" component="div" gutterBottom>
           로그인
         </Typography>
         <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => { window.location.href = './' }}
-          sx={{ mb: 2 }}
+          startIcon={<ArrowBackIcon/>}
+          onClick={() => {
+            window.location.href = './'
+          }}
+          sx={{mb: 2}}
         >
           뒤로가기
         </Button>
-        <Box component="form" noValidate sx={{ mt: 1 }}>
+        <Box component="form" noValidate sx={{mt: 1}}>
           <TextField
             margin="normal"
             required
@@ -55,10 +59,11 @@ const LoginUser = () => {
             value={inputs.password}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{mt: 3, mb: 2}}
+            onClick={() => handleLoginUser(inputs?.id, inputs?.password)}
           >
             로그인
           </Button>
@@ -66,8 +71,10 @@ const LoginUser = () => {
             type="button"
             fullWidth
             variant="outlined"
-            sx={{ mb: 2 }}
-            onClick={() => { window.location.href = './signup' }}
+            sx={{mb: 2}}
+            onClick={() => {
+              window.location.href = './signup'
+            }}
           >
             회원가입
           </Button>
@@ -75,8 +82,8 @@ const LoginUser = () => {
             <Grid item>
               <Button
                 variant="contained"
-                sx={{ mt: 1, mb: 1, backgroundColor: '#DB4437', color: '#fff', '&:hover': { backgroundColor: '#c33d2e' } }}
-                startIcon={<GoogleIcon />}
+                sx={{mt: 1, mb: 1, backgroundColor: '#DB4437', color: '#fff', '&:hover': {backgroundColor: '#c33d2e'}}}
+                startIcon={<GoogleIcon/>}
               >
                 구글
               </Button>
@@ -84,8 +91,8 @@ const LoginUser = () => {
             <Grid item>
               <Button
                 variant="contained"
-                sx={{ mt: 1, mb: 1, backgroundColor: '#FEE500', color: '#000', '&:hover': { backgroundColor: '#e6c900' } }}
-                startIcon={<ChatIcon />}
+                sx={{mt: 1, mb: 1, backgroundColor: '#FEE500', color: '#000', '&:hover': {backgroundColor: '#e6c900'}}}
+                startIcon={<ChatIcon/>}
               >
                 카카오톡
               </Button>
@@ -93,8 +100,8 @@ const LoginUser = () => {
             <Grid item>
               <Button
                 variant="contained"
-                sx={{ mt: 1, mb: 1, backgroundColor: '#1EC800', color: '#fff', '&:hover': { backgroundColor: '#1aaf00' } }}
-                startIcon={<ChatBubbleIcon />}
+                sx={{mt: 1, mb: 1, backgroundColor: '#1EC800', color: '#fff', '&:hover': {backgroundColor: '#1aaf00'}}}
+                startIcon={<ChatBubbleIcon/>}
               >
                 네이버
               </Button>
