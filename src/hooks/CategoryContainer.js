@@ -7,7 +7,9 @@ const CategoryContainer = () => {
    * @returns {{displayCategoryTitle: ((function(): string)|*)}} : 제목명 반환
    */
   const displayCategoryTitle = (pathname) => {
-    if (pathname.includes('/korean/cuisine')) {
+    if (pathname.includes('/menu/recommend')) {
+      return "메뉴 추천"
+    } else if (pathname.includes('/korean/cuisine')) {
       return "Korean Cuisine"
     } else if (pathname.includes('/food/recipe')) {
       return "Food recipe"

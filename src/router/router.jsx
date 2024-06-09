@@ -14,6 +14,8 @@ import FoodRecipePage from "../page/category/FoodRecipePage";
 import CookingTipsPage from "../page/category/CookingTipsPage";
 import RecipePage from "../page/category/RecipePage";
 import SoupRecipePage from "../page/category/SoupRecipePage";
+import SignUp from "../page/login/user/SignUp";
+import MenuRecommendPage from "../page/category/MenuRecommendPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,11 @@ const router = createBrowserRouter([
         path: 'main',
         element: <MainPage/>,
         errorElement: <ErrorPage/>
+      },
+      {
+        path: '/menu/recommend',
+        element: <MenuRecommendPage />,
+        errorElement: <ErrorPage />
       },
       {
         path: 'korean/cuisine',
@@ -56,6 +63,11 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login/>,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/SignUp',
+    element: <SignUp/>,
     errorElement: <ErrorPage/>
   },
   {
