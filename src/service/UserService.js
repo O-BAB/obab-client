@@ -8,7 +8,7 @@ const UserService = () => {
    * @param password
    * @return {Promise<null>}
    */
-  const connectSignOn = async (id, password) => {
+  const connectSignUp = async (id, password) => {
     let response = null;
     await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', {id: id, password: password})
       .then((res) => {
@@ -39,7 +39,7 @@ const UserService = () => {
     return response;
   }
 
-  return { connectSignOn, connectLoginUser }
+  return { connectSignUp, connectLoginUser }
 }
 
 export default UserService;

@@ -2,7 +2,7 @@ import React from 'react';
 import UserService from "../service/UserService";
 
 const UserContainer = () => {
-  const { connectSignOn, connectLoginUser } = UserService();
+  const { connectSignUp, connectLoginUser } = UserService();
 
   /**
    * (1) 회원가입
@@ -10,8 +10,8 @@ const UserContainer = () => {
    * @param password
    * @return {Promise<null>}
    */
-  const handleSignOn = async (id, password) => {
-    return await connectSignOn(id, password);
+  const handleSignUp = async (id, password) => {
+    return await connectSignUp(id, password);
   }
 
 
@@ -19,7 +19,7 @@ const UserContainer = () => {
     return await connectLoginUser(id, password)
   }
 
-  return { handleSignOn, handleLoginUser }
+  return { handleSignUp, handleLoginUser }
 }
 
 export default UserContainer;
