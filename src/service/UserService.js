@@ -4,20 +4,21 @@ const UserService = () => {
 
   /**
    * (1) 회원가입 연동
-   * @param id
+   * @param email
    * @param password
    * @return {Promise<null>}
    */
-  const connectSignUp = async (id, password) => {
-    let response = null;
-    await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', {id: id, password: password})
+  const connectSignUp = async (email, password) => {
+    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', {email: email, password: password})
       .then((res) => {
-        response = res;
+        alert('회원가입 성공!')
+        return res;
       })
       .catch((e) => {
-        response = null;
+        alert('회원가입 실패!')
+        return null;
       })
-    return response;
+    return response.data;
   }
 
 
@@ -27,16 +28,16 @@ const UserService = () => {
    * @param password
    * @return {Promise<null>}
    */
-  const connectLoginUser = async (id, password) => {
-    let response = null;
-    await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', {id: id, password: password})
+  const connectLoginUser = async (email, password) => {
+    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', {email: email, password: password})
       .then((res) => {
-        response = res;
+        alert('로그인 성공')
+        return res;
       })
       .catch((e) => {
-        response = null;
+        return null;
       })
-    return response;
+    return response.data;
   }
 
   return { connectSignUp, connectLoginUser }

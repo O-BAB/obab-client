@@ -4,8 +4,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import UserContainer from "../../../hooks/UserContainer";
 
 const SignUpUser = () => {
-  const [inputs, setInputs] = useState({id: "", password: ""});
-  const {handleSignOn} = UserContainer();
+  const [inputs, setInputs] = useState({email: "", password: ""});
+  const {handleSignUp} = UserContainer();
 
   const toggleUserInfoOnchange = (e) => {
     const {name, value} = e.target;
@@ -35,13 +35,12 @@ const SignUpUser = () => {
             margin="normal"
             required
             fullWidth
-            id="id"
             label="아이디"
-            name="id"
-            autoComplete="id"
+            name="email"
+            autoComplete="email"
             autoFocus
             onChange={toggleUserInfoOnchange}
-            value={inputs.id}
+            value={inputs.email}
           />
           <TextField
             margin="normal"
@@ -50,7 +49,6 @@ const SignUpUser = () => {
             name="password"
             label="비밀번호"
             type="password"
-            id="password"
             autoComplete="current-password"
             onChange={toggleUserInfoOnchange}
             value={inputs.password}
@@ -61,7 +59,7 @@ const SignUpUser = () => {
             variant="contained"
             sx={{mt: 3, mb: 2}}
             onClick={() => {
-              handleSignOn(inputs?.id, inputs?.password)
+              handleSignUp(inputs?.email, inputs?.password)
             }}
           >
             회원가입
