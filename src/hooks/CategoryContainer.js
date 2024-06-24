@@ -1,54 +1,58 @@
-import CategoryService from "../service/CategoryService";
+import RecipeService from "../service/RecipeService";
+import {useSetRecoilState} from "recoil";
+import {categoryTitleState, recipesState} from "../recoil/recipeState";
+import {useLocation} from "react-router-dom";
 
 const CategoryContainer = () => {
-  const {connectRecipesList, connectRecipesDetail} = CategoryService();
+  const {connectRecipesList, connectRecipesDetail} = RecipeService();
+  const { pathname } = useLocation();
+  const setRecipes= useSetRecoilState(recipesState);
+  const setCategoryTitle = useSetRecoilState(categoryTitleState);
   /**
-   * (1) 카테고리에 경로의 따라 제목을 삽입한다.
-   * @returns {{displayCategoryTitle: ((function(): string)|*)}} : 제목명 반환
-   */
-  const displayCategoryTitle = (pathname) => {
-    if (pathname.includes('/menu/recommend')) {
-      return "메뉴 추천"
-    } else if (pathname.includes('/korean/cuisine')) {
-      return "Korean Cuisine"
-    } else if (pathname.includes('/food/recipe')) {
-      return "Food recipe"
-    } else if (pathname.includes('/cooking/tips')) {
-      return "Cooking Tips"
-    } else if (pathname.includes('/soup/recipe')) {
-      return "Soup Recipe"
-    } else if (pathname.includes('/recipe')) {
-      return "Recipe"
-    } else {
-      return "";
-    }
-  }
-
-  /**
-   * 2) url 경로의 따라 category 형변환 후 API 호출 후 결과 값 반환
+   * 1) category 별 제목과 Recipe에 해당하는 리스트 출력
    * @param page 페이지 인덱스 번호
    * @param pageSize 페이지 갯수
    * @param categoryCD 카테코리 코드(제목으로 검색)
    * @return {Promise<*|string>} :
    */
-  const displayRecipesList = async (page, pageSize, categoryCD) => {
-    if (categoryCD === 'Korean Cuisine') {
-      return await connectRecipesList(page, pageSize, 'korean_cuisine')
-    } else if (categoryCD === 'Food recipe') {
-      return await connectRecipesList(page, pageSize, 'food_recipe')
-    } else if (categoryCD === 'Cooking Tips') {
-      return await connectRecipesList(page, pageSize, 'cooking_tip')
-    } else if (categoryCD === 'Recipe') {
-      return await connectRecipesList(page, pageSize, 'recipe')
-    } else if (categoryCD === 'Soup Recipe') {
-      return await connectRecipesList(page, pageSize, 'soup_recipe')
-    } else {
-      return "";
+  const displayRecipesList = async (page, pageSize) => {
+    let response = '';
+    /**
+     * data(Array=1) :
+     * {id: 2, categoryCD: 'food_recipe', user: 'hunsik416@naver.com', title: '음식레시피', thumnailUrl: 'img/broadcast_recipe/2024/4/21/user_1/thumnail_20240421_admin_337221_.jpg', …}
+     * links :
+     * { next: null, previous: null }
+     * page: 1
+     * pageSize: 10
+     * total: 1
+     */
+    if (pathname.includes('/menu/recommend')) {
+      setCategoryTitle("메뉴 추천")
+    } else if (pathname.includes('/korean/cuisine')) {
+      response = await connectRecipesList(page, pageSize, 'korean_cuisine')
+      setRecipes(response.data);
+      setCategoryTitle("Korean Cuisine")
+    } else if (pathname.includes('/food/recipe')) {
+      response = await connectRecipesList(page, pageSize, 'food_recipe')
+      setRecipes(response.data);
+      setCategoryTitle("Food recipe")
+    } else if (pathname.includes('/cooking/tips')) {
+      response = await connectRecipesList(page, pageSize, 'cooking_tip')
+      setRecipes(response.data);
+      setCategoryTitle("Cooking Tips")
+    } else if (pathname.includes('/soup/recipe')) {
+      response = await connectRecipesList(page, pageSize, 'recipe')
+      setRecipes(response.data);
+      setCategoryTitle("Soup Recipe")
+    } else if (pathname.includes('/recipe')) {
+      response = await connectRecipesList(page, pageSize, 'soup_recipe')
+      setRecipes(response.data);
+      setCategoryTitle("Recipe")
     }
   }
 
   /**
-   * (3) api 호출 - 음식 레시피 detail 부분
+   * (2) api 호출 - 음식 레시피 detail 부분
    * @param id 카테고리 인덱스 번호
    * @return {Promise<*>} 인덱스 결과 값
    */
@@ -56,7 +60,7 @@ const CategoryContainer = () => {
     return await connectRecipesDetail(id);
   }
 
-  return {displayCategoryTitle, displayRecipesList, displayRecipesDetail}
+  return {displayRecipesList, displayRecipesDetail}
 }
 
 export default CategoryContainer;

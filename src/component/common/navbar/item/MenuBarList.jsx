@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "../../../../css/common/navbar/navbar.module.css";
 import CommonContainer from "../../../../hooks/CommonContainer";
 
-// const MenuBarList = ({category}) => {
+// const MenuBarList = ({recipe}) => {
 const MenuBarList = ({category}) => {
   /**
    * React Hooks 사용
@@ -13,8 +13,8 @@ const MenuBarList = ({category}) => {
       {/*<a href="/public" onClick={(event) => {*/}
       <a href="/" onClick={(event) => {
         event.preventDefault();
-        // handleCategoryClick(category);
-        // handleCategorySelect(category);
+        // handleCategoryClick(recipe);
+        // handleCategorySelect(recipe);
         handleCategorySelect(category);
         onClickMovingMenu(category?.link)
       }}>{category?.name}</a>

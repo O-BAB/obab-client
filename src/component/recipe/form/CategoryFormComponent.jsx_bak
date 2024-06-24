@@ -1,0 +1,298 @@
+import React, {useEffect, useState} from 'react';
+import {Button, Card, CardContent, Grid, IconButton, TextField, Typography} from '@mui/material';
+import {Delete, PhotoCamera} from '@mui/icons-material';
+import {useParams} from 'react-router-dom';
+import categoryContainer from '../../../hooks/CategoryContainer';
+import styles from '../../../css/recipe/category.view.module.css';
+
+const CategoryFormComponent = () => {
+  const [category, setCategory] = useState();
+  const [subItems, setSubItems] = useState([{description: '', image: null}]);
+  const [mainImage, setMainImage] = useState(null); // 오른쪽 상태관리
+  const [ingredients, setIngredients] = useState([{name: '', quantity: '', unit: '', notes: ''}]);
+  const [seasonings, setSeasonings] = useState([{name: '', quantity: '', unit: '', notes: ''}]);
+  const {displayRecipesDetail} = categoryContainer();
+  const params = useParams();
+
+  useEffect(() => {
+    displayRecipesDetail(params.id)
+      .then((res) => {
+        setCategory(res);
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  const handleDescriptionChange = (index, e) => {
+    const newSubItems = [...subItems];
+    newSubItems[index].description = e.target.value;
+    setSubItems(newSubItems);
+  };
+
+  const handleImageChange = (index, e) => {
+    if (e.target.files && e.target.files[0]) {
+      const newSubItems = [...subItems];
+      newSubItems[index].image = URL.createObjectURL(e.target.files[0]);
+      setSubItems(newSubItems);
+    }
+  };
+
+  const handleAddSubItem = () => {
+    setSubItems([...subItems, {description: '', image: null}]);
+  };
+
+  const handleRemoveSubItem = (index) => {
+    const newSubItems = subItems.filter((_, i) => i !== index);
+    setSubItems(newSubItems);
+  };
+
+  // 오른쪽 이미지 추가 부분
+  const handleMainImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setMainImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  const handleIngredientChange = (index, field, value) => {
+    const newIngredients = [...ingredients];
+    newIngredients[index][field] = value;
+    setIngredients(newIngredients);
+  };
+
+  const handleAddIngredient = () => {
+    setIngredients([...ingredients, {name: '', quantity: '', unit: '', notes: ''}]);
+  };
+
+  const handleRemoveIngredient = (index) => {
+    const newIngredients = ingredients.filter((_, i) => i !== index);
+    setIngredients(newIngredients);
+  };
+
+  const handleSeasoningChange = (index, field, value) => {
+    const newSeasonings = [...seasonings];
+    newSeasonings[index][field] = value;
+    setSeasonings(newSeasonings);
+  };
+
+  const handleAddSeasoning = () => {
+    setSeasonings([...seasonings, {name: '', quantity: '', unit: '', notes: ''}]);
+  };
+
+  const handleRemoveSeasoning = (index) => {
+    const newSeasonings = seasonings.filter((_, i) => i !== index);
+    setSeasonings(newSeasonings);
+  };
+
+  return (
+    <div className={styles.post_con}>
+      <div className="max-w-7xl mx-auto p-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 왼쪽 폼 섹션 */}
+          <div className="md:col-span-2 space-y-6">
+            <div className="flex items-center mb-4">
+              <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">카테고리</Typography>
+              <TextField className="w-4/5" variant="outlined" placeholder="카테고리"/>
+            </div>
+
+            <div className="flex items-center mb-4">
+              <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">요리 제목</Typography>
+              <TextField className="w-4/5" variant="outlined" placeholder="요리 제목"/>
+            </div>
+
+            <div className="flex items-center mb-4">
+              <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">요리 소개</Typography>
+              <TextField className="w-4/5" variant="outlined" placeholder="요리 소개"/>
+            </div>
+
+            <div className="flex items-center mb-4">
+              <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">동영상 링크</Typography>
+              <TextField className="w-4/5" variant="outlined" placeholder="동영상 링크"/>
+            </div>
+          </div>
+
+          {/* 오른쪽 이미지 섹션 */}
+          <div className="flex flex-col justify-center items-center bg-blue-500 h-64">
+            {mainImage ? (
+              <img src={mainImage} alt="Main" className="w-full h-full object-cover"/>
+            ) : (
+              <Typography variant="h6" color="white">이미지 공간</Typography>
+            )}
+            <label htmlFor="upload-main-image">
+              <input
+                style={{display: 'none'}}
+                id="upload-main-image"
+                name="upload-main-image"
+                type="file"
+                onChange={handleMainImageChange}
+              />
+              <Button
+                color="primary"
+                variant="contained"
+                component="span"
+                startIcon={<PhotoCamera/>}
+                className="mt-4"
+              >
+                이미지 업로드
+              </Button>
+            </label>
+          </div>
+        </div>
+
+        <div className="mt-8 space-y-6">
+          {/* 재료 섹션 */}
+          <div>
+            <Typography variant="h6" className="mb-2">재료</Typography>
+            {
+              ingredients?.map((ingredient, index) => (
+                <div key={index} className="grid grid-cols-5 gap-4 mb-2">
+                  <TextField className="col-span-1" variant="outlined" placeholder="재료 명" value={ingredient.name}
+                             onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}/>
+                  <TextField className="col-span-1" variant="outlined" placeholder="수량" value={ingredient.quantity}
+                             onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}/>
+                  <TextField className="col-span-1" variant="outlined" placeholder="단위" value={ingredient.unit}
+                             onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}/>
+                  <TextField className="col-span-2" variant="outlined" placeholder="비고" value={ingredient.notes}
+                             onChange={(e) => handleIngredientChange(index, 'notes', e.target.value)}/>
+                  <IconButton color="secondary" onClick={() => handleRemoveIngredient(index)}>
+                    <Delete/>
+                  </IconButton>
+                </div>
+              ))
+            }
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleAddIngredient}
+            >
+              재료 추가
+            </Button>
+          </div>
+
+          {/* 양념 섹션 */}
+          <div>
+            <Typography variant="h6" className="mb-2">양념</Typography>
+            {seasonings.map((seasoning, index) => (
+              <div key={index} className="grid grid-cols-5 gap-4 mb-2">
+                <TextField
+                  className="col-span-1"
+                  variant="outlined"
+                  placeholder="재료 명"
+                  value={seasoning.name}
+                  onChange={(e) => handleSeasoningChange(index, 'name', e.target.value)}
+                />
+                <TextField
+                  className="col-span-1"
+                  variant="outlined"
+                  placeholder="수량"
+                  value={seasoning.quantity}
+                  onChange={(e) => handleSeasoningChange(index, 'quantity', e.target.value)}
+                />
+                <TextField
+                  className="col-span-1"
+                  variant="outlined"
+                  placeholder="단위"
+                  value={seasoning.unit}
+                  onChange={(e) => handleSeasoningChange(index, 'unit', e.target.value)}
+                />
+                <TextField
+                  className="col-span-2"
+                  variant="outlined"
+                  placeholder="비고"
+                  value={seasoning.notes}
+                  onChange={(e) => handleSeasoningChange(index, 'notes', e.target.value)}
+                />
+                <IconButton color="secondary" onClick={() => handleRemoveSeasoning(index)}>
+                  <Delete/>
+                </IconButton>
+              </div>
+            ))}
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleAddSeasoning}
+            >
+              양념 추가
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className={styles.divider}></div>
+      {subItems.map((item, index) => (
+        <Card key={index} className="mb-5">
+          <CardContent>
+            <Grid container spacing={3}>
+              <Grid item xs={12} container justifyContent="space-between" alignItems="center">
+                <Typography variant="h6">{`설명 ${index + 1}`}</Typography>
+                <IconButton color="secondary" onClick={() => handleRemoveSubItem(index)}>
+                  <Delete/>
+                </IconButton>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label={`설명 ${index + 1}`}
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  value={item.description}
+                  onChange={(e) => handleDescriptionChange(index, e)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <label htmlFor={`upload-photo-${index}`}>
+                  <input
+                    style={{display: 'none'}}
+                    id={`upload-photo-${index}`}
+                    name={`upload-photo-${index}`}
+                    type="file"
+                    onChange={(e) => handleImageChange(index, e)}
+                  />
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    component="span"
+                    startIcon={<PhotoCamera/>}
+                  >
+                    이미지 업로드
+                  </Button>
+                </label>
+                {item.image && (
+                  <div className="mt-4">
+                    <img src={item.image} alt={`Uploaded ${index + 1}`} className="w-full h-auto"/>
+                  </div>
+                )}
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      ))}
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={handleAddSubItem}
+        fullWidth
+      >
+        추가
+      </Button>
+      <div className={styles.Cooking_con}>
+        <div className={styles.Cooking_title}>
+          <h2>Cooking</h2>
+        </div>
+        <div className={styles.container}>
+          {category?.cookingItems?.map((item, index) => (
+            <div key={index} className={styles.element}>
+              <img className={styles.Cooking_img} src={item.image} alt="Cooking"/>
+              <div className={styles.name}>{item.name}</div>
+              <div className={styles.date}>{item.date}</div>
+              <div className={styles.content}>{item.content}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CategoryFormComponent;

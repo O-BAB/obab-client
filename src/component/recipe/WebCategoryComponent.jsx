@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../../../css/category/category.web.module.css';
-import LeftCategoryListComponent from "./LeftCategoryListComponent";
-import RightCategoryListComponent from "./RightCategoryListComponent";
+import styles from '../../css/recipe/category.web.module.css';
+import LeftCategoryListComponent from "./item/LeftCategoryListComponent";
+import RightCategoryListComponent from "./item/RightCategoryListComponent";
 
 const WebCategoryComponent = () => {
   return (<div className={styles.siteinfo_con}>
