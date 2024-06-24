@@ -1,36 +1,54 @@
 import React from 'react';
-import styles from "../../../../../../css/my/page/web/interestedBoard.web.module.css";
-import data from './data'
+import { Container, Grid, Typography, Card, CardContent, CardMedia } from '@mui/material';
+import { styled } from '@mui/system';
+import 'tailwindcss/tailwind.css';
+
+const CardStyled = styled(Card)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  height: '100%',
+});
+
+const CardMediaStyled = styled(CardMedia)({
+  paddingTop: '56.25%', // 16:9 비율
+});
+
 
 const InterestedBoardWebComponent = () => {
-  // let arr = ['', '', '', '', '', '']
   return (
-    <div className={`${styles?.myPageRouterComponent}`}>
-      <div className={`${styles?.interestedBoardContents} flex flex-wrap`}>
-        {
-//           arr.map(() =>
-//             <div className={`flex flex-col h-96 w-1/4 border-4 mx-12 my-5 p-2`}>
-//               <img src={`/images/siteinfo/noodle.webp`} alt={`이미지`} className={`h-52 border-4`}/>
-//               <div className={`text-left text-xl py-1`}>{`Easy and Quick Recipes with
-// Ingredients From Your Fridge`}</div>
-//               <div className={`text-left py-1 text-sm text-gray-400`}>{`March 5, 2024`}</div>
-//               <div className={`text-left py-1 text-gray-500`}>{`OBAB is a Korean food and recipe blog that
-// offers a unique…`}</div>
-//             </div>
-//           )
-          data?.map((d, index) =>
-            <div key={index} className={`flex flex-col h-96 w-60 border-4 mx-5 my-5`}>
-              <img src={d?.imgPath} alt={`이미지`} className={`h-52 border-4`}/>
-              <div className={`text-left text-xl py-1 ${styles?.commonEllipsis}`}>{d?.title}</div>
-              <div className={`text-left py-1 text-sm text-gray-400 ${styles?.commonEllipsis}`}>{d?.date}</div>
-              <div className={`text-left py-1 text-gray-500 ${styles?.commonEllipsis}`}>{d?.caption}</div>
-            </div>
-          )
-        }
-      </div>
-
-      <div className={`m-10 text-blue-400 cursor-pointer text-lg`}>{`더 보기`}</div>
-    </div>
+    <Container maxWidth="lg">
+      <Grid container spacing={4} className="mt-8">
+        <Grid item xs={12} md={9}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Typography variant="h6">관심 글</Typography>
+            </Grid>
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <Grid item xs={12} sm={6} md={4} key={item}>
+                <CardStyled>
+                  <CardMediaStyled
+                    image="/static/images/cards/paella.jpg"
+                    title="이미지"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Easy and Quick Recipes with Ingredients From...
+                    </Typography>
+                    <Typography>
+                      March 5, 2024
+                    </Typography>
+                    <Typography>
+                      OBAB is a Korean food and recipe blog that offers a...
+                    </Typography>
+                  </CardContent>
+                </CardStyled>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
