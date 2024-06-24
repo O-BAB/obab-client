@@ -1,6 +1,6 @@
 import NavbarComponent from 'component/common/navbar/NavbarComponent';
 import Footer from 'component/common/footer/Footer';
-import CategoryViewComponent from 'component/category/CategoryViewComponent'
+import CategoryViewComponent from 'component/recipe/CategoryViewComponent'
 
 
 const Post = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBrowserRouter} from "react-router-dom";
 import MainPage from "../page/main/MainPage";
-import CategoryViewPage from "../page/category/CategoryViewPage";
+import CategoryViewPage from "../page/recipe/RecipeViewPage";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
 import MyPageLayout from "../layout/my/page/MyPageLayout";
@@ -9,13 +9,10 @@ import InterestedBoardPage from "../page/my/page/InterestedBoardPage";
 import WriteBoardPage from "../page/my/page/WriteBoardPage";
 import WriteCommentPage from "../page/my/page/WriteCommentPage";
 import MainLayout from "../layout/main/MainLayout";
-import KoreanCuisinePage from "../page/category/KoreanCuisinePage";
-import FoodRecipePage from "../page/category/FoodRecipePage";
-import CookingTipsPage from "../page/category/CookingTipsPage";
-import RecipePage from "../page/category/RecipePage";
-import SoupRecipePage from "../page/category/SoupRecipePage";
+import RecipeListPage from "../page/recipe/RecipeListPage";
 import SignUp from "../page/login/user/SignUp";
-import MenuRecommendPage from "../page/category/MenuRecommendPage";
+import MenuRecommendPage from "../page/recipe/MenuRecommendPage";
+import RecipeFormPage from "../page/recipe/RecipeFormPage";
 
 const router = createBrowserRouter([
   {
@@ -30,32 +27,32 @@ const router = createBrowserRouter([
       },
       {
         path: '/menu/recommend',
-        element: <MenuRecommendPage />,
-        errorElement: <ErrorPage />
+        element: <MenuRecommendPage/>,
+        errorElement: <ErrorPage/>
       },
       {
         path: 'korean/cuisine',
-        element: <KoreanCuisinePage/>,
+        element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
         path: 'food/recipe',
-        element: <FoodRecipePage/>,
+        element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
         path: 'cooking/tips',
-        element: <CookingTipsPage/>,
+        element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
         path: 'recipe',
-        element: <RecipePage/>,
+        element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
         path: 'soup/recipe',
-        element: <SoupRecipePage/>,
+        element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
     ]
@@ -63,7 +60,7 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login/>,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage/>
   },
   {
     path: '/SignUp',
@@ -71,8 +68,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>
   },
   {
-    path: '/category/view/:id',
+    path: '/recipe/view/:id',
     element: <CategoryViewPage/>,
+    errorElement: <ErrorPage/>
+  },
+  {
+    path: '/recipe/form/:id',
+    element: <RecipeFormPage/>,
     errorElement: <ErrorPage/>
   },
   {

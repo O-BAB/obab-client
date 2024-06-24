@@ -1,55 +1,39 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import styles from "../../../css/category/category.module.css";
-import CategoryContainer from "../../../hooks/CategoryContainer";
-import {useLocation, useNavigate} from "react-router-dom";
+import React from 'react';
+import styles from "../../../css/recipe/category.module.css";
+import {useNavigate} from "react-router-dom";
+import {Cup} from "react-bootstrap-icons";
+import {useRecoilValue} from "recoil";
+import {categoryTitleState, recipesState} from "../../../recoil/recipeState";
 
 const LeftCategoryListComponent = () => {
-  const {displayCategoryTitle, displayRecipesList} = CategoryContainer();
-  const {pathname} = useLocation()
-  const categories = displayCategoryTitle(pathname)
-  /**
-   */
-  const [categoriesList, setCategoriesList] = useState([])
+  const categoryTitle = useRecoilValue(categoryTitleState)
+  const recipes = useRecoilValue(recipesState);
   const navigate = useNavigate()
 
-  useEffect(() => {
-    // 아래는 1~10 페이지로 먼저 하드코딩으로 테스트
-    // 페이지 네이션은 다음 스탭으로 이룰 예정
-    const list = displayRecipesList(1, 10, categories);
-    list
-      .then((res) => {
-        setCategoriesList(res.data);
-      })
-      .catch((e) => console.error(e));
 
-  }, []);
-
-  console.log(categoriesList)
-
+  // 날짜 형 변환 (여기서만 사용할거라서, 공통으로 사용하게 될 경우 commonContainer로 뺄것)
   const handlerDateFormatter = (date) => {
-    const d = new Date(date).toLocaleString('en-us', {
+    return new Date(date).toLocaleString('en-us', {
       month: 'long',
       day: 'numeric',
       year: 'numeric'
     });
-
-    console.log(d)
-    return d;
   }
 
 
   return (
-    <div className={`cursor-pointer`} onClick={() => {
-      navigate('/category/view/2')
-    }}>
+    <div>
       <div className={styles.flexrow}>
         <div className={styles.title}>
-          {categories}
+          {categoryTitle}
         </div>
+        <Cup className="w-12 h-12 mb-2 text-gray-700 cursor-pointer" onClick={() => navigate('/recipe/form/create')}/>
       </div>
       {
-        categoriesList.map((data, index) =>
-          <div key={index}>
+        recipes.map((data, index) =>
+          <div key={index} className={`cursor-pointer`} onClick={() => {
+            navigate(`/recipe/view/${data?.id}`)
+          }}>
             <div className={styles.soupupdate_img_box}>
               {/*이미지 출력 부분*/}
               {/*<img className={styles.soupupdate_img} src="/images/siteinfo/siteinfo.webp" alt="Site Info"/>*/}
@@ -57,10 +41,10 @@ const LeftCategoryListComponent = () => {
             </div>
             <div className={styles.recipeContainer}>
               <div className={styles.recipeContent}>
-              <p className={styles.recipetitle}>
-                {/*제목 부분*/}
-                {data?.title}
-              </p>
+                <p className={styles.recipetitle}>
+                  {/*제목 부분*/}
+                  {data?.title}
+                </p>
               </div>
               {/*<div className={styles.divider}></div>*/}
               <div className={styles.dateandcomments}>

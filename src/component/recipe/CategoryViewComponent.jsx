@@ -1,0 +1,367 @@
+import React, { useEffect, useState } from 'react';
+import { Typography, IconButton } from '@mui/material';
+import { Edit, Delete, Info } from '@mui/icons-material';
+import { useParams } from 'react-router-dom';
+import categoryContainer from '../../hooks/CategoryContainer';
+
+const sampleCategoryData = {
+  title: '특정 카테고리의 레시피',
+  thumbnailUrl: '/images/siteinfo/siteinfo.webp',
+  recipeIngredients: [
+    { name: '간장', amount: '3숟갈' },
+    { name: '고추장', amount: '2숟갈' },
+    { name: '설탕', amount: '1숟갈' },
+  ],
+  recipeSubItems: [
+    {
+      recipeProcess: '1. 재료를 준비합니다.',
+      recipeComment: '재료는 신선한 것으로 준비해주세요.',
+      recipeImage: '/images/sample_recipe_1.jpg',
+    },
+    {
+      recipeProcess: '2. 재료를 손질합니다.',
+      recipeComment: '깨끗이 씻어서 준비해주세요.',
+      recipeImage: '/images/sample_recipe_2.jpg',
+    },
+    {
+      recipeProcess: '3. 요리를 시작합니다.',
+      recipeComment: '중간중간 불 조절에 신경써주세요.',
+      recipeImage: '/images/sample_recipe_3.jpg',
+    },
+  ],
+  cookingItems: [
+    {
+      image: '/images/sample_cooking_1.jpg',
+      name: '간단한 요리 1',
+      date: '2024-01-01',
+      content: '간단한 요리 설명 1',
+    },
+    {
+      image: '/images/sample_cooking_2.jpg',
+      name: '간단한 요리 2',
+      date: '2024-01-02',
+      content: '간단한 요리 설명 2',
+    },
+    {
+      image: '/images/sample_cooking_3.jpg',
+      name: '간단한 요리 3',
+      date: '2024-01-03',
+      content: '간단한 요리 설명 3',
+    },
+  ],
+};
+
+function CategoryViewComponent() {
+  const [recipe, setCategory] = useState(null);
+  const { displayRecipesDetail } = categoryContainer();
+  const params = useParams();
+
+  useEffect(() => {
+    // 실제 데이터 가져오기
+    displayRecipesDetail(params.id)
+      .then((res) => {
+        // setCategory(res);
+        setCategory(sampleCategoryData);
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+        // 샘플 데이터 설정
+        setCategory(sampleCategoryData);
+      });
+  }, [params.id, displayRecipesDetail]);
+
+  const handleEdit = () => {
+    // 수정하기 핸들러 로직 추가
+    console.log('수정하기 클릭됨');
+  };
+
+  const handleDelete = () => {
+    // 삭제하기 핸들러 로직 추가
+    console.log('삭제하기 클릭됨');
+  };
+
+  return (
+    <div className="mt-8 px-40">
+      <h2 className="text-3xl font-bold text-center mb-4">
+        {recipe?.title}
+      </h2>
+      <div className="relative flex flex-col items-center">
+        <div className="absolute top-4 right-4 flex space-x-2">
+          <IconButton color="primary" onClick={handleEdit}>
+            <Edit/>
+          </IconButton>
+          <IconButton color="secondary" onClick={handleDelete}>
+            <Delete/>
+          </IconButton>
+        </div>
+        <img className="w-2/3 mx-auto" src={recipe?.thumbnailUrl} alt="Thumbnail"/>
+        <div className="w-2/3 mt-4 bg-white bg-opacity-75 text-black p-4 text-left">
+          <Typography variant="h5" className="font-bold">
+            작성자
+          </Typography>
+          <Typography variant="subtitle1" className="mt-2">
+            March 5, 2024 | 좋아요 10개
+          </Typography>
+          <Typography variant="body1" className="mt-4">
+            음식에 대한 간단한 소개가 들어가면 좋을 것 같아요
+          </Typography>
+        </div>
+      </div>
+      <div className="mt-12">
+        <div className="text-xl font-bold mt-4 text-center">재료</div>
+        <div className="flex flex-wrap mt-4">
+          {recipe?.recipeIngredients?.map((ingredient, index) => (
+            <div key={index}
+                 className="w-1/2 flex justify-between items-center text-gray-600 list-none text-lg border-b border-gray-300 py-2 px-4">
+              <div className="flex items-center">
+                <div className="mr-2">{ingredient.name}</div>
+                <Info className="cursor-pointer" onClick={() => alert(`${ingredient.name} 클릭`)}/>
+              </div>
+              <div>{ingredient.amount}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="my-12 border-t-2 border-gray-300"></div>
+
+      <div>
+        {recipe?.recipeSubItems?.map((data, index) => (
+          <div key={index} className="flex my-8 items-center">
+            <div className="text-2xl font-bold w-1/12 text-center">{index + 1}</div>
+            <div className="flex w-11/12 items-center">
+              <div className="w-3/4">
+                <p className="text-xl font-bold mb-2">{data.recipeProcess}</p>
+                <p className="text-lg text-gray-600">{data.recipeComment}</p>
+              </div>
+              <div className="w-1/4 flex justify-center">
+                <img className="w-full h-auto" src={data.recipeImage} alt={`Recipe ${index + 1}`}/>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-32">
+        <div className="text-2xl font-bold mb-8 text-center">
+          <h2>Cooking</h2>
+        </div>
+        <div className="flex justify-center">
+          {recipe?.cookingItems?.map((item, index) => (
+            <div key={index} className="flex flex-col mr-8 w-1/3 items-center text-center">
+              <img className="w-full h-auto" src={item.image} alt="Cooking"/>
+              <div className="text-lg font-bold mt-4">{item.name}</div>
+              <div className="text-sm text-gray-400 mt-2">{item.date}</div>
+              <div className="text-base mt-2">{item.content}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default CategoryViewComponent;
+
+
+
+
+
+
+
+
+
+// import React, {useEffect, useState} from 'react';
+// import styles from '../../css/recipe/category.view.module.css';
+// import {InfoCircle} from "react-bootstrap-icons";
+// import categoryContainer from "../../hooks/CategoryContainer";
+// import {useParams} from "react-router-dom";
+//
+// const CategoryViewComponent = () => {
+//   const [category, setCategory] = useState();
+//   const {displayRecipesDetail} = categoryContainer();
+//   const params = useParams();
+//
+//   useEffect(() => {
+//     displayRecipesDetail(params.id)
+//       .then((res) => {
+//         setCategory(res)
+//         console.log(res)
+//       })
+//       .catch((e) => {
+//         console.log(e)
+//       })
+//   }, []);
+//
+//   console.log(category)
+//
+//
+//   return (
+//     <div className={styles.post_con}>
+//       <div className={styles.post_need_con}>
+//         <div className={styles.post_title}>
+//           {category?.title}
+//         </div>
+//         <div className={styles.post_thumbnail_box}>
+//           {/*<img className={styles.post_thumbnail} src="/images/siteinfo/siteinfo.webp" alt="Site I2nfo"/>*/}
+//           <img className={styles.post_thumbnail} src={category?.thumnailUrl} alt="Site I2nfo"/>
+//         </div>
+//         <div className={styles.post_needs_list}>
+//           <div className={styles.post_needs_ingredients}>재료</div>
+//           <div className={styles.post_needs_list_element}>
+//             {/* 반복문으로 뺄 것! */}
+//
+//             {
+//               category?.recipeIngredients?.map((data, index) =>
+//                 <li>
+//                   <div className={`flex flex-row justify-items-center items-center`}>
+//                     <div className={`flex-col justify-center`}>{`간장`}</div>
+//                     <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {
+//                       alert('간장 클릭')
+//                     }}/>
+//                   </div>
+//                   <div>3숫갈</div>
+//                 </li>
+//               )
+//             }
+//             {/*<li>*/}
+//             {/*  <div className={`flex flex-row justify-items-center items-center`}>*/}
+//             {/*    <div className={`flex-col justify-center`}>{`간장`}</div>*/}
+//             {/*    <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {*/}
+//             {/*      alert('간장 클릭')*/}
+//             {/*    }}/>*/}
+//             {/*  </div>*/}
+//             {/*  <div>3숫갈</div>*/}
+//             {/*</li>*/}
+//             {/*<li>*/}
+//             {/*  <div className={`flex flex-row justify-items-center items-center`}>*/}
+//             {/*    <div className={`flex-col justify-center`}>{`고추장`}</div>*/}
+//             {/*    <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {*/}
+//             {/*      alert('고추장 클릭')*/}
+//             {/*    }}/>*/}
+//             {/*  </div>*/}
+//             {/*  <div>4숫갈</div>*/}
+//             {/*</li>*/}
+//             {/*<li>*/}
+//             {/*  <div className={`flex flex-row justify-items-center items-center`}>*/}
+//             {/*    <div className={`flex-col justify-center`}>{`소금`}</div>*/}
+//             {/*    <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {*/}
+//             {/*      alert('소금 클릭')*/}
+//             {/*    }}/>*/}
+//             {/*  </div>*/}
+//             {/*  <div>1숫갈</div>*/}
+//             {/*</li>*/}
+//             {/*<li>*/}
+//             {/*  <div className={`flex flex-row justify-items-center items-center`}>*/}
+//             {/*    <div className={`flex-col justify-center`}>{`설탕`}</div>*/}
+//             {/*    <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {*/}
+//             {/*      alert('설탕 클릭')*/}
+//             {/*    }}/>*/}
+//             {/*  </div>*/}
+//             {/*  <div>6숫갈</div>*/}
+//             {/*</li>*/}
+//             {/*<li>*/}
+//             {/*  <div className={`flex flex-row justify-items-center items-center`}>*/}
+//             {/*    <div className={`flex-col justify-center`}>{`굴소스`}</div>*/}
+//             {/*    <InfoCircle className={`flex-col cursor-pointer justify-center p-0.5`} onClick={() => {*/}
+//             {/*      alert('굴소스 클릭')*/}
+//             {/*    }}/>*/}
+//             {/*  </div>*/}
+//             {/*  <div>1숫갈</div>*/}
+//             {/*</li>*/}
+//           </div>
+//         </div>
+//       </div>
+//       <div className={styles.divider}></div>
+//
+//       {/*
+//       이 3가지를 하나로 배열 객체러 만들어서 진행
+//          recipeComments = []
+//         recipeImage = []
+//         recipeProcess = []
+//
+//         이걸로 묵어주기
+//
+//         recipeSubItems = [
+//           {
+//             recipeComments: '',
+//             recipeImage: '',
+//             recipeProcess: '',
+//           }
+//         ]
+//
+//         그리구 차후에 UI 재조정 다시 할 것!!
+//         */}
+//       {/*{*/}
+//       {/*  recipe?.recipeSubItem.map((data, index) =>*/}
+//       {/*    <div key={index} className={styles.post_item}>*/}
+//       {/*      <div>{(index+1)}</div>*/}
+//       {/*      <div className={styles.post_content}>*/}
+//       {/*        <p>{data?.recipeProcess}</p>*/}
+//       {/*        <p>{data?.recipeComment}</p>*/}
+//       {/*        <img className={styles.post_img} src={data?.recipeImage} alt="Site I2nfo"/>*/}
+//       {/*      </div>*/}
+//       {/*    </div>*/}
+//       {/*  )*/}
+//       {/*}*/}
+//       <div className={styles.post_item}>
+//         <div>1</div>
+//         <div className={styles.post_content}>
+//           <div>
+//             <p>1번 사진에 대한 설명을 여기에 작성합니다.</p>
+//             <p>1번 사진에 대한 설명을 여기에 작성합니다.</p>
+//           </div>
+//           <img className={styles.post_img} src="/images/siteinfo/siteinfo.webp" alt="Site I2nfo"/>
+//         </div>
+//       </div>
+//       <div className={styles.post_item}>
+//         <div>2</div>
+//         <div className={styles.post_content}>
+//           <p>2번 사진에 대한 설명을 여기에 작성합니다.</p>
+//           <img className={styles.post_img} src="/images/siteinfo/siteinfo.webp" alt="Site Inf1o"/>
+//         </div>
+//       </div>
+//       <div className={styles.post_item}>
+//         <div>3</div>
+//         <div className={styles.post_content}>
+//           <p>3번 사진에 대한 설명을 여기에 작성합니다.</p>
+//           <img className={styles.post_img} src="/images/siteinfo/siteinfo.webp" alt="Site I3fo"/>
+//         </div>
+//       </div>
+//       {/* cooking */}
+//       <div className={styles.Cooking_con}>
+//         <div className={styles.Cooking_title}>
+//           <h2>Cooking</h2>
+//         </div>
+//         <div className={styles.container}>
+//           <div className={styles.element}>
+//             <img className={styles.Cooking_img} src="./images/siteinfo/siteinfo.webp" alt="Cooking"/>
+//             <div className={styles.name}>Easy and Quick Recipes with Ingredients From Your Fridge</div>
+//             <div className={styles.date}>March 5, 2024</div>
+//             <div className={styles.content}>OBAB is a Korean food and recipe blog that offers a unique…</div>
+//           </div>
+//           <div className={styles.element}>
+//             <img className={styles.Cooking_img} src="./images/siteinfo/siteinfo.webp" alt="Cooking"/>
+//
+//             <div className={styles.name}>How to Use OBAB to Find Recipes with Ingredients You Already Have</div>
+//             <div className={styles.date}>March 5, 2024</div>
+//             <div className={styles.content}>Sometimes, we have to cook what we have in the fridge. This…</div>
+//           </div>
+//           <div className={styles.element}>
+//             <img className={styles.Cooking_img} src="./images/siteinfo/siteinfo.webp" alt="Cooking"/>
+//             <div className={styles.name}>Hello world!</div>
+//             <div className={styles.date}>March 5, 2024</div>
+//             <div className={styles.content}>Korean cuisine is known for its delicious and unique flavors. If you…</div>
+//           </div>
+//         </div>
+//       </div>
+//
+//     </div>
+//   );
+// }
+//
+// export default CategoryViewComponent;
+
+
+
+

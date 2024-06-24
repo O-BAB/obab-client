@@ -1,6 +1,6 @@
 import UseApi from "../util/UseApi";
 
-const CategoryService = () => {
+const RecipeService = () => {
 
   /**
    * (1) API 연동 : GET /recipes/food-recipes, 카테고리별 목록 보기
@@ -137,4 +137,4 @@ const CategoryService = () => {
   }
 }
 
-export default CategoryService;
+export default RecipeService;

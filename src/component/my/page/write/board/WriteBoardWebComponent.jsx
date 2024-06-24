@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "../../../../../css/my/page/web/writeBoard.web.module.css";
 import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 import {styled} from "@mui/system";
 

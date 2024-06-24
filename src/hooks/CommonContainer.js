@@ -17,8 +17,8 @@ const CommonContainer = () => {
   };
 
   // navbar 에서 가져옴
-  // const handleCategoryClick = (category) => {
-  //   onCategorySelect(category.name);
+  // const handleCategoryClick = (recipe) => {
+  //   onCategorySelect(recipe.name);
   // };
 
 

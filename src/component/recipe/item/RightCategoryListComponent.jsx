@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonContainer from "../../../hooks/CommonContainer";
-import styles from '../../../css/category/category.module.css';
+import styles from '../../../css/recipe/category.module.css';
 import CATEGORIES from "../../common/navbar/data/CATEGORIES";
 
 function RightCategoryListComponent(props) {
@@ -12,8 +12,8 @@ function RightCategoryListComponent(props) {
         <div className={styles.content}>
           <h3>카테고리</h3>
           <ul className={styles.categories}>
-            {/*{CATEGORIES.map(category => (*/}
-            {CATEGORIES.map((category, index) => (// <li key={category.id} className={styles.item}>
+            {/*{CATEGORIES.map(recipe => (*/}
+            {CATEGORIES.map((category, index) => (// <li key={recipe.id} className={styles.item}>
               <li key={index} className={styles.item}>
                 <button onClick={() => {
 
