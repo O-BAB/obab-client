@@ -40,7 +40,56 @@ const UserService = () => {
     return response.data;
   }
 
-  return { connectSignUp, connectLoginUser }
+  /**
+   * (3) 카카오 로그인 연동
+   * @param code
+   * @return {Promise<*>}
+   */
+  const connectLoginKakao = async (code) => {
+    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/kakao/callback', {code: code})
+      .then((res) => {
+        return res
+      })
+      .catch(((e) => {
+        return null
+      }))
+    return response.data;
+  }
+
+  /**
+   * (4) 구글 로그인 연동
+   * @param code
+   * @return {Promise<*>}
+   */
+  const connectLoginGoogle = async (code) => {
+    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/google/callback', {code: code})
+      .then((res) => {
+        return res
+      })
+      .catch(((e) => {
+        return null
+      }))
+    return response.data;
+  }
+
+  /**
+   * (5) 네이버 로그인 연동
+   * @param code
+   * @return {Promise<*>}
+   */
+  const connectLoginNaver = async (code) => {
+    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/naver/callback', {code: code})
+      .then((res) => {
+        return res
+      })
+      .catch(((e) => {
+        return null
+      }))
+    return response.data;
+  }
+
+
+  return { connectSignUp, connectLoginUser, connectLoginKakao, connectLoginGoogle, connectLoginNaver }
 }
 
 export default UserService;

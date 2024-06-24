@@ -1,34 +1,30 @@
 import React from 'react';
-import styles from "../../../../../css/my/page/mobile/myPage.mobile.module.css";
-import {PersonCircle} from "react-bootstrap-icons";
+import {Avatar, Link, Typography} from "@mui/material";
+import {styled} from "@mui/system";
 
 const MyPageUpComponent = () => {
   return (
-    <div className={`${styles?.myPageUpComponent} px-7`}>
-      <div className={`w-36 py-4`}>
-        <div className={`${styles?.myPageUpProfileImageComponent}`}>
-          <PersonCircle className={`${styles?.myPageUpProfileImage}`}/>
-        </div>
-        <div className={`font-bold text-xl my-4`}>
-          {`닉네임`}
-        </div>
+    <div className="flex flex-row w-full min-h-[10vh] justify-between items-center px-7">
+      <div className="flex flex-row items-center">
+        <AvatarStyled src="/profile.jpg" alt="닉네임"/>
+        <Typography variant="h6" className="ml-4">닉네임</Typography>
       </div>
-      <div className={`justify-items-start w-70 text-left px-5 my-4`}>
-        {`간단한 자기소개 두줄 정도 가나다라마바사 아자차`}
+      <div className="flex flex-col items-center">
+        <Typography variant="body1" className="mt-2 text-center">
+          간단한 자기소개 두줄 정도 가나다라마바사 아자차
+        </Typography>
       </div>
-      <div className={`justify-items-start w-36 text-left px-5 my-4`}>
-        <div className={`flex-col cursor-pointer my-2`}>
-          {`페이스북`}
-        </div>
-        <div className={`flex-col cursor-pointer my-2`}>
-          {`트위터`}
-        </div>
-        <div className={`flex-col cursor-pointer my-2`}>
-          {`유튜브`}
-        </div>
+      <div className="flex flex-col items-end">
+        <Link href="#" className="block mt-2">페이스북</Link>
+        <Link href="#" className="block mt-2">트위터</Link>
+        <Link href="#" className="block mt-2">유튜브</Link>
       </div>
     </div>
   );
 }
 
+const AvatarStyled = styled(Avatar)(({theme}) => ({
+  width: theme.spacing(10),
+  height: theme.spacing(10),
+}));
 export default MyPageUpComponent;
