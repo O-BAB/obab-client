@@ -67,7 +67,7 @@ const WriteCommentWebComponent = () => {
                     <Typography variant="body2" color="textSecondary">{comment.date}</Typography>
                   </Grid>
                 </Grid>
-                <Typography variant="body1" color="textPrimary" className='justify-start' style={{ marginTop: 16 }}>
+                <Typography variant="body1" color="textPrimary" style={{ marginTop: 16, textAlign: 'left' }}>
                   {comment.content}
                 </Typography>
                 <Grid container alignItems="center" style={{ marginTop: 16 }}>
