@@ -60,7 +60,20 @@ const CategoryContainer = () => {
     return await connectRecipesDetail(id);
   }
 
-  return {displayRecipesList, displayRecipesDetail}
+  /**
+   * (3) 날짜 형 변환
+   * @param date
+   * @return {string}
+   */
+  const handlerDateFormatter = (date) => {
+    return new Date(date).toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  return {displayRecipesList, displayRecipesDetail, handlerDateFormatter}
 }
 
 export default CategoryContainer;

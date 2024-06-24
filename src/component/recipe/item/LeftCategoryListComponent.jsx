@@ -4,22 +4,13 @@ import {useNavigate} from "react-router-dom";
 import {Cup} from "react-bootstrap-icons";
 import {useRecoilValue} from "recoil";
 import {categoryTitleState, recipesState} from "../../../recoil/recipeState";
+import CategoryContainer from "../../../hooks/CategoryContainer";
 
 const LeftCategoryListComponent = () => {
+  const { handlerDateFormatter } = CategoryContainer();
   const categoryTitle = useRecoilValue(categoryTitleState)
   const recipes = useRecoilValue(recipesState);
   const navigate = useNavigate()
-
-
-  // 날짜 형 변환 (여기서만 사용할거라서, 공통으로 사용하게 될 경우 commonContainer로 뺄것)
-  const handlerDateFormatter = (date) => {
-    return new Date(date).toLocaleString('en-us', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    });
-  }
-
 
   return (
     <div>
