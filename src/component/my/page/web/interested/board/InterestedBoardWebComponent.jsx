@@ -17,13 +17,10 @@ const CardMediaStyled = styled(CardMedia)({
 
 const InterestedBoardWebComponent = () => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" className={`mt-8`}>
       <Grid container spacing={4} className="mt-8">
         <Grid item xs={12} md={9}>
           <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h6">관심 글</Typography>
-            </Grid>
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <Grid item xs={12} sm={6} md={4} key={item}>
                 <CardStyled>
