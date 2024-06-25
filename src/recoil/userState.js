@@ -15,8 +15,21 @@ const { persistAtom } = recoilPersist({
   converter: JSON
 });
 
+/**
+ * 사용자 정보 - session storage로 정보 저장
+ * @type {RecoilState<any>}
+ */
 export const userState = atom({
   key: 'userState',
-  default: null,
+  default: {
+    id: -9999,
+    email: '',
+    name: '',
+    nickname: '',
+    profileImg: '',
+    selfInfo: '',
+    createdAt: '',
+    updatedAt: '',
+  },
   effects_UNSTABLE: [persistAtom]
 });

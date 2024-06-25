@@ -1,8 +1,14 @@
 import React, {Fragment} from 'react';
 import {Menu, Transition} from "@headlessui/react";
 import {ListUl} from "react-bootstrap-icons";
+import {useRecoilValue} from "recoil";
+import {userState} from "../../../../recoil/userState";
+import userContainer from "../../../../hooks/UserContainer";
 
 const NavBarDropDown = () => {
+  const { handleLogout } = userContainer();
+  const user = useRecoilValue(userState);
+  console.log(user?.id)
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -123,7 +129,9 @@ const NavBarDropDown = () => {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({active}) => (
+              {({active}) =>
+                user?.id < 0 ?
+                (
                 <a
                   href="/login"
                   className={(
@@ -133,7 +141,17 @@ const NavBarDropDown = () => {
                 >
                   로그인
                 </a>
-              )}
+              )
+                  :
+                  (
+                    <button className={(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                        'block px-4 py-2 text-sm'
+                    )}
+                    onClick={() => {handleLogout()}}
+                    >로그아웃</button>
+                  )
+              }
             </Menu.Item>
           </div>
         </Menu.Items>
