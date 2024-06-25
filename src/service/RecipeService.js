@@ -9,8 +9,11 @@ const RecipeService = () => {
    * @param categoryCD 카테고리
    * @return {Promise<axios.AxiosResponse<any>>} : 성공 결과 값
    */
-  const connectRecipesList = async (page, pageSize, categoryCD) => {
-    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes/?page=${page}&pageSize=${pageSize}&categoryCD=${categoryCD}`)
+  const connectRecipesList = async ({queryKey}) => {
+    const [_key, { page, pageSize, categoryCD }] = queryKey;
+    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes`,{
+      params: {page, pageSize, categoryCD}
+    })
       .then((res) => {
         return res.data;
       })
