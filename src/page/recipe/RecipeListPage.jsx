@@ -3,11 +3,11 @@ import {useRecoilValue, useSetRecoilState} from "recoil";
 import {innerWidthState} from "../../recoil/commomState";
 import MobileCategoryComponent from "../../component/recipe/MobileCategoryComponent";
 import WebCategoryComponent from "../../component/recipe/WebCategoryComponent";
-import CategoryContainer from "../../hooks/CategoryContainer";
+import RecipeContainer from "../../hooks/RecipeContainer";
 import {useLocation} from "react-router-dom";
 
 const RecipeListPage = () => {
-  const {displayRecipesList} = CategoryContainer();
+  const {displayRecipesList} = RecipeContainer();
   const { pathname } = useLocation();
   const innerWidth = useRecoilValue(innerWidthState)
   const setInnerWidth = useSetRecoilState(innerWidthState)

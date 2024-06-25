@@ -4,10 +4,10 @@ import {useNavigate} from "react-router-dom";
 import {Cup} from "react-bootstrap-icons";
 import {useRecoilValue} from "recoil";
 import {categoryTitleState, recipesState} from "../../../recoil/recipeState";
-import CategoryContainer from "../../../hooks/CategoryContainer";
+import RecipeContainer from "../../../hooks/RecipeContainer";
 
 const LeftCategoryListComponent = () => {
-  const { handlerDateFormatter } = CategoryContainer();
+  const { handlerDateFormatter } = RecipeContainer();
   const categoryTitle = useRecoilValue(categoryTitleState)
   const recipes = useRecoilValue(recipesState);
   const navigate = useNavigate()

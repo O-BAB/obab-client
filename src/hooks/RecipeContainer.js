@@ -3,7 +3,7 @@ import {useSetRecoilState} from "recoil";
 import {categoryTitleState, recipeFormState, recipesState} from "../recoil/recipeState";
 import {useLocation} from "react-router-dom";
 
-const CategoryContainer = () => {
+const RecipeContainer = () => {
   const {connectRecipesList, connectRecipesDetail} = RecipeService();
   const { pathname } = useLocation();
   const setRecipes= useSetRecoilState(recipesState);
@@ -78,4 +78,4 @@ const CategoryContainer = () => {
   return {displayRecipesList, displayRecipesDetail, handlerDateFormatter}
 }
 
-export default CategoryContainer;
+export default RecipeContainer;

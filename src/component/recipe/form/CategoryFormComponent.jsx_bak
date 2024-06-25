@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, CardContent, Grid, IconButton, TextField, Typography} from '@mui/material';
 import {Delete, PhotoCamera} from '@mui/icons-material';
 import {useParams} from 'react-router-dom';
-import categoryContainer from '../../../hooks/CategoryContainer';
+import categoryContainer from '../../../hooks/RecipeContainer';
 import styles from '../../../css/recipe/category.view.module.css';
 
 const CategoryFormComponent = () => {

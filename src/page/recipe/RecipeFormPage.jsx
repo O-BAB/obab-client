@@ -6,13 +6,13 @@ import MainImageSection from "../../component/recipe/form/MainImageSection";
 import IngredientsSection from "../../component/recipe/form/IngredientsSection";
 import SeasoningsSection from "../../component/recipe/form/SeasoningsSection";
 import SubItemsSection from "../../component/recipe/form/SubItemsSection";
-import CategoryContainer from "../../hooks/CategoryContainer";
+import RecipeContainer from "../../hooks/RecipeContainer";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 
 
 const RecipeFormPage = () => {
-  const {displayRecipesDetail} = CategoryContainer();
+  const {displayRecipesDetail} = RecipeContainer();
   const params = useParams();
 
   useEffect(() => {

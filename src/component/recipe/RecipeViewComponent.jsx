@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography, IconButton } from '@mui/material';
 import { Edit, Delete, Info } from '@mui/icons-material';
 import {useNavigate, useParams} from 'react-router-dom';
-import categoryContainer from '../../hooks/CategoryContainer';
+import categoryContainer from '../../hooks/RecipeContainer';
 
 const sampleCategoryData = {
   id: 2,
@@ -56,7 +56,7 @@ const sampleCategoryData = {
   ],
 };
 
-function CategoryViewComponent() {
+function RecipeViewComponent() {
   const [recipe, setCategory] = useState(null);
   const { displayRecipesDetail, handlerDateFormatter } = categoryContainer();
   const params = useParams();
@@ -169,7 +169,7 @@ function CategoryViewComponent() {
   );
 }
 
-export default CategoryViewComponent;
+export default RecipeViewComponent;
 
 
 
@@ -182,10 +182,10 @@ export default CategoryViewComponent;
 // import React, {useEffect, useState} from 'react';
 // import styles from '../../css/recipe/category.view.module.css';
 // import {InfoCircle} from "react-bootstrap-icons";
-// import categoryContainer from "../../hooks/CategoryContainer";
+// import categoryContainer from "../../hooks/RecipeContainer";
 // import {useParams} from "react-router-dom";
 //
-// const CategoryViewComponent = () => {
+// const RecipeViewComponent = () => {
 //   const [category, setCategory] = useState();
 //   const {displayRecipesDetail} = categoryContainer();
 //   const params = useParams();
@@ -368,7 +368,7 @@ export default CategoryViewComponent;
 //   );
 // }
 //
-// export default CategoryViewComponent;
+// export default RecipeViewComponent;
 
 
 
