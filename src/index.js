@@ -5,11 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import {RecoilRoot} from "recoil";
 import {RouterProvider} from "react-router-dom";
 import router from "./router/router";
+import {QueryClient, QueryClientProvider} from "react-query";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
-    <RouterProvider router={router}/>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} fallbackElement={<div>Loading...</div>}/>
+    </QueryClientProvider>
   </RecoilRoot>
 );
 
