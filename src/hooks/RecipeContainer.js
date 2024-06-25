@@ -27,28 +27,28 @@ const RecipeContainer = () => {
      * pageSize: 10
      * total: 1
      */
-    if (pathname.includes('/menu/recommend')) {
+    if (pathname.includes('/menu-recommend')) {
       setCategoryTitle("메뉴 추천")
-    } else if (pathname.includes('/korean/cuisine')) {
-      response = await connectRecipesList(page, pageSize, 'korean_cuisine')
-      setRecipes(response.data);
-      setCategoryTitle("Korean Cuisine")
-    } else if (pathname.includes('/food/recipe')) {
+    } else if (pathname.includes('food-recipe')) {
       response = await connectRecipesList(page, pageSize, 'food_recipe')
       setRecipes(response.data);
-      setCategoryTitle("Food recipe")
-    } else if (pathname.includes('/cooking/tips')) {
+      setCategoryTitle("음식 레시피")
+    } else if (pathname.includes('/broadcast-recipe')) {
+      response = await connectRecipesList(page, pageSize, 'broadcast_recipe')
+      setRecipes(response.data);
+      setCategoryTitle("방송 레시피")
+    } else if (pathname.includes('/convenience-store-combination')) {
+      response = await connectRecipesList(page, pageSize, 'convenience_store_combination')
+      setRecipes(response.data);
+      setCategoryTitle("편의점 꿀조합")
+    } else if (pathname.includes('/seasoning-recipe')) {
+      response = await connectRecipesList(page, pageSize, 'seasoning_recipe')
+      setRecipes(response.data);
+      setCategoryTitle("양념 레시피")
+    } else if (pathname.includes('/cooking-tip')) {
       response = await connectRecipesList(page, pageSize, 'cooking_tip')
       setRecipes(response.data);
-      setCategoryTitle("Cooking Tips")
-    } else if (pathname.includes('/soup/recipe')) {
-      response = await connectRecipesList(page, pageSize, 'recipe')
-      setRecipes(response.data);
-      setCategoryTitle("Soup Recipe")
-    } else if (pathname.includes('/recipe')) {
-      response = await connectRecipesList(page, pageSize, 'soup_recipe')
-      setRecipes(response.data);
-      setCategoryTitle("Recipe")
+      setCategoryTitle("요리 TIP")
     }
   }
 
