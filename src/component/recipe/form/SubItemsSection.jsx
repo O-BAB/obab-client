@@ -1,23 +1,24 @@
-// src/components/SubItemsSection.js
 import React from 'react';
 import { Button, TextField, Card, CardContent, Grid, Typography, IconButton } from '@mui/material';
 import { PhotoCamera, Delete } from '@mui/icons-material';
-import {useRecoilState} from "recoil";
-import {subItemsFormState} from "../../../recoil/recipeState";
+import { useRecoilState } from "recoil";
+import { subItemsFormState } from "../../../recoil/recipeState";
 
 const SubItemsSection = () => {
   const [subItemsForm, setSubItemsForm] = useRecoilState(subItemsFormState);
+
   const handleDescriptionChange = (index, e) => {
-    const newSubItems = [...subItemsForm];
-    newSubItems[index].description = e.target.value;
-    setSubItemsForm(newSubItems);
+    setSubItemsForm(subItemsForm.map((item, i) =>
+      i === index ? { ...item, description: e.target.value } : item
+    ));
   };
 
   const handleImageChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
-      const newSubItems = [...subItemsForm];
-      newSubItems[index].image = URL.createObjectURL(e.target.files[0]);
-      setSubItemsForm(newSubItems);
+      const newImageURL = URL.createObjectURL(e.target.files[0]);
+      setSubItemsForm(subItemsForm.map((item, i) =>
+        i === index ? { ...item, image: newImageURL } : item
+      ));
     }
   };
 
@@ -26,8 +27,7 @@ const SubItemsSection = () => {
   };
 
   const handleRemoveSubItem = (index) => {
-    const newSubItems = subItemsForm.filter((_, i) => i !== index);
-    setSubItemsForm(newSubItems);
+    setSubItemsForm(subItemsForm.filter((_, i) => i !== index));
   };
 
   return (
@@ -42,19 +42,44 @@ const SubItemsSection = () => {
                   <Delete />
                 </IconButton>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={9} style={{ display: 'flex', alignItems: 'stretch' }}>
                 <TextField
                   fullWidth
                   label={`설명 ${index + 1}`}
                   variant="outlined"
                   multiline
-                  rows={4}
                   value={item.description}
                   onChange={(e) => handleDescriptionChange(index, e)}
+                  InputProps={{
+                    style: {
+                      height: '200px',
+                      overflow: 'auto',
+                      display: 'flex',
+                      flexDirection: 'column'
+                    },
+                    inputProps: {
+                      style: {
+                        height: '100%',
+                        boxSizing: 'border-box',
+                        padding: '10px'
+                      }
+                    }
+                  }}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <label htmlFor={`upload-photo-${index}`}>
+              <Grid item xs={12} sm={3} className="relative">
+                <div className="relative" style={{ width: '100%', height: '200px' }}>
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={`Uploaded ${index + 1}`}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div className="flex justify-center items-center h-full bg-gray-200 cursor-pointer">
+                      <Typography variant="h6">이미지 공간</Typography>
+                    </div>
+                  )}
                   <input
                     style={{ display: 'none' }}
                     id={`upload-photo-${index}`}
@@ -62,20 +87,15 @@ const SubItemsSection = () => {
                     type="file"
                     onChange={(e) => handleImageChange(index, e)}
                   />
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    component="span"
-                    startIcon={<PhotoCamera />}
-                  >
-                    이미지 업로드
-                  </Button>
-                </label>
-                {item.image && (
-                  <div className="mt-4">
-                    <img src={item.image} alt={`Uploaded ${index + 1}`} className="w-full h-auto" />
-                  </div>
-                )}
+                  <label htmlFor={`upload-photo-${index}`} className="absolute top-2 right-2">
+                    <IconButton
+                      color="primary"
+                      component="span"
+                    >
+                      <PhotoCamera />
+                    </IconButton>
+                  </label>
+                </div>
               </Grid>
             </Grid>
           </CardContent>
