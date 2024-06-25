@@ -1,6 +1,5 @@
 import NavbarComponent from 'component/common/navbar/NavbarComponent';
 import Footer from 'component/common/footer/Footer';
-// import CategoryFormComponent from "../../component/recipe/form/CategoryFormComponent";
 import styles from '../../css/recipe/category.view.module.css';
 import MainImageSection from "../../component/recipe/form/MainImageSection";
 import IngredientsSection from "../../component/recipe/form/IngredientsSection";
@@ -8,20 +7,15 @@ import SeasoningsSection from "../../component/recipe/form/SeasoningsSection";
 import SubItemsSection from "../../component/recipe/form/SubItemsSection";
 import RecipeContainer from "../../hooks/RecipeContainer";
 import {useParams} from "react-router-dom";
-import {useEffect} from "react";
 
 
 const RecipeFormPage = () => {
-  const {displayRecipesDetail} = RecipeContainer();
+  const {useRecipesDetailQuery} = RecipeContainer();
   const params = useParams();
+  const {isLoading, isError} = useRecipesDetailQuery(params?.id);
 
-  useEffect(() => {
-    if (params?.id !== 'create') {
-      console.log(params?.id)
-      displayRecipesDetail(params?.id)
-    }
-  }, []);
-
+  if (isError) return <div>Error loading recipes</div>;
+  if (isLoading) return <div>Loading...</div>;
   return (
     <>
       <NavbarComponent/>
