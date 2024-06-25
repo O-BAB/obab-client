@@ -26,32 +26,32 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>
       },
       {
-        path: '/menu/recommend',
+        path: 'menu-recommend',
         element: <MenuRecommendPage/>,
         errorElement: <ErrorPage/>
       },
       {
-        path: 'korean/cuisine',
+        path: 'food-recipe',
         element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
-        path: 'food/recipe',
+        path: 'broadcast-recipe',
         element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
-        path: 'cooking/tips',
+        path: 'convenience-store-combination',
         element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
-        path: 'recipe',
+        path: 'seasoning-recipe',
         element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },
       {
-        path: 'soup/recipe',
+        path: 'cooking-tip',
         element: <RecipeListPage/>,
         errorElement: <ErrorPage/>
       },

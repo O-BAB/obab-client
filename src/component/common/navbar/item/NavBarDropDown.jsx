@@ -4,6 +4,7 @@ import {ListUl} from "react-bootstrap-icons";
 import {useRecoilValue} from "recoil";
 import {userState} from "../../../../recoil/userState";
 import userContainer from "../../../../hooks/UserContainer";
+import categories from '../data/CATEGORIES'
 
 const NavBarDropDown = () => {
   const { handleLogout } = userContainer();
@@ -44,47 +45,23 @@ const NavBarDropDown = () => {
                 </div>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({active}) => (
-                <a
-                  href="/korean/cuisine"
-                  className={(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
+            {
+              categories.map((data, index) =>
+                <Menu.Item key={index}>
+                  {({active}) => (
+                    <a
+                      href={data?.link}
+                      className={(
+                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                      )}
+                    >
+                      {data?.name}
+                    </a>
                   )}
-                >
-                  Korean Cuisine
-                </a>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
-            <Menu.Item>
-              {({active}) => (
-                <a
-                  href="/food/recipe"
-                  className={(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Food recipe
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({active}) => (
-                <a
-                  href="/cooking/tips"
-                  className={(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Cooking Tips
-                </a>
-              )}
-            </Menu.Item>
+                </Menu.Item>
+              )
+            }
           </div>
           <div className="py-1">
             <Menu.Item>
