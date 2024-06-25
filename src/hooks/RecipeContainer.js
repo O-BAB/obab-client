@@ -80,16 +80,33 @@ const RecipeContainer = () => {
     );
   };
 
-
   /**
    * (2) api 호출 - 음식 레시피 detail 부분
    * @param id 카테고리 인덱스 번호
    * @return {Promise<*>} 인덱스 결과 값
    */
-  const displayRecipesDetail = async (id) => {
-    const response = await connectRecipesDetail(id);
-    setRecipeForm(response)
+  const useRecipesDetailQuery = (id) => {
+    return useQuery(
+      ['recipeForm', {id}],
+      connectRecipesDetail, {
+        enabled: !!id,
+        onSuccess: (data) =>  {
+          setRecipeForm(data);
+        }
+      }
+    )
   }
+
+
+  // /**
+  //  * (2) api 호출 - 음식 레시피 detail 부분
+  //  * @param id 카테고리 인덱스 번호
+  //  * @return {Promise<*>} 인덱스 결과 값
+  //  */
+  // const displayRecipesDetail = async (id) => {
+  //   const response = await connectRecipesDetail(id);
+  //   setRecipeForm(response)
+  // }
 
   /**
    * (3) 날짜 형 변환
@@ -105,7 +122,7 @@ const RecipeContainer = () => {
   }
 
   // return {displayRecipesList, displayRecipesDetail, handlerDateFormatter}
-  return {useRecipesListQuery, displayRecipesDetail, handlerDateFormatter}
+  return {useRecipesListQuery, useRecipesDetailQuery, handlerDateFormatter}
 }
 
 export default RecipeContainer;

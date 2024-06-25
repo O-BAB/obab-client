@@ -4,9 +4,7 @@ const RecipeService = () => {
 
   /**
    * (1) API 연동 : GET /recipes/food-recipes, 카테고리별 목록 보기
-   * @param page 페이지 index 번호
-   * @param pageSize 페이지 출력 최대 갯수
-   * @param categoryCD 카테고리
+   * @queryKey 리액트 쿼리에서 파라미터 받아오고 해당 파라미터 적용
    * @return {Promise<axios.AxiosResponse<any>>} : 성공 결과 값
    */
   const connectRecipesList = async ({queryKey}) => {
@@ -28,10 +26,20 @@ const RecipeService = () => {
 
   /**
    * (2) API 연동 : GET /recipes/food-recipes/{id}, 레시피 상세 조회
-   * @param id
+   * @param queryKey 쿼리키 받아옴
    * @return {Promise<axios.AxiosResponse<any>>}
    */
-  const connectRecipesDetail = async (id) => {
+  const connectRecipesDetail = async ({queryKey}) => {
+    const [_key, { id }] = queryKey;
+
+    // ReactQuery가 실행 안되게 수행함
+    // URL이 /recipe/form/create 일 때!
+    // 추가인경우만 id 값이 create, 나머지는 숫자로 표시
+    // 이는 파라미터에 해당함
+    if (id === 'create') {
+      return null;
+    }
+
     const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes/${id}`)
       .then((res) => {
         return res.data;

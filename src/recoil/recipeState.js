@@ -43,10 +43,12 @@ export const mainImageFormState = atom({
 
 export const ingredientsFormState = atom({
   key: 'ingredientsFormState',
-  default: [{ name: '', quantity: '', unit: '', notes: '' }],
+  default: [],
+  // default: [{ id: '', type: '', name: '', count: '', unit: '', etc: '' }],
 });
 
 export const seasoningsFormState = atom({
   key: 'seasoningsFormState',
-  default: [{ name: '', quantity: '', unit: '', notes: '' }],
+  default: [],
+  // default: [{ id: '', type: '', name: '', count: '', unit: '', etc: '' }],
 });

@@ -14,7 +14,7 @@ const SeasoningsSection = () => {
   };
 
   const handleAddSeasoning = () => {
-    setSeasoningsForm([...seasoningsForm, { name: '', quantity: '', unit: '', notes: '' }]);
+    setSeasoningsForm([...seasoningsForm, { name: '', count: '', unit: '', etc: '' }]);
   };
 
   const handleRemoveSeasoning = (index) => {
@@ -32,7 +32,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="재료 명"
-              value={seasoning.name}
+              value={seasoning?.name}
               onChange={(e) => handleSeasoningChange(index, 'name', e.target.value)}
             />
           </Grid>
@@ -41,7 +41,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="수량"
-              value={seasoning.quantity}
+              value={seasoning?.count}
               onChange={(e) => handleSeasoningChange(index, 'quantity', e.target.value)}
             />
           </Grid>
@@ -50,7 +50,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="단위"
-              value={seasoning.unit}
+              value={seasoning?.unit}
               onChange={(e) => handleSeasoningChange(index, 'unit', e.target.value)}
             />
           </Grid>
@@ -59,7 +59,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="비고"
-              value={seasoning.notes}
+              value={seasoning?.etc}
               onChange={(e) => handleSeasoningChange(index, 'notes', e.target.value)}
             />
           </Grid>
