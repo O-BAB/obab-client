@@ -1,6 +1,6 @@
 import NavbarComponent from 'component/common/navbar/NavbarComponent';
 import Footer from 'component/common/footer/Footer';
-import CategoryViewComponent from 'component/recipe/CategoryViewComponent'
+import RecipeViewComponent from 'component/recipe/RecipeViewComponent'
 
 
 const Post = () => {
@@ -8,7 +8,7 @@ const Post = () => {
   return (
     <>
       <NavbarComponent/>
-      <CategoryViewComponent/>
+      <RecipeViewComponent/>
       <Footer/>
     </>
   );

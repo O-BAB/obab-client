@@ -4,9 +4,16 @@ import Logo from "../item/Logo";
 import CATEGORIES from "../data/CATEGORIES";
 import MenuBarList from "../item/MenuBarList";
 import CommonContainer from "../../../../hooks/CommonContainer";
+import userContainer from "../../../../hooks/UserContainer";
+import {useRecoilValue} from "recoil";
+import {userState} from "../../../../recoil/userState";
 
 const WebNavbarComponent = () => {
+  const user = useRecoilValue(userState);
   const {onClickMovingMenu} = CommonContainer();
+  const {handleLogout} = userContainer();
+
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navelement}>
@@ -25,11 +32,21 @@ const WebNavbarComponent = () => {
             }}>
               마이페이지
             </div>
-            <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {
-              onClickMovingMenu('/login')
-            }}>
-              로그인 버튼
-            </div>
+            {
+              user?.id < 0 ?
+                <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {
+                  onClickMovingMenu('/login')
+                }}>
+                  로그인
+                </div>
+                :
+                <div className={`${styles.navbarRightItem} cursor-pointer hover:text-blue-700 `} onClick={() => {
+                  handleLogout()
+                }}>
+                  로그아웃
+                </div>
+
+            }
           </div>
         </div>
       </div>

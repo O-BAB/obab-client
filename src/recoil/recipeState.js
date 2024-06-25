@@ -26,8 +26,8 @@ export const categoryTitleState = atom({
  * 카테고리 설정 폼 상태관리
  * @type {RecoilState<unknown>}
  */
-export const categoryFormState = atom({
-  key: 'categoryFormState',
+export const recipeFormState = atom({
+  key: 'recipeFormState',
   default: null,
 });
 

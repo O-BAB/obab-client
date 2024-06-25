@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, IconButton } from '@mui/material';
 import { Edit, Delete, Info } from '@mui/icons-material';
-import { useParams } from 'react-router-dom';
-import categoryContainer from '../../hooks/CategoryContainer';
+import {useNavigate, useParams} from 'react-router-dom';
+import categoryContainer from '../../hooks/RecipeContainer';
 
 const sampleCategoryData = {
+  id: 2,
   title: '특정 카테고리의 레시피',
   thumbnailUrl: '/images/siteinfo/siteinfo.webp',
+  createdAt: "2024-05-14T17:58:57.658834",
+  likeCount: 10,
+  user: 'test@admin.com',
+  intro: '음식에 대한 간단한 소개가 들어가면 좋을 것 같아요',
   recipeIngredients: [
     { name: '간장', amount: '3숟갈' },
     { name: '고추장', amount: '2숟갈' },
@@ -16,34 +21,34 @@ const sampleCategoryData = {
     {
       recipeProcess: '1. 재료를 준비합니다.',
       recipeComment: '재료는 신선한 것으로 준비해주세요.',
-      recipeImage: '/images/sample_recipe_1.jpg',
+      recipeImage: '/images/siteinfo/siteinfo.webp',
     },
     {
       recipeProcess: '2. 재료를 손질합니다.',
       recipeComment: '깨끗이 씻어서 준비해주세요.',
-      recipeImage: '/images/sample_recipe_2.jpg',
+      recipeImage: '/images/siteinfo/siteinfo.webp',
     },
     {
       recipeProcess: '3. 요리를 시작합니다.',
       recipeComment: '중간중간 불 조절에 신경써주세요.',
-      recipeImage: '/images/sample_recipe_3.jpg',
+      recipeImage: '/images/siteinfo/siteinfo.webp',
     },
   ],
   cookingItems: [
     {
-      image: '/images/sample_cooking_1.jpg',
+      image: '/images/siteinfo/siteinfo.webp',
       name: '간단한 요리 1',
       date: '2024-01-01',
       content: '간단한 요리 설명 1',
     },
     {
-      image: '/images/sample_cooking_2.jpg',
+      image: '/images/siteinfo/siteinfo.webp',
       name: '간단한 요리 2',
       date: '2024-01-02',
       content: '간단한 요리 설명 2',
     },
     {
-      image: '/images/sample_cooking_3.jpg',
+      image: '/images/siteinfo/siteinfo.webp',
       name: '간단한 요리 3',
       date: '2024-01-03',
       content: '간단한 요리 설명 3',
@@ -51,10 +56,11 @@ const sampleCategoryData = {
   ],
 };
 
-function CategoryViewComponent() {
+function RecipeViewComponent() {
   const [recipe, setCategory] = useState(null);
-  const { displayRecipesDetail } = categoryContainer();
+  const { displayRecipesDetail, handlerDateFormatter } = categoryContainer();
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 실제 데이터 가져오기
@@ -71,12 +77,13 @@ function CategoryViewComponent() {
       });
   }, [params.id, displayRecipesDetail]);
 
-  const handleEdit = () => {
+  const handleEdit = (id) => {
     // 수정하기 핸들러 로직 추가
-    console.log('수정하기 클릭됨');
+    // console.log('수정하기 클릭됨');
+    navigate(`/recipe/form/${id}`);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     // 삭제하기 핸들러 로직 추가
     console.log('삭제하기 클릭됨');
   };
@@ -88,23 +95,24 @@ function CategoryViewComponent() {
       </h2>
       <div className="relative flex flex-col items-center">
         <div className="absolute top-4 right-4 flex space-x-2">
-          <IconButton color="primary" onClick={handleEdit}>
+          <IconButton color="primary" onClick={() => handleEdit(recipe?.id)}>
             <Edit/>
           </IconButton>
-          <IconButton color="secondary" onClick={handleDelete}>
+          <IconButton color="secondary" onClick={() => handleDelete(recipe?.id)}>
             <Delete/>
           </IconButton>
         </div>
         <img className="w-2/3 mx-auto" src={recipe?.thumbnailUrl} alt="Thumbnail"/>
         <div className="w-2/3 mt-4 bg-white bg-opacity-75 text-black p-4 text-left">
           <Typography variant="h5" className="font-bold">
-            작성자
+            {`작성자: ${recipe?.user}`}
           </Typography>
           <Typography variant="subtitle1" className="mt-2">
-            March 5, 2024 | 좋아요 10개
+            {/*March 5, 2024 | 좋아요 10개*/}
+            {`${handlerDateFormatter(recipe?.createdAt)} | 좋아요 ${recipe?.likeCount}개`}
           </Typography>
           <Typography variant="body1" className="mt-4">
-            음식에 대한 간단한 소개가 들어가면 좋을 것 같아요
+            {recipe?.intro}
           </Typography>
         </div>
       </div>
@@ -161,7 +169,7 @@ function CategoryViewComponent() {
   );
 }
 
-export default CategoryViewComponent;
+export default RecipeViewComponent;
 
 
 
@@ -174,10 +182,10 @@ export default CategoryViewComponent;
 // import React, {useEffect, useState} from 'react';
 // import styles from '../../css/recipe/category.view.module.css';
 // import {InfoCircle} from "react-bootstrap-icons";
-// import categoryContainer from "../../hooks/CategoryContainer";
+// import categoryContainer from "../../hooks/RecipeContainer";
 // import {useParams} from "react-router-dom";
 //
-// const CategoryViewComponent = () => {
+// const RecipeViewComponent = () => {
 //   const [category, setCategory] = useState();
 //   const {displayRecipesDetail} = categoryContainer();
 //   const params = useParams();
@@ -360,7 +368,7 @@ export default CategoryViewComponent;
 //   );
 // }
 //
-// export default CategoryViewComponent;
+// export default RecipeViewComponent;
 
 
 

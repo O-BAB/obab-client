@@ -1,13 +1,14 @@
 import RecipeService from "../service/RecipeService";
 import {useSetRecoilState} from "recoil";
-import {categoryTitleState, recipesState} from "../recoil/recipeState";
+import {categoryTitleState, recipeFormState, recipesState} from "../recoil/recipeState";
 import {useLocation} from "react-router-dom";
 
-const CategoryContainer = () => {
+const RecipeContainer = () => {
   const {connectRecipesList, connectRecipesDetail} = RecipeService();
   const { pathname } = useLocation();
   const setRecipes= useSetRecoilState(recipesState);
   const setCategoryTitle = useSetRecoilState(categoryTitleState);
+  const setRecipeForm = useSetRecoilState(recipeFormState);
   /**
    * 1) category 별 제목과 Recipe에 해당하는 리스트 출력
    * @param page 페이지 인덱스 번호
@@ -57,10 +58,24 @@ const CategoryContainer = () => {
    * @return {Promise<*>} 인덱스 결과 값
    */
   const displayRecipesDetail = async (id) => {
-    return await connectRecipesDetail(id);
+    const response = await connectRecipesDetail(id);
+    setRecipeForm(response)
   }
 
-  return {displayRecipesList, displayRecipesDetail}
+  /**
+   * (3) 날짜 형 변환
+   * @param date
+   * @return {string}
+   */
+  const handlerDateFormatter = (date) => {
+    return new Date(date).toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  return {displayRecipesList, displayRecipesDetail, handlerDateFormatter}
 }
 
-export default CategoryContainer;
+export default RecipeContainer;

@@ -1,11 +1,12 @@
 import React from 'react';
 import UserService from "../service/UserService";
-import {useSetRecoilState} from "recoil";
+import {useResetRecoilState, useSetRecoilState} from "recoil";
 import {userState} from "../recoil/userState";
 
 const UserContainer = () => {
   const { connectSignUp, connectLoginUser } = UserService();
   const setUser = useSetRecoilState(userState);
+  const resetUser = useResetRecoilState(userState);
 
   /**
    * (1) 회원가입
@@ -23,16 +24,35 @@ const UserContainer = () => {
 
   const handleLoginUser = async (email, password) => {
     const response = await connectLoginUser(email, password)
-    console.log(response)
+    /**
+     *    "userInfo": {
+     *       "id": number,
+     *       "email": string,
+     *       "name": null,
+     *       "nickname": null,
+     *       "profileImg": null,
+     *       "selfInfo": null,
+     *       "createdAt":
+     *       "updatedAt":
+     *     }
+     */
     if (!!response) {
       sessionStorage.setItem('accessToken', response?.data?.accessToken)
       sessionStorage.setItem('refreshToken', response?.data?.refreshToken)
+      setUser(response?.data?.userInfo);
       window.location.href = '/'
-      // setUser({email: response?.data?.email})
     }
   }
 
-  return { handleSignUp, handleLoginUser }
+  const handleLogout = () => {
+    sessionStorage.removeItem('accessToken')
+    sessionStorage.removeItem('refreshToken');
+    resetUser();
+  }
+
+
+
+  return { handleSignUp, handleLoginUser, handleLogout }
 }
 
 export default UserContainer;

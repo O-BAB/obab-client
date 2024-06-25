@@ -6,22 +6,21 @@ import MainImageSection from "../../component/recipe/form/MainImageSection";
 import IngredientsSection from "../../component/recipe/form/IngredientsSection";
 import SeasoningsSection from "../../component/recipe/form/SeasoningsSection";
 import SubItemsSection from "../../component/recipe/form/SubItemsSection";
+import RecipeContainer from "../../hooks/RecipeContainer";
+import {useParams} from "react-router-dom";
+import {useEffect} from "react";
 
 
 const RecipeFormPage = () => {
-  // const { displayRecipesDetail } = useCategory();
-  // const [category, setCategory] = useRecoilState(categoryState);
-  // const params = useParams();
+  const {displayRecipesDetail} = RecipeContainer();
+  const params = useParams();
 
-  // useEffect(() => {
-  //   displayRecipesDetail(params.id)
-  //     .then((res) => {
-  //       setCategory(res);
-  //     })
-  //     .catch((e) => {
-  //       console.error(e);
-  //     });
-  // }, [params.id, displayRecipesDetail, setCategory]);
+  useEffect(() => {
+    if (params?.id !== 'create') {
+      console.log(params?.id)
+      displayRecipesDetail(params?.id)
+    }
+  }, []);
 
   return (
     <>
