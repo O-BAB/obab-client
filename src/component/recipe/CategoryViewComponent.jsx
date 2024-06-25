@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, IconButton } from '@mui/material';
 import { Edit, Delete, Info } from '@mui/icons-material';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import categoryContainer from '../../hooks/CategoryContainer';
 
 const sampleCategoryData = {
+  id: 2,
   title: '특정 카테고리의 레시피',
   thumbnailUrl: '/images/siteinfo/siteinfo.webp',
   createdAt: "2024-05-14T17:58:57.658834",
@@ -59,6 +60,7 @@ function CategoryViewComponent() {
   const [recipe, setCategory] = useState(null);
   const { displayRecipesDetail, handlerDateFormatter } = categoryContainer();
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 실제 데이터 가져오기
@@ -75,12 +77,13 @@ function CategoryViewComponent() {
       });
   }, [params.id, displayRecipesDetail]);
 
-  const handleEdit = () => {
+  const handleEdit = (id) => {
     // 수정하기 핸들러 로직 추가
-    console.log('수정하기 클릭됨');
+    // console.log('수정하기 클릭됨');
+    navigate(`/recipe/form/${id}`);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     // 삭제하기 핸들러 로직 추가
     console.log('삭제하기 클릭됨');
   };
@@ -92,10 +95,10 @@ function CategoryViewComponent() {
       </h2>
       <div className="relative flex flex-col items-center">
         <div className="absolute top-4 right-4 flex space-x-2">
-          <IconButton color="primary" onClick={handleEdit}>
+          <IconButton color="primary" onClick={() => handleEdit(recipe?.id)}>
             <Edit/>
           </IconButton>
-          <IconButton color="secondary" onClick={handleDelete}>
+          <IconButton color="secondary" onClick={() => handleDelete(recipe?.id)}>
             <Delete/>
           </IconButton>
         </div>
