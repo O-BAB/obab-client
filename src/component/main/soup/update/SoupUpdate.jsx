@@ -23,7 +23,7 @@ const SoupUpdate = () => {
                             How to Make Korean Army Stew: A Step-by-Step Recipe
                         </p>
                     </div>
-                    <div class={styles.divider}></div>
+                    <div className={styles.divider}></div>
                     <div className={styles.dateandcomments}>
                         <p className={styles.date}>
                             March 5, 2024

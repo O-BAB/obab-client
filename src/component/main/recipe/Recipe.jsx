@@ -13,8 +13,8 @@ const Recipe = () => {
                         <div className={styles.hot_recipe_img_front}></div>
                         <div className={styles.hot_recipe_text}>
                             <h2><a href="https://10web-site.ai/61/real-gobbler/obab/">Title</a></h2>
-                            <div class={styles.divider}></div>
-                            <div class={styles.hot_recipe_span}>
+                            <div className={styles.divider}></div>
+                            <div className={styles.hot_recipe_span}>
                                 <span>March 5, 2024</span><span>|</span><span>author</span>
                             </div>
                             <p>Oneul-ui bab is a recipe blog that aims to help individuals create delicious meals using the ingredients they have in…</p>
@@ -29,8 +29,8 @@ const Recipe = () => {
                         <div className={styles.hot_recipe_img_front}></div>
                         <div className={styles.hot_recipe_text}>
                             <h2><a href="https://10web-site.ai/61/real-gobbler/obab/">Title</a></h2>
-                            <div class={styles.divider}></div>
-                            <div class={styles.hot_recipe_span}>
+                            <div className={styles.divider}></div>
+                            <div className={styles.hot_recipe_span}>
                             <span>March 5, 2024</span><span>|</span><span>author</span>
                             </div>
                             <p>Oneul-ui bab is a recipe blog that aims to help individuals create delicious meals using the ingredients they have in…</p>
