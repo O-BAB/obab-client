@@ -77,5 +77,3 @@ obab-client/
 ├── package.json
 └── README.md
 ```
-
-자세한 설명은 해당 디렉토리의 README.md 파일을 참조하십시오.
