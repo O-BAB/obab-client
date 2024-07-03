@@ -52,6 +52,7 @@ const MenuRecommendPage = () => {
         </div>
       </div>
       <div className="w-3/4 mt-10">
+        {/* 아래 Container 이하 부분도 분리 예정*/}
         <Container className="mx-auto p-4">
           <h2 className="text-xl font-semibold">직접 선택</h2>
           <Box className="bg-pink-100 p-6 rounded-lg shadow-md">
