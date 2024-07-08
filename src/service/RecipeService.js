@@ -3,24 +3,21 @@ import UseApi from "../util/UseApi";
 const RecipeService = () => {
 
   /**
-   * (1) API 연동 : GET /recipes/food-recipes, 카테고리별 목록 보기
+   * (1) API 연동 : GET /recipes/${categoryCD}-list, 카테고리별 목록 보기
    * @queryKey 리액트 쿼리에서 파라미터 받아오고 해당 파라미터 적용
    * @return {Promise<axios.AxiosResponse<any>>} : 성공 결과 값
    */
   const connectRecipesList = async ({queryKey}) => {
-    const [_key, { page, pageSize, categoryCD }] = queryKey;
-    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes`,{
-      params: {page, pageSize, categoryCD}
-    })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((e) => {
-        console.error(e);
-        return e;
-      });
+    // const [_key, { page, pageSize, categoryCD }] = queryKey;
+    const [_key, { categoryCD, page }] = queryKey;
+    // const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes`,{
+    // const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/${categoryCD}-list`,{
+    //   params: {page, pageSize, categoryCD}
+    // })
+    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/${categoryCD}-list?page=${page}`)
 
-    return response.data;
+    console.log(response)
+    return response?.data;
   }
 
 

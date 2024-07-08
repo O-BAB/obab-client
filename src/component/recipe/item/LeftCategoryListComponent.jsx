@@ -21,7 +21,7 @@ const LeftCategoryListComponent = () => {
         <Cup className="w-12 h-12 mb-2 text-gray-700 cursor-pointer" onClick={() => navigate('/recipe/form/create')}/>
       </div>
       {
-        recipes.map((data, index) =>
+        recipes?.map((data, index) =>
           <div key={index} className={`cursor-pointer`} onClick={() => {
             navigate(`/recipe/view/${data?.id}`)
           }}>

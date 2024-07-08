@@ -47,10 +47,14 @@ const RecipeContainer = () => {
   // 데이터 가공 함수
   const processRecipesList = (data) => {
     return {
-      recipes: data.data,
-      page: data.page,
-      pageSize: data.pageSize,
-      total: data.total,
+      count: data?.count,
+      next: data?.next,
+      previous: data?.previous,
+      results: data?.results,
+      // recipes: data.data,
+      // page: data.page,
+      // pageSize: data.pageSize,
+      // total: data.total,
     };
   };
 
@@ -73,7 +77,9 @@ const RecipeContainer = () => {
       {
         enabled: !!categoryCD,
         onSuccess: (data) => {
-          setRecipes(data.recipes);
+          console.log(data)
+          setRecipes(data?.results);
+          // setRecipes(data.recipes);
           setCategoryTitle(categoryTitle);
         }
       }
