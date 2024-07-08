@@ -16,13 +16,12 @@ const RecipeService = () => {
     // })
     const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/${categoryCD}-list?page=${page}`)
 
-    console.log(response)
     return response?.data;
   }
 
 
   /**
-   * (2) API 연동 : GET /recipes/food-recipes/{id}, 레시피 상세 조회
+   * (2) API 연동 : GET /recipes/{id}, 레시피 상세 조회
    * @param queryKey 쿼리키 받아옴
    * @return {Promise<axios.AxiosResponse<any>>}
    */
@@ -37,15 +36,9 @@ const RecipeService = () => {
       return null;
     }
 
-    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/food-recipes/${id}`)
-      .then((res) => {
-        return res.data;
-      })
-      .catch((e) => {
-        console.error(e);
-        return e;
-      })
+    const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/${id}`)
 
+    console.log(response)
     return response.data;
   }
 
