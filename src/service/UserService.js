@@ -63,12 +63,6 @@ const UserService = () => {
    */
   const connectLoginGoogle = async (code) => {
     let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/google/callback', {code: code})
-      .then((res) => {
-        return res
-      })
-      .catch(((e) => {
-        return null
-      }))
     return response.data;
   }
 
@@ -79,12 +73,6 @@ const UserService = () => {
    */
   const connectLoginNaver = async (code) => {
     let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/naver/callback', {code: code})
-      .then((res) => {
-        return res
-      })
-      .catch(((e) => {
-        return null
-      }))
     return response.data;
   }
 

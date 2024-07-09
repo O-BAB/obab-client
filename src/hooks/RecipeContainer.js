@@ -97,6 +97,7 @@ const RecipeContainer = () => {
       connectRecipesDetail, {
         enabled: !!id,
         onSuccess: (data) =>  {
+          console.log(data)
           setRecipeForm(data);
         }
       }

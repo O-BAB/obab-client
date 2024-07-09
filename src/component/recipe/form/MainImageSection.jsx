@@ -1,20 +1,23 @@
 import React from 'react';
-import {useRecoilState, useRecoilValue} from "recoil";
-import {mainImageFormState, recipeFormState} from "../../../recoil/recipeState";
+import { useRecoilState } from "recoil";
+import { mainImageFormState } from "../../../recoil/recipeState";
 import { IconButton, Typography } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 
-const MainImageSection = () => {
-  const recipeForm = useRecoilValue(recipeFormState);
+const MainImageSection = ({ recipeForm, setMainImageFile }) => {
   const [inputs, setInputs] = React.useState({});
   const [mainImageForm, setMainImageForm] = useRecoilState(mainImageFormState);
 
+  // Handle image change
   const handleMainImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setMainImageForm(URL.createObjectURL(e.target.files[0]));
+      const file = e.target.files[0];
+      setMainImageForm(URL.createObjectURL(file));
+      setMainImageFile(file);  // Set the file to state
     }
   };
 
+  // Handle input change
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputs({

@@ -1,11 +1,8 @@
 import React from 'react';
-import { useRecoilState } from "recoil";
-import { ingredientsFormState } from "../../../recoil/recipeState";
 import { Button, IconButton, TextField, Typography, Grid } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 
-const IngredientsSection = () => {
-  const [ingredientsForm, setIngredientsForm] = useRecoilState(ingredientsFormState);
+const IngredientsSection = ({ ingredientsForm, setIngredientsForm }) => {
 
   const handleIngredientChange = (index, field, value) => {
     const newIngredients = [...ingredientsForm];

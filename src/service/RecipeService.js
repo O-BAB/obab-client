@@ -38,8 +38,7 @@ const RecipeService = () => {
 
     const response = await UseApi.get(`${process.env.REACT_APP_API_ROOT}recipes/${id}`)
 
-    console.log(response)
-    return response.data;
+    return response?.data;
   }
 
   /**

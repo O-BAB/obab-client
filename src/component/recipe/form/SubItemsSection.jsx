@@ -1,11 +1,8 @@
 import React from 'react';
 import { Button, TextField, Card, CardContent, Grid, Typography, IconButton } from '@mui/material';
 import { PhotoCamera, Delete } from '@mui/icons-material';
-import { useRecoilState } from "recoil";
-import { subItemsFormState } from "../../../recoil/recipeState";
 
-const SubItemsSection = () => {
-  const [subItemsForm, setSubItemsForm] = useRecoilState(subItemsFormState);
+const SubItemsSection = ({ subItemsForm, setSubItemsForm }) => {
 
   const handleDescriptionChange = (index, e) => {
     setSubItemsForm(subItemsForm.map((item, i) =>
@@ -17,13 +14,13 @@ const SubItemsSection = () => {
     if (e.target.files && e.target.files[0]) {
       const newImageURL = URL.createObjectURL(e.target.files[0]);
       setSubItemsForm(subItemsForm.map((item, i) =>
-        i === index ? { ...item, image: newImageURL } : item
+        i === index ? { ...item, image: newImageURL, imageFile: e.target.files[0] } : item
       ));
     }
   };
 
   const handleAddSubItem = () => {
-    setSubItemsForm([...subItemsForm, { description: '', image: null }]);
+    setSubItemsForm([...subItemsForm, { description: '', image: null, imageFile: null }]);
   };
 
   const handleRemoveSubItem = (index) => {
