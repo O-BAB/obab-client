@@ -1,12 +1,9 @@
 import React from 'react';
-import {useRecoilValue} from "recoil";
-import {recipeFormState} from "../../../recoil/recipeState";
 
-const RecipeSubItems = () => {
-  const recipeForm = useRecoilValue(recipeFormState);
+function RecipeSubItems({ subItems }) {
   return (
     <div>
-      {recipeForm?.recipeSubItems?.map((data, index) => (
+      {subItems?.map((data, index) => (
         <div key={index} className="flex my-8 items-center">
           <div className="text-2xl font-bold w-1/12 text-center">{index + 1}</div>
           <div className="flex w-11/12 items-center">
