@@ -1,14 +1,11 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import {useRecoilState, useRecoilValue} from "recoil";
-import {recipeFormState} from "../../../recoil/recipeState";
-import recipeContainer from "../../../hooks/RecipeContainer";
 import {IconButton, Typography} from "@mui/material";
 import {Delete, Edit} from "@mui/icons-material";
+import recipeContainer from "../../../hooks/RecipeContainer";
 
-const RecipeHeader = () => {
+function RecipeHeader({ data }) {
   const navigate = useNavigate();
-  const recipeForm = useRecoilValue(recipeFormState);
   const { handlerDateFormatter } = recipeContainer();
 
   const handleEdit = (id) => {
@@ -24,23 +21,23 @@ const RecipeHeader = () => {
   return (
     <div className="relative flex flex-col items-center">
       <div className="absolute top-4 right-4 flex space-x-2">
-        <IconButton color="primary" onClick={() => handleEdit(recipeForm?.id)}>
+        <IconButton color="primary" onClick={() => handleEdit(data?.id)}>
           <Edit />
         </IconButton>
-        <IconButton color="secondary" onClick={() => handleDelete(recipeForm?.id)}>
+        <IconButton color="secondary" onClick={() => handleDelete(data?.id)}>
           <Delete />
         </IconButton>
       </div>
-      <img className="w-2/3 mx-auto" src={recipeForm?.thumbnailUrl} alt="Thumbnail" />
+      <img className="w-2/3 mx-auto" src={data?.thumbnailUrl} alt="Thumbnail" />
       <div className="w-2/3 mt-4 bg-white bg-opacity-75 text-black p-4 text-left">
         <Typography variant="h5" className="font-bold">
-          {`작성자: ${recipeForm?.user}`}
+          {`작성자: ${data?.user}`}
         </Typography>
         <Typography variant="subtitle1" className="mt-2">
-          {`${handlerDateFormatter(recipeForm?.createdAt)} | 좋아요 ${recipeForm?.likeCount}개`}
+          {`${handlerDateFormatter(data?.createdAt)} | 좋아요 ${data?.likeCount}개`}
         </Typography>
         <Typography variant="body1" className="mt-4">
-          {recipeForm?.intro}
+          {data?.intro}
         </Typography>
       </div>
     </div>

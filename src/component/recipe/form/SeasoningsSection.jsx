@@ -1,25 +1,43 @@
 import React from 'react';
-import { useRecoilState } from "recoil";
-import { seasoningsFormState } from "../../../recoil/recipeState";
 import { Button, IconButton, TextField, Typography, Grid } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 
-const SeasoningsSection = () => {
-  const [seasoningsForm, setSeasoningsForm] = useRecoilState(seasoningsFormState);
+const SeasoningsSection = ({ seasoningsForm, setSeasoningsForm }) => {
 
   const handleSeasoningChange = (index, field, value) => {
-    const newSeasonings = [...seasoningsForm];
-    newSeasonings[index][field] = value;
-    setSeasoningsForm(newSeasonings);
+    try {
+      if (index < 0 || index >= seasoningsForm.length) {
+        throw new Error(`Invalid index: ${index}`);
+      }
+      if (!['name', 'count', 'unit', 'etc'].includes(field)) {
+        throw new Error(`Invalid field: ${field}`);
+      }
+      const newSeasonings = [...seasoningsForm];
+      newSeasonings[index][field] = value;
+      setSeasoningsForm(newSeasonings);
+    } catch (error) {
+      console.error("Error updating seasoning:", error);
+    }
   };
 
   const handleAddSeasoning = () => {
-    setSeasoningsForm([...seasoningsForm, { name: '', count: '', unit: '', etc: '' }]);
+    try {
+      setSeasoningsForm([...seasoningsForm, { name: '', count: '', unit: '', etc: '' }]);
+    } catch (error) {
+      console.error("Error adding seasoning:", error);
+    }
   };
 
   const handleRemoveSeasoning = (index) => {
-    const newSeasonings = seasoningsForm.filter((_, i) => i !== index);
-    setSeasoningsForm(newSeasonings);
+    try {
+      if (index < 0 || index >= seasoningsForm.length) {
+        throw new Error(`Invalid index: ${index}`);
+      }
+      const newSeasonings = seasoningsForm.filter((_, i) => i !== index);
+      setSeasoningsForm(newSeasonings);
+    } catch (error) {
+      console.error("Error removing seasoning:", error);
+    }
   };
 
   return (
@@ -32,7 +50,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="재료 명"
-              value={seasoning?.name}
+              value={seasoning?.name || ''}
               onChange={(e) => handleSeasoningChange(index, 'name', e.target.value)}
             />
           </Grid>
@@ -41,8 +59,8 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="수량"
-              value={seasoning?.count}
-              onChange={(e) => handleSeasoningChange(index, 'quantity', e.target.value)}
+              value={seasoning?.count || ''}
+              onChange={(e) => handleSeasoningChange(index, 'count', e.target.value)}
             />
           </Grid>
           <Grid item xs={2}>
@@ -50,7 +68,7 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="단위"
-              value={seasoning?.unit}
+              value={seasoning?.unit || ''}
               onChange={(e) => handleSeasoningChange(index, 'unit', e.target.value)}
             />
           </Grid>
@@ -59,8 +77,8 @@ const SeasoningsSection = () => {
               fullWidth
               variant="outlined"
               placeholder="비고"
-              value={seasoning?.etc}
-              onChange={(e) => handleSeasoningChange(index, 'notes', e.target.value)}
+              value={seasoning?.etc || ''}
+              onChange={(e) => handleSeasoningChange(index, 'etc', e.target.value)}
             />
           </Grid>
           <Grid item xs={1}>

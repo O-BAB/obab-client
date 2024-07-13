@@ -63,7 +63,7 @@ const sampleCategoryData = {
   ],
 };
 
-const RecipeViewPage = () => {
+function RecipeViewPage() {
   const [recipeForm, setRecipeForm] = useRecoilState(recipeFormState);
   const {useRecipesDetailQuery} = RecipeContainer();
   const params = useParams();
@@ -95,11 +95,11 @@ const RecipeViewPage = () => {
         <h2 className="text-3xl font-bold text-center mb-4">
           {recipeForm?.title}
         </h2>
-        <RecipeHeader/>
-        <RecipeIngredients/>
+        <RecipeHeader data={recipeForm} />
+        <RecipeIngredients ingredients={recipeForm.recipeIngredients} />
         <div className="my-12 border-t-2 border-gray-300"></div>
-        <RecipeSubItems/>
-        <CookingItems/>
+        <RecipeSubItems subItems={recipeForm.recipeSubItems} />
+        <CookingItems cookingItems={recipeForm.cookingItems} />
       </div>
       <Footer/>
     </>
