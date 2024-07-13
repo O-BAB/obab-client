@@ -15,15 +15,34 @@ const UserContainer = () => {
    * @return {Promise<null>}
    */
   const handleSignUp = async (email, password) => {
-    const response = await connectSignUp(email, password)
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    const response = await connectSignUp(formData);
+    // const response = await connectSignUp(email, password)
+
     if (!!response) {
       window.location.href = '/'
     }
   }
 
 
+  /**
+   * (2) 로그인
+   * @param email
+   * @param password
+   * @return {Promise<void>}
+   */
   const handleLoginUser = async (email, password) => {
-    const response = await connectLoginUser(email, password)
+    const formData = new FormData();
+
+    formData.append("email", email);
+    formData.append("password", password);
+
+
+    const response = await connectLoginUser(formData)
+    // const response = await connectLoginUser(email, password)
     /**
      *    "userInfo": {
      *       "id": number,
@@ -37,9 +56,13 @@ const UserContainer = () => {
      *     }
      */
     if (!!response) {
-      sessionStorage.setItem('accessToken', response?.data?.accessToken)
-      sessionStorage.setItem('refreshToken', response?.data?.refreshToken)
-      setUser(response?.data?.userInfo);
+      sessionStorage.setItem('accessToken', response?.accessToken)
+      sessionStorage.setItem('refreshToken', response?.refreshToken)
+      setUser({
+        id: response?.id,
+        nickname: response?.nickname,
+        email: response?.email,
+      });
       window.location.href = '/'
     }
   }

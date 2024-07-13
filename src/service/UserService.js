@@ -8,17 +8,11 @@ const UserService = () => {
    * @param password
    * @return {Promise<null>}
    */
-  const connectSignUp = async (email, password) => {
-    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', {email: email, password: password})
-      .then((res) => {
-        alert('회원가입 성공!')
-        return res;
-      })
-      .catch((e) => {
-        alert('회원가입 실패!')
-        return null;
-      })
-    return response.data;
+  // const connectSignUp = async (email, password) => {
+  const connectSignUp = async (data) => {
+    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+
+    return response?.data;
   }
 
 
@@ -28,16 +22,16 @@ const UserService = () => {
    * @param password
    * @return {Promise<null>}
    */
-  const connectLoginUser = async (email, password) => {
-    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', {email: email, password: password})
+  const connectLoginUser = async (data) => {
+    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', data, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then((res) => {
-        alert('로그인 성공')
+        alert("로그인 성공")
         return res;
+      }).catch((e) => {
+        alert("로그인 실패")
       })
-      .catch((e) => {
-        return null;
-      })
-    return response.data;
+
+    return response?.data;
   }
 
   /**

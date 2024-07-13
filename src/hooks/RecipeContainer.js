@@ -2,14 +2,16 @@ import RecipeService from "../service/RecipeService";
 import {useSetRecoilState} from "recoil";
 import {categoryTitleState, recipeFormState, recipesState} from "../recoil/recipeState";
 import {useLocation} from "react-router-dom";
-import {useQuery} from "react-query";
+import {useMutation, useQuery, useQueryClient} from "react-query";
 
 const RecipeContainer = () => {
-  const {connectRecipesList, connectRecipesDetail} = RecipeService();
+  const {connectRecipesList, connectRecipesDetail, connectBasicCreate, connectBasicUpdate} = RecipeService();
   const { pathname } = useLocation();
   const setRecipes= useSetRecoilState(recipesState);
   const setCategoryTitle = useSetRecoilState(categoryTitleState);
   const setRecipeForm = useSetRecoilState(recipeFormState);
+
+  const queryClient = useQueryClient();
 
   /**
    * 코드 북 : 경로의 따라 제목 매핑
@@ -97,13 +99,31 @@ const RecipeContainer = () => {
       connectRecipesDetail, {
         enabled: !!id,
         onSuccess: (data) =>  {
-          console.log(data)
           setRecipeForm(data);
         }
       }
     )
   }
 
+  /**
+   * react-query : 기본 레시피 데이터 추가
+   * @type {UseMutationResult<axios.AxiosResponse<*>, unknown, void, unknown>}
+   */
+  const addBasicRecipeMutation = useMutation(connectBasicCreate, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('recipes');
+    },
+  });
+
+  /**
+   * react-query : 기본 레시피 데이터 수정
+   * @type {UseMutationResult<axios.AxiosResponse<*>, unknown, void, unknown>}
+   */
+  const updateBasicRecipeMutation = useMutation(connectBasicUpdate, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('recipes');
+    },
+  });
 
   // /**
   //  * (2) api 호출 - 음식 레시피 detail 부분
@@ -128,8 +148,20 @@ const RecipeContainer = () => {
     });
   }
 
+  /**
+   * (4) 레시피 등록/수정
+   */
+  const saveServerRecipe = async (data) => {
+    if (pathname.includes('create')) {
+      addBasicRecipeMutation.mutate(data);
+    } else {
+      const id = pathname.split('/').filter(Boolean).pop();
+      updateBasicRecipeMutation.mutate(id, data);
+    }
+  }
+
   // return {displayRecipesList, displayRecipesDetail, handlerDateFormatter}
-  return {useRecipesListQuery, useRecipesDetailQuery, handlerDateFormatter}
+  return {useRecipesListQuery, useRecipesDetailQuery, handlerDateFormatter, saveServerRecipe}
 }
 
 export default RecipeContainer;

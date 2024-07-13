@@ -2,34 +2,52 @@ import React from 'react';
 import { Button, TextField, Card, CardContent, Grid, Typography, IconButton } from '@mui/material';
 import { PhotoCamera, Delete } from '@mui/icons-material';
 
-const SubItemsSection = ({ subItemsForm, setSubItemsForm }) => {
+// ProcessSection 컴포넌트는 레시피의 각 과정 단계를 관리하고 표시하는 데 사용됩니다.
+// 각 과정 단계는 설명과 선택적인 이미지를 포함합니다.
+const ProcessSection = ({ inputs, setInputs }) => {
+  // 로컬 상태를 부모 컴포넌트의 상태에서 가져온 레시피 과정 단계로 초기화합니다.
+  const [processForm, setProcessForm] = React.useState(inputs?.recipeProcess || []);
 
+  // 로컬 상태가 변경될 때마다 부모 컴포넌트의 상태와 동기화합니다.
+  React.useEffect(() => {
+    setInputs({ ...inputs, recipeProcess: processForm });
+  }, [processForm]);
+
+  // 특정 과정 단계의 설명이 변경될 때 처리합니다.
   const handleDescriptionChange = (index, e) => {
-    setSubItemsForm(subItemsForm.map((item, i) =>
-      i === index ? { ...item, description: e.target.value } : item
-    ));
+    const newProcessForm = processForm.map((item, i) =>
+      i === index ? { ...item, content: e.target.value } : item
+    );
+    setProcessForm(newProcessForm);
   };
 
+  // 특정 과정 단계의 이미지가 변경될 때 처리합니다.
   const handleImageChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
       const newImageURL = URL.createObjectURL(e.target.files[0]);
-      setSubItemsForm(subItemsForm.map((item, i) =>
+      const newProcessForm = processForm.map((item, i) =>
         i === index ? { ...item, image: newImageURL, imageFile: e.target.files[0] } : item
-      ));
+      );
+      setProcessForm(newProcessForm);
     }
   };
 
+  // 새로운 과정 단계를 추가합니다.
   const handleAddSubItem = () => {
-    setSubItemsForm([...subItemsForm, { description: '', image: null, imageFile: null }]);
+    const newProcessForm = [...processForm, { content: '', image: null, imageFile: null }];
+    setProcessForm(newProcessForm);
   };
 
+  // 특정 과정 단계를 제거합니다.
   const handleRemoveSubItem = (index) => {
-    setSubItemsForm(subItemsForm.filter((_, i) => i !== index));
+    const newProcessForm = processForm.filter((_, i) => i !== index);
+    setProcessForm(newProcessForm);
   };
 
   return (
     <div className="mt-8">
-      {subItemsForm.map((item, index) => (
+      <Typography variant="h6" className="mb-2">조리방법</Typography>
+      {processForm.map((item, index) => (
         <Card key={index} className="mb-5">
           <CardContent>
             <Grid container spacing={3}>
@@ -45,7 +63,8 @@ const SubItemsSection = ({ subItemsForm, setSubItemsForm }) => {
                   label={`설명 ${index + 1}`}
                   variant="outlined"
                   multiline
-                  value={item.description}
+                  name='content'
+                  value={item?.content}
                   onChange={(e) => handleDescriptionChange(index, e)}
                   InputProps={{
                     style: {
@@ -110,4 +129,4 @@ const SubItemsSection = ({ subItemsForm, setSubItemsForm }) => {
   );
 };
 
-export default SubItemsSection;
+export default ProcessSection;

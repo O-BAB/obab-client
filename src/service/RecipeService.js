@@ -81,7 +81,7 @@ const RecipeService = () => {
    * @return {Promise<any>}
    */
   const connectConvenienceUpdate = async (id, data) => {
-    const response = await UseApi.put(`${process.env.REACT_APP_API_ROOT}recipes/convenience${id}`, data)
+    const response = await UseApi.patch(`${process.env.REACT_APP_API_ROOT}recipes/convenience${id}`, data)
       .then((res) => {
         return res;
       })
@@ -116,7 +116,7 @@ const RecipeService = () => {
    * @return {Promise<any>}
    */
   const connectBasicUpdate = async (id, data) => {
-    const response = await UseApi.put(`${process.env.REACT_APP_API_ROOT}recipes/basic`, data)
+    const response = await UseApi.patch(`${process.env.REACT_APP_API_ROOT}recipes/basic/${id}`, data)
       .then((res) => {
         return res;
       })
