@@ -7,9 +7,10 @@ import IngredientsSection from "../../component/recipe/form/IngredientsSection";
 import ProcessSection from "../../component/recipe/form/ProcessSection";
 import RecipeContainer from "../../hooks/RecipeContainer";
 import {useParams} from "react-router-dom";
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import {mainImageFormState, recipeFormState} from "../../recoil/recipeState";
 import {Button} from "@mui/material";
+import {userState} from "../../recoil/userState";
 
 const RecipeFormPage = () => {
   const {useRecipesDetailQuery, saveServerRecipe} = RecipeContainer();
@@ -17,6 +18,7 @@ const RecipeFormPage = () => {
   const {isLoading, isError} = useRecipesDetailQuery(params?.id);
 
   const [recipeForm, setRecipeForm] = useRecoilState(recipeFormState);
+  const user = useRecoilValue(userState);
 
   console.log(recipeForm)
 
@@ -31,41 +33,72 @@ const RecipeFormPage = () => {
     // 여기서 본격적으로 저장
     setRecipeForm(inputs);
 
-    const formData = new FormData();
-    formData.append('categoryCD', inputs?.categoryCD);
-    formData.append('title', inputs?.title);
-    formData.append('video', inputs?.video);
-    formData.append('intro', inputs?.intro);
-    formData.append('time', new Date().toLocaleDateString());
-    formData.append('people', inputs?.people);
-    formData.append('difficulty', inputs?.difficulty);
-
-    if (!!mainImageFile) {
-      formData.append('image', mainImageFile[0]);
+    let data = {
+      category: inputs?.category,
+      title: inputs?.title,
+      video: inputs?.video,
+      image: inputs?.image,
+      intro: inputs?.intro,
+      time: new Date().toLocaleDateString(),
+      people: inputs?.people,
+      difficulty: inputs?.difficulty,
     }
 
+
+    // const formData = new FormData();
+    // formData.append('categoryCD', inputs?.categoryCD);
+    // formData.append('title', inputs?.title);
+    // formData.append('video', inputs?.video);
+    // formData.append('intro', inputs?.intro);
+    // formData.append('time', new Date().toLocaleDateString());
+    // formData.append('people', inputs?.people);
+    // formData.append('difficulty', inputs?.difficulty);
+    //
+    // if (!!mainImageFile) {
+    //   formData.append('image', mainImageFile[0]);
+    // }
+
+    let arrIngre = [];
     for (let i = 0; i < inputs?.recipeIngredients.length; i++) {
       let recipeIngredients = inputs?.recipeIngredients[i];
       console.log(recipeIngredients);
       recipeIngredients = {
         ...recipeIngredients,
+        id: `${i+1}`,
         type: 'medium'
       } // 임시로 하드 코딩으로 박음, 원래는 이렇게 하면 안됨
-      formData.append('recipeIngredients', recipeIngredients);
+
+      arrIngre.push(recipeIngredients);
+      // formData.append('recipeIngredients', recipeIngredients);
     }
 
+
+
+    let arrPro = [];
     for (let i = 0; i < inputs?.recipeProcess.length; i++) {
       let recipeProcess = inputs?.recipeProcess[i];
 
       recipeProcess = {
         ...recipeProcess,
-        order: (i+1)
+        order: (i+1),
+        id: `${i+1}`
       } // 순차적으로 저장
-      formData.append('recipeProcess', recipeProcess);
+
+      arrPro.push(recipeProcess);
+
+      // formData.append('recipeProcess', recipeProcess);
+    }
+
+
+    data = {
+      ...data,
+      recipeIngredients: arrIngre,
+      recipeProcess: arrPro,
     }
     // API 호출 - 유저 인덱스 번호, 보낼 데이터
     //        현재는 테스트 진행을 위해 일부로 하드코딩으로 보냄
-    await saveServerRecipe(1, formData);
+    // await saveServerRecipe(1, formData);
+    await saveServerRecipe(user?.id, data);
     // await saveServerRecipe(formData);
   };
 

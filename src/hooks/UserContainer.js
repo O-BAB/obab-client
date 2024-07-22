@@ -1,10 +1,9 @@
-import React from 'react';
 import UserService from "../service/UserService";
 import {useResetRecoilState, useSetRecoilState} from "recoil";
 import {userState} from "../recoil/userState";
 
 const UserContainer = () => {
-  const { connectSignUp, connectLoginUser } = UserService();
+  const {connectSignUp, connectLoginUser, connectLogout} = UserService();
   const setUser = useSetRecoilState(userState);
   const resetUser = useResetRecoilState(userState);
 
@@ -58,24 +57,35 @@ const UserContainer = () => {
     if (!!response) {
       sessionStorage.setItem('accessToken', response?.accessToken)
       sessionStorage.setItem('refreshToken', response?.refreshToken)
+
+      // const accessJwtDecoded = jwtDecode(response?.accessToken);
+      // const refreshJwtDecoded = jwtDecode(response?.accessToken);
+
       setUser({
         id: response?.id,
         nickname: response?.nickname,
         email: response?.email,
       });
-      window.location.href = '/'
+      // window.location.href = '/'
     }
   }
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('accessToken')
-    sessionStorage.removeItem('refreshToken');
-    resetUser();
+  const handleLogout = async () => {
+    await connectLogout()
+      .then(() => {
+        alert("로그아웃 성공")
+        sessionStorage.removeItem('accessToken')
+        sessionStorage.removeItem('refreshToken');
+        resetUser();
+      })
+      .catch((e) => {
+        alert("로그아웃 실패")
+        throw e;
+      });
   }
 
 
-
-  return { handleSignUp, handleLoginUser, handleLogout }
+  return {handleSignUp, handleLoginUser, handleLogout}
 }
 
 export default UserContainer;

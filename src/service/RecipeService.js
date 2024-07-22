@@ -98,6 +98,7 @@ const RecipeService = () => {
    * @return {Promise<any>}
    */
   const connectBasicCreate = async (data) => {
+    console.log(data);
     const response = await UseApi.post(`${process.env.REACT_APP_API_ROOT}recipes/basic`, data)
       .then((res) => {
         return res;

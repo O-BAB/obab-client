@@ -153,6 +153,7 @@ const RecipeContainer = () => {
    */
   const saveServerRecipe = async (data) => {
     if (pathname.includes('create')) {
+      console.log(data)
       addBasicRecipeMutation.mutate(data);
     } else {
       const id = pathname.split('/').filter(Boolean).pop();

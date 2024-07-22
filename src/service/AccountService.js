@@ -30,7 +30,7 @@ function AccountService(props) {
    * @return {Promise<*>}
    */
   const connectUserInfoWrite = async (page) => {
-    const response = UseApi.get(`${process.env.REACT_APP_API_URL}/account/userinfo/wrire/${page}`);
+    const response = UseApi.get(`${process.env.REACT_APP_API_URL}/account/userinfo/write/${page}`);
 
     return response?.data
   }
