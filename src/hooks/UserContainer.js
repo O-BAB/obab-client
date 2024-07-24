@@ -66,22 +66,33 @@ const UserContainer = () => {
         nickname: response?.nickname,
         email: response?.email,
       });
-      // window.location.href = '/'
+      window.location.href = '/'
     }
   }
 
+  /**
+   * (3) 로그아웃 로직 적용
+   * @return {Promise<void>}
+   */
   const handleLogout = async () => {
-    await connectLogout()
-      .then(() => {
-        alert("로그아웃 성공")
-        sessionStorage.removeItem('accessToken')
-        sessionStorage.removeItem('refreshToken');
-        resetUser();
-      })
-      .catch((e) => {
-        alert("로그아웃 실패")
-        throw e;
-      });
+    alert("로그아웃 성공")
+    sessionStorage.removeItem('accessToken')
+    sessionStorage.removeItem('refreshToken');
+    resetUser();
+
+    // 원래는 accessToken과 refreshToken을 끊어줘야 한다.
+    // 현재는 아직 에러가 나기 때문에 임시방편으로 심플 로그아웃 처리함
+    // await connectLogout()
+    //   .then(() => {
+    //     alert("로그아웃 성공")
+    //     sessionStorage.removeItem('accessToken')
+    //     sessionStorage.removeItem('refreshToken');
+    //     resetUser();
+    //   })
+    //   .catch((e) => {
+    //     alert("로그아웃 실패")
+    //     throw e;
+    //   });
   }
 
 

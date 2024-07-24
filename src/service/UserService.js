@@ -70,8 +70,14 @@ const UserService = () => {
     return response.data;
   }
 
+  /**
+   * (6) 로그아웃 - 토큰 끊기 API
+   * @param code
+   * @return {Promise<any>}
+   */
   const connectLogout = async (code) => {
     const response = await UseApi.get(process.env.REACT_APP_API_ROOT + 'accounts/users/logout/');
+    console.log(response)
     return response?.data;
   }
 
