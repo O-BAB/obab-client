@@ -56,12 +56,12 @@ instance.interceptors.request.use(
     if (
       ("Bearer null" === config.headers["Authorization"] ||
         undefined === config.headers["Authorization"]) &&
-      null !== sessionStorage.getItem("token")
+      null !== sessionStorage.getItem("accessToken")
     ) {
       instance.defaults.headers["Authorization"] =
-        "Bearer " + sessionStorage.getItem("token");
+        "Bearer " + sessionStorage.getItem("accessToken");
       config.headers["Authorization"] =
-        "Bearer " + sessionStorage.getItem("token");
+        "Bearer " + sessionStorage.getItem("accessToken");
     }
     return config;
   },
@@ -121,7 +121,7 @@ instance.interceptors.response.use(
           .then((res) => res.json())
           .then((res) => {
             if (res.status !== 401 && res.status !== 417) {
-              sessionStorage.setItem("token",res.data.data)
+              sessionStorage.setItem("accessToken",res.data.data)
               sessionStorage.setItem("refreshToken",res.data.data)
 
               // Default Instance Header update
@@ -139,7 +139,7 @@ instance.interceptors.response.use(
             } else {
               delete instance.defaults.headers["Authorization"];
 
-              sessionStorage.removeItem("token")
+              sessionStorage.removeItem("accessToken")
               sessionStorage.removeItem("refreshToken")
 
               isTokenRefreshing = false;
@@ -151,7 +151,7 @@ instance.interceptors.response.use(
           .catch((e) => {
             delete instance.defaults.headers["Authorization"];
 
-            sessionStorage.removeItem("token")
+            sessionStorage.removeItem("accessToken")
             sessionStorage.removeItem("refreshToken")
 
             isTokenRefreshing = false;

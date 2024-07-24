@@ -53,10 +53,6 @@ const RecipeContainer = () => {
       next: data?.next,
       previous: data?.previous,
       results: data?.results,
-      // recipes: data.data,
-      // page: data.page,
-      // pageSize: data.pageSize,
-      // total: data.total,
     };
   };
 
@@ -79,7 +75,6 @@ const RecipeContainer = () => {
       {
         enabled: !!categoryCD,
         onSuccess: (data) => {
-          console.log(data)
           setRecipes(data?.results);
           // setRecipes(data.recipes);
           setCategoryTitle(categoryTitle);
@@ -119,7 +114,7 @@ const RecipeContainer = () => {
    * react-query : 기본 레시피 데이터 수정
    * @type {UseMutationResult<axios.AxiosResponse<*>, unknown, void, unknown>}
    */
-  const updateBasicRecipeMutation = useMutation(connectBasicUpdate, {
+  const updateBasicRecipeMutation = useMutation(({id, data}) => connectBasicUpdate({id, data}), {
     onSuccess: () => {
       queryClient.invalidateQueries('recipes');
     },
@@ -152,11 +147,13 @@ const RecipeContainer = () => {
    * (4) 레시피 등록/수정
    */
   const saveServerRecipe = async (data) => {
+    console.log(data)
     if (pathname.includes('create')) {
       addBasicRecipeMutation.mutate(data);
     } else {
       const id = pathname.split('/').filter(Boolean).pop();
-      updateBasicRecipeMutation.mutate(id, data);
+      console.log(id)
+      updateBasicRecipeMutation.mutate({id, data});
     }
   }
 

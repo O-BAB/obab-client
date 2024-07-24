@@ -5,49 +5,48 @@ import { PhotoCamera, Delete } from '@mui/icons-material';
 // ProcessSection 컴포넌트는 레시피의 각 과정 단계를 관리하고 표시하는 데 사용됩니다.
 // 각 과정 단계는 설명과 선택적인 이미지를 포함합니다.
 const ProcessSection = ({ inputs, setInputs }) => {
-  // 로컬 상태를 부모 컴포넌트의 상태에서 가져온 레시피 과정 단계로 초기화합니다.
-  const [processForm, setProcessForm] = React.useState(inputs?.recipeProcess || []);
-
-  // 로컬 상태가 변경될 때마다 부모 컴포넌트의 상태와 동기화합니다.
-  React.useEffect(() => {
-    setInputs({ ...inputs, recipeProcess: processForm });
-  }, [processForm]);
-
   // 특정 과정 단계의 설명이 변경될 때 처리합니다.
-  const handleDescriptionChange = (index, e) => {
-    const newProcessForm = processForm.map((item, i) =>
-      i === index ? { ...item, content: e.target.value } : item
-    );
-    setProcessForm(newProcessForm);
+  const handleDescriptionChange = (index, field, value) => {
+    const newProcessForm = [...inputs?.recipeProcess];
+    newProcessForm[index][field] = value;
+    setInputs({...inputs, recipeProcess: newProcessForm});
   };
 
   // 특정 과정 단계의 이미지가 변경될 때 처리합니다.
   const handleImageChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
       const newImageURL = URL.createObjectURL(e.target.files[0]);
-      const newProcessForm = processForm.map((item, i) =>
+      const newProcessForm = inputs?.recipeProcess.map((item, i) =>
         i === index ? { ...item, image: newImageURL, imageFile: e.target.files[0] } : item
       );
-      setProcessForm(newProcessForm);
+      setInputs({ ...inputs, recipeProcess: newProcessForm });
     }
   };
 
   // 새로운 과정 단계를 추가합니다.
   const handleAddSubItem = () => {
-    const newProcessForm = [...processForm, { content: '', image: null, imageFile: null }];
-    setProcessForm(newProcessForm);
+    setInputs({
+      ...inputs,
+      recipeProcess: [
+        ...inputs?.recipeProcess,
+        { content: '', image: null, imageFile: null }
+      ],
+    });
   };
 
   // 특정 과정 단계를 제거합니다.
   const handleRemoveSubItem = (index) => {
-    const newProcessForm = processForm.filter((_, i) => i !== index);
-    setProcessForm(newProcessForm);
+    const newProcessForm = inputs?.recipeProcess.filter((_, i) => i !== index);
+    setInputs({
+      ...inputs,
+      recipeProcess: newProcessForm
+    });
   };
 
   return (
     <div className="mt-8">
       <Typography variant="h6" className="mb-2">조리방법</Typography>
-      {processForm.map((item, index) => (
+      {inputs?.recipeProcess.map((item, index) => (
         <Card key={index} className="mb-5">
           <CardContent>
             <Grid container spacing={3}>
@@ -65,7 +64,7 @@ const ProcessSection = ({ inputs, setInputs }) => {
                   multiline
                   name='content'
                   value={item?.content}
-                  onChange={(e) => handleDescriptionChange(index, e)}
+                  onChange={(e) => handleDescriptionChange(index, 'content', e.target.value)}
                   InputProps={{
                     style: {
                       height: '200px',
@@ -87,7 +86,7 @@ const ProcessSection = ({ inputs, setInputs }) => {
                 <div className="relative" style={{ width: '100%', height: '200px' }}>
                   {item.image ? (
                     <img
-                      src={item.image}
+                      src={typeof item.image === 'string' ? item.image : URL.createObjectURL(item.image)}
                       alt={`Uploaded ${index + 1}`}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />

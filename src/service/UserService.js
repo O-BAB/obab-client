@@ -10,7 +10,7 @@ const UserService = () => {
    */
   // const connectSignUp = async (email, password) => {
   const connectSignUp = async (data) => {
-    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', data, { headers: { 'Content-Type': 'multipart/form-data' } });
 
     return response?.data;
   }
@@ -23,7 +23,7 @@ const UserService = () => {
    * @return {Promise<null>}
    */
   const connectLoginUser = async (data) => {
-    let response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', data, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then((res) => {
         alert("로그인 성공")
         return res;
@@ -40,7 +40,7 @@ const UserService = () => {
    * @return {Promise<*>}
    */
   const connectLoginKakao = async (code) => {
-    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/kakao/callback', {code: code})
+    const response = await UseApi.get(process.env.REACT_APP_API_ROOT + 'accounts/kakao/callback', {code: code})
       .then((res) => {
         return res
       })
@@ -56,7 +56,7 @@ const UserService = () => {
    * @return {Promise<*>}
    */
   const connectLoginGoogle = async (code) => {
-    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/google/callback', {code: code})
+    const response = await UseApi.get(process.env.REACT_APP_API_ROOT + 'accounts/google/callback', {code: code})
     return response.data;
   }
 
@@ -66,12 +66,23 @@ const UserService = () => {
    * @return {Promise<*>}
    */
   const connectLoginNaver = async (code) => {
-    let response = await UseApi(process.env.REACT_APP_API_ROOT + 'accounts/naver/callback', {code: code})
+    const response = await UseApi.get(process.env.REACT_APP_API_ROOT + 'accounts/naver/callback', {code: code})
     return response.data;
   }
 
+  /**
+   * (6) 로그아웃 - 토큰 끊기 API
+   * @param code
+   * @return {Promise<any>}
+   */
+  const connectLogout = async (code) => {
+    const response = await UseApi.get(process.env.REACT_APP_API_ROOT + 'accounts/users/logout/');
+    console.log(response)
+    return response?.data;
+  }
 
-  return { connectSignUp, connectLoginUser, connectLoginKakao, connectLoginGoogle, connectLoginNaver }
+
+  return { connectSignUp, connectLoginUser, connectLoginKakao, connectLoginGoogle, connectLoginNaver, connectLogout }
 }
 
 export default UserService;

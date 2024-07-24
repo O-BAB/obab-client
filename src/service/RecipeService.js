@@ -98,6 +98,7 @@ const RecipeService = () => {
    * @return {Promise<any>}
    */
   const connectBasicCreate = async (data) => {
+    console.log(data);
     const response = await UseApi.post(`${process.env.REACT_APP_API_ROOT}recipes/basic`, data)
       .then((res) => {
         return res;
@@ -115,8 +116,12 @@ const RecipeService = () => {
    * @param data
    * @return {Promise<any>}
    */
-  const connectBasicUpdate = async (id, data) => {
-    const response = await UseApi.patch(`${process.env.REACT_APP_API_ROOT}recipes/basic/${id}`, data)
+  const connectBasicUpdate = async ({id, data}) => {
+    const response = await UseApi.patch(`${process.env.REACT_APP_API_ROOT}recipes/basic/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
       .then((res) => {
         return res;
       })
