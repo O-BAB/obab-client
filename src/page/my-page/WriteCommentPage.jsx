@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardContent, Grid, Typography} from "@mui/material";
 import {CardList} from "react-bootstrap-icons";
+import AccountContainer from "../../hooks/AccountContainer";
 
 const WriteCommentPage = () => {
   const comments = [
@@ -11,6 +12,13 @@ const WriteCommentPage = () => {
     { user: '곰돌이곰곰', ip: '111.111.xxx.111', date: '2024-01-11 21:59', content: '오늘도 양질의 포스터를 보고 갑니다.', category: '소프트웨어 아키텍처' },
     { user: '곰돌이곰곰', ip: '111.111.xxx.111', date: '2024-01-11 21:59', content: '오늘도 양질의 포스터를 보고 갑니다.', category: '소프트웨어 아키텍처' },
   ];
+
+  const { useUserComment } = AccountContainer();
+  const page = 1;
+  const { isError, isLoading } = useUserComment(page);
+
+  if (isLoading) <div>isLoading....</div>
+  if (isError) <div>error</div>
 
   return (
     <div className="py-5 px-5">

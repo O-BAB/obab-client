@@ -1,6 +1,8 @@
 import React from 'react';
 import {styled} from "@mui/system";
 import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
+import AccountService from "../../service/AccountService";
+import AccountContainer from "../../hooks/AccountContainer";
 
 const CardStyled = styled(Card)({
   display: 'flex',
@@ -19,6 +21,12 @@ const CardMediaStyled = styled(CardMedia)({
  * @constructor
  */
 function InterestedBoardPage () {
+  const { useBookmark } = AccountContainer();
+  const page = 1;
+  const { isError, isLoading } = useBookmark(page);
+
+  if (isLoading) <div>isLoading....</div>
+  if (isError) <div>error</div>
   return (
     <Container maxWidth="lg" className={`mt-8`}>
       <Grid container spacing={4} className="mt-8">

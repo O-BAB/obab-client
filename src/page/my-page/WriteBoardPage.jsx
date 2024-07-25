@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 import {styled} from "@mui/system";
+import AccountContainer from "../../hooks/AccountContainer";
 
 const CardStyled = styled(Card)({
   display: 'flex',
@@ -14,6 +15,13 @@ const CardMediaStyled = styled(CardMedia)({
 });
 
 const WriteBoardPage = () => {
+  const { useUserinfoWrite } = AccountContainer();
+  const page = 1;
+  const { isError, isLoading } = useUserinfoWrite(page);
+
+  if (isLoading) <div>isLoading....</div>
+  if (isError) <div>error</div>
+
   return (
     <Container maxWidth="lg" className={`mt-8`}>
       <Grid container spacing={4} className="mt-8">
