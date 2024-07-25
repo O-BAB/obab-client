@@ -92,8 +92,9 @@ const RecipeContainer = () => {
     return useQuery(
       ['recipeForm', {id}],
       connectRecipesDetail, {
-        enabled: !!id,
+        // enabled: !!id,
         onSuccess: (data) =>  {
+          console.log(data)
           setRecipeForm(data);
         }
       }
