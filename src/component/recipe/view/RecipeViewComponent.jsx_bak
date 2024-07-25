@@ -134,16 +134,16 @@ function RecipeViewComponent() {
       <div className="my-12 border-t-2 border-gray-300"></div>
 
       <div>
-        {recipe?.recipeSubItems?.map((data, index) => (
+        {recipe?.recipeSubItems?.map((interestedBoardData, index) => (
           <div key={index} className="flex my-8 items-center">
             <div className="text-2xl font-bold w-1/12 text-center">{index + 1}</div>
             <div className="flex w-11/12 items-center">
               <div className="w-3/4">
-                <p className="text-xl font-bold mb-2">{data.recipeProcess}</p>
-                <p className="text-lg text-gray-600">{data.recipeComment}</p>
+                <p className="text-xl font-bold mb-2">{interestedBoardData.recipeProcess}</p>
+                <p className="text-lg text-gray-600">{interestedBoardData.recipeComment}</p>
               </div>
               <div className="w-1/4 flex justify-center">
-                <img className="w-full h-auto" src={data.recipeImage} alt={`Recipe ${index + 1}`}/>
+                <img className="w-full h-auto" src={interestedBoardData.recipeImage} alt={`Recipe ${index + 1}`}/>
               </div>
             </div>
           </div>
@@ -220,7 +220,7 @@ export default RecipeViewComponent;
 //             {/* 반복문으로 뺄 것! */}
 //
 //             {
-//               category?.recipeIngredients?.map((data, index) =>
+//               category?.recipeIngredients?.map((interestedBoardData, index) =>
 //                 <li>
 //                   <div className={`flex flex-row justify-items-center items-center`}>
 //                     <div className={`flex-col justify-center`}>{`간장`}</div>
@@ -301,13 +301,13 @@ export default RecipeViewComponent;
 //         그리구 차후에 UI 재조정 다시 할 것!!
 //         */}
 //       {/*{*/}
-//       {/*  recipe?.recipeSubItem.map((data, index) =>*/}
+//       {/*  recipe?.recipeSubItem.map((interestedBoardData, index) =>*/}
 //       {/*    <div key={index} className={styles.post_item}>*/}
 //       {/*      <div>{(index+1)}</div>*/}
 //       {/*      <div className={styles.post_content}>*/}
-//       {/*        <p>{data?.recipeProcess}</p>*/}
-//       {/*        <p>{data?.recipeComment}</p>*/}
-//       {/*        <img className={styles.post_img} src={data?.recipeImage} alt="Site I2nfo"/>*/}
+//       {/*        <p>{interestedBoardData?.recipeProcess}</p>*/}
+//       {/*        <p>{interestedBoardData?.recipeComment}</p>*/}
+//       {/*        <img className={styles.post_img} src={interestedBoardData?.recipeImage} alt="Site I2nfo"/>*/}
 //       {/*      </div>*/}
 //       {/*    </div>*/}
 //       {/*  )*/}

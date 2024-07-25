@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Grid, Typography, Card, CardContent, CardMedia } from '@mui/material';
-import { styled } from '@mui/system';
-import 'tailwindcss/tailwind.css';
+import {styled} from "@mui/system";
+import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 
 const CardStyled = styled(Card)({
   display: 'flex',
@@ -14,8 +13,12 @@ const CardMediaStyled = styled(CardMedia)({
   paddingTop: '56.25%', // 16:9 비율
 });
 
-
-const InterestedBoardWebComponent = () => {
+/**
+ * 메인 부분
+ * @return {Element}
+ * @constructor
+ */
+function InterestedBoardPage () {
   return (
     <Container maxWidth="lg" className={`mt-8`}>
       <Grid container spacing={4} className="mt-8">
@@ -46,7 +49,7 @@ const InterestedBoardWebComponent = () => {
         </Grid>
       </Grid>
     </Container>
-  );
+  )
 }
 
-export default InterestedBoardWebComponent;
+export default InterestedBoardPage;

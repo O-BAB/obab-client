@@ -119,7 +119,7 @@ const RecipeService = () => {
   const connectBasicUpdate = async ({id, data}) => {
     const response = await UseApi.patch(`${process.env.REACT_APP_API_ROOT}recipes/basic/${id}`, data, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-interestedBoardData',
       },
     })
       .then((res) => {

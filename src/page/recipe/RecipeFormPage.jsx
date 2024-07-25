@@ -37,7 +37,7 @@ const RecipeFormPage = () => {
   }, [recipeForm])
 
 
-  // Handle save action to send data to the server
+  // Handle save action to send interestedBoardData to the server
   const handleSave = async () => {
     // 여기서 본격적으로 저장
     setRecipeForm(inputs);

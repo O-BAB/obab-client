@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import NavbarComponent from "../../../component/common/navbar/NavbarComponent";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {innerWidthState} from "../../../recoil/commomState";
-import MyPageUpComponent from "../../../component/my/page/mobile/item/MyPageUpComponent";
-import MyPageDownComponent from "../../../component/my/page/mobile/item/MyPageDownComponent";
-import MyPageLeftComponent from "../../../component/my/page/web/item/MyPageLeftComponent";
-import MyPageRightComponent from "../../../component/my/page/web/item/MyPageRightComponent";
+import MyPageUpComponent from "../../../component/my-page/mobile/item/MyPageUpComponent";
+import MyPageDownComponent from "../../../component/my-page/mobile/item/MyPageDownComponent";
+import MyPageLeftComponent from "../../../component/my-page/web/item/MyPageLeftComponent";
+import MyPageRightComponent from "../../../component/my-page/web/item/MyPageRightComponent";
 
 const MyPageLayout = () => {
   const innerWidth = useRecoilValue(innerWidthState)

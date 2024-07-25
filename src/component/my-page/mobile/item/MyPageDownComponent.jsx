@@ -1,6 +1,6 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import MyPageContainer from "../../../../../hooks/MyPageContainer";
+import MyPageContainer from "../../../../hooks/MyPageContainer";
 
 const MyPageDownComponent = () => {
   const {onClickMyPageMenuBar} = MyPageContainer();
