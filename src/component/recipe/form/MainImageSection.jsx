@@ -4,22 +4,25 @@ import { PhotoCamera } from "@mui/icons-material";
 
 // MainImageSection 컴포넌트는 메인 이미지를 관리하고 표시하는 데 사용됩니다.
 const MainImageSection = ({ setMainImageFile, mainImageForm, setMainImageForm, inputs, setInputs }) => {
-  const [recipeForm, setRecipeForm] = useState(inputs || {});
-
   // 이미지 변경 처리 함수
   const handleMainImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setMainImageForm(URL.createObjectURL(file));
-      setMainImageFile(file);  // 파일을 상태로 설정
+      // setMainImageFile(file);  // 파일을 상태로 설정
+      setInputs({
+        ...inputs,
+        thumnail: file,
+      });  // 파일을 상태로 설정
+      console.log(file)
     }
   };
 
   // 입력 변경 처리 함수
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setRecipeForm({
-      ...recipeForm,
+    setInputs({
+      ...inputs,
       [name]: value
     });
   }
@@ -38,7 +41,7 @@ const MainImageSection = ({ setMainImageFile, mainImageForm, setMainImageForm, i
             <Select
               labelId="category-label"
               id="category-select"
-              defaultValue={recipeForm?.categoryCD || ""}
+              defaultValue={inputs?.categoryCD || ""}
               onChange={handleOnChange}
               label="카테고리"
               name="categoryCD"
@@ -55,22 +58,22 @@ const MainImageSection = ({ setMainImageFile, mainImageForm, setMainImageForm, i
         <div className="flex items-center mb-4">
           <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">요리 제목</Typography>
           <input className="w-4/5 border border-gray-300 p-2" type="text" placeholder="요리 제목"
-                 defaultValue={recipeForm?.title} onChange={handleOnChange} name="title" />
+                 defaultValue={inputs?.title} onChange={handleOnChange} name="title" />
         </div>
         <div className="flex items-center mb-4">
           <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">요리 소개</Typography>
           <input className="w-4/5 border border-gray-300 p-2" type="text" placeholder="요리 소개"
-                 defaultValue={recipeForm?.intro} onChange={handleOnChange} name="intro" />
+                 defaultValue={inputs?.intro} onChange={handleOnChange} name="intro" />
         </div>
         <div className="flex items-center mb-4">
           <Typography className="w-1/5 min-w-[80px] text-right pr-4" variant="h6">동영상 링크</Typography>
           <input className="w-4/5 border border-gray-300 p-2" type="text" placeholder="동영상 링크"
-                 defaultValue={recipeForm?.video} onChange={handleOnChange} name="video" />
+                 defaultValue={inputs?.video} onChange={handleOnChange} name="video" />
         </div>
       </div>
       <div className={`relative flex justify-center items-center ${mainImageForm ? '' : 'bg-blue-500'} h-64 border-2 border-gray-300`}>
-        {mainImageForm || recipeForm?.thumnail ? (
-          <img src={mainImageForm || recipeForm?.thumnail} alt="Main" className="absolute inset-0 w-full h-full object-cover" />
+        {mainImageForm || inputs?.thumnail ? (
+          <img src={mainImageForm || inputs?.thumnail} alt="Main" className="absolute inset-0 w-full h-full object-cover" />
         ) : (
           <Typography variant="h6" color="white">이미지 공간</Typography>
         )}

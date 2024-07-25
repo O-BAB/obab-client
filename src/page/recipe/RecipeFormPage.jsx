@@ -15,7 +15,7 @@ import {userState} from "../../recoil/userState";
 const RecipeFormPage = () => {
   const {useRecipesDetailQuery, saveServerRecipe} = RecipeContainer();
   const params = useParams();
-  const { data: recipeData, isLoading, isError } = useRecipesDetailQuery(params?.id, {
+  const { isLoading, isError } = useRecipesDetailQuery(params?.id, {
     staleTime: 1000 * 60 * 5 // 5 minutes
   });
 
@@ -33,8 +33,8 @@ const RecipeFormPage = () => {
 
   // Update local state when recipeData is loaded
   useEffect(() => {
-    setInputs(recipeData);
-  }, [])
+    setInputs(recipeForm);
+  }, [recipeForm])
 
 
   // Handle save action to send data to the server

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, TextField, Card, CardContent, Grid, Typography, IconButton } from '@mui/material';
 import { PhotoCamera, Delete } from '@mui/icons-material';
 
 // ProcessSection 컴포넌트는 레시피의 각 과정 단계를 관리하고 표시하는 데 사용됩니다.
 // 각 과정 단계는 설명과 선택적인 이미지를 포함합니다.
 const ProcessSection = ({ inputs, setInputs }) => {
+  const [previewImage, setPreviewImage] = useState(null)
   // 특정 과정 단계의 설명이 변경될 때 처리합니다.
   const handleDescriptionChange = (index, field, value) => {
     const newProcessForm = [...inputs?.recipeProcess];
@@ -15,9 +16,9 @@ const ProcessSection = ({ inputs, setInputs }) => {
   // 특정 과정 단계의 이미지가 변경될 때 처리합니다.
   const handleImageChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
-      const newImageURL = URL.createObjectURL(e.target.files[0]);
+      setPreviewImage(URL.createObjectURL(e.target.files[0]));
       const newProcessForm = inputs?.recipeProcess.map((item, i) =>
-        i === index ? { ...item, image: newImageURL, imageFile: e.target.files[0] } : item
+        i === index ? { ...item, image: e.target.files[0] } : item
       );
       setInputs({ ...inputs, recipeProcess: newProcessForm });
     }
@@ -28,7 +29,7 @@ const ProcessSection = ({ inputs, setInputs }) => {
     setInputs({
       ...inputs,
       recipeProcess: [
-        ...inputs?.recipeProcess,
+        ...(inputs?.recipeProcess || []),
         { content: '', image: null, imageFile: null }
       ],
     });
@@ -46,7 +47,7 @@ const ProcessSection = ({ inputs, setInputs }) => {
   return (
     <div className="mt-8">
       <Typography variant="h6" className="mb-2">조리방법</Typography>
-      {inputs?.recipeProcess.map((item, index) => (
+      {inputs?.recipeProcess?.map((item, index) => (
         <Card key={index} className="mb-5">
           <CardContent>
             <Grid container spacing={3}>
