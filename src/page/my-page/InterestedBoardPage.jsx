@@ -1,7 +1,6 @@
 import React from 'react';
 import {styled} from "@mui/system";
 import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
-import AccountService from "../../service/AccountService";
 import AccountContainer from "../../hooks/AccountContainer";
 
 const CardStyled = styled(Card)({
@@ -20,10 +19,10 @@ const CardMediaStyled = styled(CardMedia)({
  * @return {Element}
  * @constructor
  */
-function InterestedBoardPage () {
-  const { useBookmark } = AccountContainer();
+function InterestedBoardPage() {
+  const {useBookmark} = AccountContainer();
   const page = 1;
-  const { isError, isLoading } = useBookmark(page);
+  const {isError, isLoading} = useBookmark(page);
 
   if (isLoading) <div>isLoading....</div>
   if (isError) <div>error</div>

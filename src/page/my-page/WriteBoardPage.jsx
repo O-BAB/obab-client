@@ -15,9 +15,9 @@ const CardMediaStyled = styled(CardMedia)({
 });
 
 const WriteBoardPage = () => {
-  const { useUserinfoWrite } = AccountContainer();
+  const {useUserinfoWrite} = AccountContainer();
   const page = 1;
-  const { isError, isLoading } = useUserinfoWrite(page);
+  const {isError, isLoading} = useUserinfoWrite(page);
 
   if (isLoading) <div>isLoading....</div>
   if (isError) <div>error</div>
@@ -51,7 +51,7 @@ const WriteBoardPage = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Container>  )
+    </Container>)
 }
 
 export default WriteBoardPage;

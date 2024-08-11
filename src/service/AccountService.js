@@ -9,7 +9,7 @@ function AccountService(props) {
    */
   const connectUserInfoBookMark = async ({queryKey}) => {
     const [_key, { page }] = queryKey;
-    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}account/userinfo/bookmark?page=${page}`);
+    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/bookmark?page=${page}`);
     return response?.data;
   }
 
@@ -20,7 +20,7 @@ function AccountService(props) {
    */
   const connectUserInfoComment = async ({queryKey}) => {
     const [_key, { page }] = queryKey;
-    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}account/userinfo/comment?page=${page}`);
+    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/comment?page=${page}`);
 
     return response?.data;
   }
@@ -32,7 +32,7 @@ function AccountService(props) {
    */
   const connectUserInfoWrite = async ({queryKey}) => {
     const [_key, { page }] = queryKey;
-    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}account/userinfo/write?page=${page}`);
+    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/write?page=${page}`);
 
     return response?.data
   }
