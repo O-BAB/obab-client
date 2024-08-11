@@ -7,23 +7,20 @@ import IngredientsSection from "../../component/recipe/form/IngredientsSection";
 import ProcessSection from "../../component/recipe/form/ProcessSection";
 import RecipeContainer from "../../hooks/RecipeContainer";
 import {useParams} from "react-router-dom";
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {mainImageFormState, recipeFormState} from "../../recoil/recipeState";
 import {Button} from "@mui/material";
-import {userState} from "../../recoil/userState";
 
 const RecipeFormPage = () => {
   const {useRecipesDetailQuery, saveServerRecipe} = RecipeContainer();
   const params = useParams();
-  const { isLoading, isError } = useRecipesDetailQuery(params?.id, {
+  const {isLoading, isError} = useRecipesDetailQuery(params?.id, {
     staleTime: 1000 * 60 * 5 // 5 minutes
   });
 
   const [recipeForm, setRecipeForm] = useRecoilState(recipeFormState);
-  const user = useRecoilValue(userState);
 
   const [mainImageForm, setMainImageForm] = useRecoilState(mainImageFormState);
-  const [mainImageFile, setMainImageFile] = useState(null);  // State to hold the image file
 
   // 여기는 인풋 - 입력 내용 저장한다
   const [inputs, setInputs] = useState(() => {
@@ -70,13 +67,12 @@ const RecipeFormPage = () => {
       let recipeIngredients = inputs?.recipeIngredients[i];
       recipeIngredients = {
         ...recipeIngredients,
-        id: `${i+1}`,
+        id: `${i + 1}`,
         type: 'medium'
       } // 임시로 하드 코딩으로 박음, 원래는 이렇게 하면 안됨
 
       arrIngre.push(recipeIngredients);
     }
-
 
 
     let arrPro = [];
@@ -85,8 +81,9 @@ const RecipeFormPage = () => {
 
       recipeProcess = {
         ...recipeProcess,
-        order: (i+1),
-        id: `${i+1}`
+        order: Number(i + 1),
+        id: `${Number(i + 1)}`,
+
       } // 순차적으로 저장
 
       arrPro.push(recipeProcess);
@@ -101,7 +98,43 @@ const RecipeFormPage = () => {
 
     // API 호출 - 유저 인덱스 번호, 보낼 데이터
     //        현재는 테스트 진행을 위해 일부로 하드코딩으로 보냄
-    await saveServerRecipe(data);
+
+    // formData로 변환해서 전송
+    const formData = new FormData();
+    formData.append('thumnail', data.thumnail);  // 파일 데이터는 그대로 추가
+    formData.append('title', data.title);
+    formData.append('video', data.video);
+    formData.append('intro', data.intro);
+    formData.append('time', data.time);
+    formData.append('peopleNum', Number(data.peopleNum) || 1);
+    formData.append('difficulty', data.difficulty || 'medium');
+    formData.append('user', data.user);
+    formData.append('likeCount', Number(data.likeCount));
+    formData.append('bookmarkCount', Number(data.bookmarkCount));
+    formData.append('createdAt', data.createdAt);
+    formData.append('updatedAt', data.updatedAt);
+
+
+    for (let i = 0; i < data?.recipeIngredients.length; i++) {
+      formData.append(`recipeIngredients[${i}]`, JSON.stringify(data.recipeIngredients[i]));
+    }
+
+    for (let i = 0; i < data?.recipeProcess.length; i++) {
+      formData.append(`recipeProcess[${i}]`, data.recipeProcess[i]);
+    }
+    // for (let i = 0; i < data.recipeProcess.length; i++) {
+    //   const process = data.recipeProcess[i];
+    //   formData.append(`recipeProcess[${i}]['order']`, process.order);
+    //   formData.append(`recipeProcess[${i}]['id']`, process.id);
+    //   formData.append(`recipeProcess[${i}]['content']`, process.content);
+    //
+    //   if (process.image && process.image instanceof File) {
+    //     formData.append(`recipeProcess[${i}]['image']`, process.image);
+    //   } else {
+    //     formData.append(`recipeProcess[${i}]['image']`, "");
+    //   }
+    // }
+    await saveServerRecipe(formData);
 
     // 저장이 완료되면 로컬 스토리지에서 입력값을 제거합니다.
     localStorage.removeItem('recipeInputs');
@@ -117,7 +150,6 @@ const RecipeFormPage = () => {
         <div className="max-w-7xl mx-auto p-8">
           {/* MainImageSection */}
           <MainImageSection
-            setMainImageFile={setMainImageFile}  // Pass the setMainImageFile function
             mainImageForm={mainImageForm}
             setMainImageForm={setMainImageForm}
             inputs={inputs}
