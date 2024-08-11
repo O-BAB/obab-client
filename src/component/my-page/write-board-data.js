@@ -1,4 +1,4 @@
-const data = [
+const writeBoardData = [
   {
     no: 1,
     imgPath: '/images/siteinfo/noodle.webp',
@@ -43,4 +43,4 @@ const data = [
   }
 ]
 
-export default data
+export default writeBoardData

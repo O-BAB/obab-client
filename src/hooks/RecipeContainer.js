@@ -76,7 +76,7 @@ const RecipeContainer = () => {
         enabled: !!categoryCD,
         onSuccess: (data) => {
           setRecipes(data?.results);
-          // setRecipes(data.recipes);
+          // setRecipes(interestedBoardData.recipes);
           setCategoryTitle(categoryTitle);
         }
       }

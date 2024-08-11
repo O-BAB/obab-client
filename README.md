@@ -41,7 +41,7 @@ obab-client/
 ├── src/                       # 소스 코드 디렉토리
 │   ├── components/            # 1페이지 당 컴포넌트 유지
 │   ├── css/                   # CSS 파일 디렉토리
-│   ├── data/                  # 동적 페이지 유지를 위한 데이터셋 디렉토리
+│   ├── interestedBoardData/                  # 동적 페이지 유지를 위한 데이터셋 디렉토리
 │   ├── hooks/                 # 로직을 담는 디렉토리 (Custom Hook 디자인 패턴 적용)
 │   ├── layout/                # 정적 페이지 요소를 담는 디렉토리
 │   ├── pages/                 # 1페이지 전체를 이루는 페이지 컴포넌트 모음

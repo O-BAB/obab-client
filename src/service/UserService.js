@@ -10,7 +10,7 @@ const UserService = () => {
    */
   // const connectSignUp = async (email, password) => {
   const connectSignUp = async (data) => {
-    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/register/', data, { headers: { 'Content-Type': 'multipart/form-interestedBoardData' } });
 
     return response?.data;
   }
@@ -23,7 +23,7 @@ const UserService = () => {
    * @return {Promise<null>}
    */
   const connectLoginUser = async (data) => {
-    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    const response = await UseApi.post(process.env.REACT_APP_API_ROOT + 'accounts/login/', data, { headers: { 'Content-Type': 'multipart/form-interestedBoardData' } })
       .then((res) => {
         alert("로그인 성공")
         return res;

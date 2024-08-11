@@ -126,12 +126,12 @@ instance.interceptors.response.use(
 
               // Default Instance Header update
               instance.defaults.headers["Authorization"] =
-                // "Bearer " + res.data.token;
+                // "Bearer " + res.interestedBoardData.token;
                 "Bearer " + res.data.data;
 
               // Original Request Header update
               originalReq.headers["Authorization"] =
-                // "Bearer " + res.data.token;
+                // "Bearer " + res.interestedBoardData.token;
                 "Bearer " + res.data.data;
               onTokenRefreshed(res.data.data);
 

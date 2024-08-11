@@ -40,7 +40,7 @@ const LeftCategoryListComponent = () => {
               {/*<div className={styles.divider}></div>*/}
               <div className={styles.dateandcomments}>
                 <p className={styles.date}>
-                  {/*날짜부분 : data 값이 들어오지 않음*/}
+                  {/*날짜부분 : interestedBoardData 값이 들어오지 않음*/}
                   {/*March 5, 2024*/}
                   {handlerDateFormatter(data?.createdAt)}
                 </p>

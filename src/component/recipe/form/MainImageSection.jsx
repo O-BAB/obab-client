@@ -3,7 +3,7 @@ import { FormControl, IconButton, InputLabel, MenuItem, Select, Typography } fro
 import { PhotoCamera } from "@mui/icons-material";
 
 // MainImageSection 컴포넌트는 메인 이미지를 관리하고 표시하는 데 사용됩니다.
-const MainImageSection = ({ setMainImageFile, mainImageForm, setMainImageForm, inputs, setInputs }) => {
+const MainImageSection = ({ mainImageForm, setMainImageForm, inputs, setInputs }) => {
   // 이미지 변경 처리 함수
   const handleMainImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {

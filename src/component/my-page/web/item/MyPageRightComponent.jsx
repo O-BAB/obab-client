@@ -1,9 +1,9 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import MyPageContainer from "../../../../../hooks/MyPageContainer";
+import AccountContainer from "../../../../hooks/AccountContainer";
 
 const MyPageRightComponent = () => {
-  const {onClickMyPageMenuBar} = MyPageContainer();
+  const {onClickMyPageMenuBar} = AccountContainer();
   return (
     <div className={`w-4/5 min-h-[89vh] py-5 px-4`}>
       {/*  이부분은 라우터 컴포넌트를 이용하여 제작하는 영역 */}

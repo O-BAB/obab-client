@@ -7,9 +7,9 @@ function AccountService(props) {
    * @param page
    * @return {Promise<*>}
    */
-  const connectUserInfoBookMark = async (page) => {
-    const response = UseApi.get(`${process.env.REACT_APP_API_URL}/account/userinfo/bookmark?page=${page}`);
-
+  const connectUserInfoBookMark = async ({queryKey}) => {
+    const [_key, { page }] = queryKey;
+    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/bookmark?page=${page}`);
     return response?.data;
   }
 
@@ -18,8 +18,9 @@ function AccountService(props) {
    * @param page
    * @return {Promise<*>}
    */
-  const connectUserInfoComment = async (page) => {
-    const response = UseApi.get(`${process.env.REACT_APP_API_URL}/account/userinfo/comment?page=${page}`);
+  const connectUserInfoComment = async ({queryKey}) => {
+    const [_key, { page }] = queryKey;
+    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/comment?page=${page}`);
 
     return response?.data;
   }
@@ -29,10 +30,19 @@ function AccountService(props) {
    * @param page
    * @return {Promise<*>}
    */
-  const connectUserInfoWrite = async (page) => {
-    const response = UseApi.get(`${process.env.REACT_APP_API_URL}/account/userinfo/write/${page}`);
+  const connectUserInfoWrite = async ({queryKey}) => {
+    const [_key, { page }] = queryKey;
+    return await UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/write?page=${page}`)
+      .then((res) => {
+        console.log("조회 성공")
+        return res?.data;
+      })
+      .catch((err) => {
+        console.log("조회 실패!!")
+        return err;
+      });
 
-    return response?.data
+
   }
 
   return { connectUserInfoBookMark, connectUserInfoComment, connectUserInfoWrite }
