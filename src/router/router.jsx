@@ -5,7 +5,7 @@ import CategoryViewPage from "../page/recipe/RecipeViewPage";
 import ErrorPage from "../page/error/ErrorPage";
 import Login from "../page/login/user/Login";
 import MyPageLayout from "../layout/my/page/MyPageLayout";
-import InterestedBoardPage from "../page/my-page/InterestedBoardPage";
+import BookmarkPage from "../page/my-page/BookmarkPage";
 import WriteBoardPage from "../page/my-page/WriteBoardPage";
 import WriteCommentPage from "../page/my-page/WriteCommentPage";
 import MainLayout from "../layout/main/MainLayout";
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'interested/board',
-        element: <InterestedBoardPage/>,
+        element: <BookmarkPage/>,
         errorElement: <ErrorPage/>
       },
       {
