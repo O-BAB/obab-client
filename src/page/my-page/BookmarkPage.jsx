@@ -2,6 +2,8 @@ import React from 'react';
 import {styled} from "@mui/system";
 import {Card, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 import AccountContainer from "../../hooks/AccountContainer";
+import {useRecoilValue} from "recoil";
+import {userinfoBookmarkState, userinfoRecipeWriteState} from "../../recoil/userState";
 
 const CardStyled = styled(Card)({
   display: 'flex',
@@ -19,10 +21,13 @@ const CardMediaStyled = styled(CardMedia)({
  * @return {Element}
  * @constructor
  */
-function InterestedBoardPage() {
+function BookmarkPage() {
   const {useBookmark} = AccountContainer();
   const page = 1;
   const {isError, isLoading} = useBookmark(page);
+
+  // 데이터 출력
+  const rows = useRecoilValue(userinfoBookmarkState);
 
   if (isLoading) <div>isLoading....</div>
   if (isError) <div>error</div>
@@ -31,22 +36,25 @@ function InterestedBoardPage() {
       <Grid container spacing={4} className="mt-8">
         <Grid item xs={12} md={9}>
           <Grid container spacing={4}>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item}>
+            {rows?.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <CardStyled>
                   <CardMediaStyled
-                    image="/static/images/cards/paella.jpg"
+                    image={`${item?.thumnail}`}
                     title="이미지"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Easy and Quick Recipes with Ingredients From...
+                      {/*Easy and Quick Recipes with Ingredients From...*/}
+                      {item?.title}
                     </Typography>
                     <Typography>
-                      March 5, 2024
+                      {/*March 5, 2024*/}
+                      {item?.updatedAt}
                     </Typography>
                     <Typography>
-                      OBAB is a Korean food and recipe blog that offers a...
+                      {/*OBAB is a Korean food and recipe blog that offers a...*/}
+                      {item?.intro}
                     </Typography>
                   </CardContent>
                 </CardStyled>
@@ -59,4 +67,4 @@ function InterestedBoardPage() {
   )
 }
 
-export default InterestedBoardPage;
+export default BookmarkPage;

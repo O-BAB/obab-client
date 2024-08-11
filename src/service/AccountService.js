@@ -32,9 +32,17 @@ function AccountService(props) {
    */
   const connectUserInfoWrite = async ({queryKey}) => {
     const [_key, { page }] = queryKey;
-    const response = UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/write?page=${page}`);
+    return await UseApi.get(`${process.env.REACT_APP_API_ROOT}accounts/userinfo/write?page=${page}`)
+      .then((res) => {
+        console.log("조회 성공")
+        return res?.data;
+      })
+      .catch((err) => {
+        console.log("조회 실패!!")
+        return err;
+      });
 
-    return response?.data
+
   }
 
   return { connectUserInfoBookMark, connectUserInfoComment, connectUserInfoWrite }
