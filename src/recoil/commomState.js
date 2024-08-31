@@ -30,7 +30,10 @@ export const categoriesState = atom({
   // default: []
 });
 
-
+/**
+ * 반응형 웹 앱 전역 상태 관리 (픽셀 조정용)
+ * @type {RecoilState<number>}
+ */
 export const innerWidthState = atom({
   key: 'innerWidth',
   default: window.innerWidth
